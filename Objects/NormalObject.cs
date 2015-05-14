@@ -7,5 +7,9 @@ namespace TeamWork
 {
     public class NormalObject : Objects
     {
+        public NormalObject()
+        {
+
+        }
     }
 }

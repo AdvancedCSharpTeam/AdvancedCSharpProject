@@ -2,7 +2,7 @@
 
 namespace TeamWork.Field
 {
-    public class Drawing
+    public static class Drawing : IDraw
     {
         public static void DrawAt(int x, int y, object obj)
         {
@@ -57,5 +57,6 @@ namespace TeamWork.Field
                 DrawAt(x , y + side4++, obj, clr);
             }
         }
+
     }
 }

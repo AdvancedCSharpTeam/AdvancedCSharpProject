@@ -7,6 +7,10 @@ namespace TeamWork
 {
     public interface IPlayer
     {
+        int Ammo { get; set; }
+
+        int Lives { get; set; }
+
         Point2D Point { get; set; }
 
         void MoveUp();

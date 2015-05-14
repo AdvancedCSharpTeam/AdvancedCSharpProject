@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TeamWork.Player">
-    <Position X="3.25" Y="1.75" Width="1.5" />
+    <Position X="3.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACEAAACAAAAAgAAAAAAAAAAAAAIAAAAKQAAAAAAgAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
@@ -9,52 +9,61 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Objects">
-    <Position X="6.75" Y="1.75" Width="1.5" />
+    <Position X="6.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\Objects.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.SlowObject">
-    <Position X="5" Y="3" Width="1.5" />
+    <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\SlowObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.FastObject">
-    <Position X="8.5" Y="3" Width="1.5" />
+    <Position X="8.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\FastObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.NormalObject">
-    <Position X="6.75" Y="3" Width="1.5" />
+    <Position X="6.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\NormalObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.Drawing">
-    <Position X="1.5" Y="1.75" Width="1.5" />
+  <Class Name="TeamWork.Field.Drawing" Collapsed="true">
+    <Position X="1.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAIIAEAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Point2D">
-    <Position X="1.5" Y="3" Width="1.5" />
+    <Position X="1.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
       <FileName>Point2D.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="TeamWork.Entity">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <HashCode>ACEAAAAAAAAAgAAAAAAAAAAAAAAAAAAKQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -65,11 +74,18 @@
       <FileName>Objects\IObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="TeamWork.IDraw">
+  <Interface Name="TeamWork.IDraw" Collapsed="true">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAIIAEAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Field\IDraw.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TeamWork.IEntity">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEntity.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

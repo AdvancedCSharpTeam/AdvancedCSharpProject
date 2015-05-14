@@ -5,7 +5,10 @@ using System.Text;
 
 namespace TeamWork
 {
-    abstract public class Objects : IObject
+    abstract public class Objects : Entity, IObject
     {
+        private Point2D point;
+
+        public Point2D Point { get; set; }
     }
 }

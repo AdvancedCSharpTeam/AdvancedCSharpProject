@@ -7,5 +7,9 @@ namespace TeamWork
 {
     public class FastObject : Objects
     {
+        public FastObject()
+        {
+
+        }
     }
 }

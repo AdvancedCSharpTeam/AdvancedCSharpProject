@@ -7,5 +7,9 @@ namespace TeamWork
 {
     public class SlowObject : Objects
     {
+        public SlowObject()
+        {
+
+        }
     }
 }
