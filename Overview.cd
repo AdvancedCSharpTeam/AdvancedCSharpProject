@@ -3,7 +3,7 @@
   <Class Name="TeamWork.Player">
     <Position X="3.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <HashCode>ACEAAACAAAAAgAAAAAAAAAAAAAIAAAAKQAAAAAAgAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -44,10 +44,17 @@
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="TeamWork.IPlayer">
+  <Class Name="TeamWork.Point2D">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
+      <FileName>Point2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TeamWork.IPlayer" Collapsed="true">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
