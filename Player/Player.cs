@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TeamWork
 {
-    public class Player : IPlayer
+    public class Player : Entity, IPlayer
     {
         private int lives;
         private int ammo;
