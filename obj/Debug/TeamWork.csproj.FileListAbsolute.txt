@@ -1,1 +1,2 @@
 C:\Users\HOME\Desktop\C# OOP\Methods\Methods\TeamWork\TeamWork\bin\Debug\TeamWork.exe.config
+C:\Users\HOME\Desktop\TeamWork\TeamWork\AdvancedCSharpProject\bin\Debug\TeamWork.exe.config
