@@ -38,15 +38,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
-    <Position X="1.5" Y="2" Width="1.5" />
+    <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIIAEAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Point2D">
-    <Position X="1.5" Y="3.25" Width="1.5" />
+    <Position X="1.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
       <FileName>Point2D.cs</FileName>
@@ -72,13 +71,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\IObject.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="TeamWork.IDraw" Collapsed="true">
-    <Position X="1.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIIAEAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Field\IDraw.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="TeamWork.IEntity">

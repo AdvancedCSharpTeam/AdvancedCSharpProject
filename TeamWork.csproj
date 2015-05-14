@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Entity.cs" />
     <Compile Include="Field\Drawing.cs" />
-    <Compile Include="Field\IDraw.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Objects\FastObject.cs" />
     <Compile Include="Objects\IObject.cs" />

@@ -2,7 +2,7 @@
 
 namespace TeamWork.Field
 {
-    public static class Drawing : IDraw
+    public static class Drawing
     {
         public static void DrawAt(int x, int y, object obj)
         {
