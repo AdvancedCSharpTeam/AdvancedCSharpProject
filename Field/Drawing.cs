@@ -52,18 +52,36 @@ _______  _______  _______  _______    _______           _______  _______
                               Shano"; 
         #endregion
 
+        /// <summary>
+        /// Draw an object at a Point2D
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="obj"></param>
         public static void DrawAt(Point2D point, object obj)
         {
             Console.SetCursorPosition(point.X, point.Y);
             Console.Write(obj.ToString());
         }
 
+        /// <summary>
+        /// Draw an object at given X and Y Coordinates
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="obj"></param>
         public static void DrawAt(int x,int y, object obj)
         {
             Console.SetCursorPosition(x, y);
             Console.Write(obj.ToString());
         }
 
+        /// <summary>
+        /// Draw an object at given X and Y Coordinates with a color
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
         public static void DrawAt(int x, int y, object obj, ConsoleColor clr)
         {
             Console.ForegroundColor = clr;
@@ -71,6 +89,12 @@ _______  _______  _______  _______    _______           _______  _______
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Draw an object at given Point2D with color
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
         public static void DrawAt(Point2D point, object obj, ConsoleColor clr)
         {
             Console.ForegroundColor = clr;
@@ -78,6 +102,13 @@ _______  _______  _______  _______    _______           _______  _______
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Draw a vertical line with given lenght starting at Point2D
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="lenght"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
         public static void DrawVLineAt(Point2D point, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
             for (int i = 0; i < lenght; i++)
@@ -87,6 +118,13 @@ _______  _______  _______  _______    _______           _______  _______
             }
         }
 
+        /// <summary>
+        /// Draw a horizontal line with given lenght starting at Point2D
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="lenght"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
         public static void DrawHLineAt(Point2D point, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
             for (int i = 0; i < lenght; i++)
@@ -96,6 +134,13 @@ _______  _______  _______  _______    _______           _______  _______
             }
         }
 
+        /// <summary>
+        /// Draw a Rectangle starting at position with given size
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="size"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
         public static void DrawRectangleAt(Point2D point, int size, object obj, ConsoleColor clr = ConsoleColor.White)
         {
             for (int i = 0, side1 = 0; i < size; i++)
@@ -119,16 +164,25 @@ _______  _______  _______  _______    _______           _______  _______
             }
         }
 
+        /// <summary>
+        /// Draw Welcome Screen
+        /// </summary>
         public static void WelcomeScreen()
         {
             DrawAt(0,0,Logo,ConsoleColor.Cyan);
         }
 
+        /// <summary>
+        /// Draw GameOver Screen
+        /// </summary>
         public static void GameOver()
         {
             DrawAt(0, 0, gameOver, ConsoleColor.Cyan);
         }
 
+        /// <summary>
+        /// Draw Credits
+        /// </summary>
         public static void Credits()
         {
             DrawAt(0, 0, credits, ConsoleColor.Cyan);
