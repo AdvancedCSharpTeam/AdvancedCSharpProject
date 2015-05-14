@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamWork.Field;
 
 namespace TeamWork
 {
@@ -10,6 +11,9 @@ namespace TeamWork
     {
         static void Main(string[] args)
         {
+            Console.WindowWidth = 90;
+            Console.BufferWidth = 90;
+
             IEntity player = new Player();
             Console.WriteLine("({0}, {1})", player.Point.X, player.Point.Y);
             Console.WriteLine();
@@ -27,6 +31,18 @@ namespace TeamWork
             IEntity objectTwo = new SlowObject(pointTwo);
             Console.WriteLine("({0}, {1})", objectTwo.Point.X, objectTwo.Point.Y);
             Console.WriteLine("{0}", objectTwo.Speed);
+
+            Drawing.WelcomeScreen();
+            Console.ReadKey();
+            Console.Clear();
+
+            Drawing.GameOver();
+            Console.ReadKey();
+            Console.Clear();
+
+            Drawing.Credits();
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
