@@ -11,8 +11,6 @@ namespace TeamWork
 
         int Lives { get; set; }
 
-        Point2D Point { get; set; }
-
         void MoveUp();
         void MoveDown();
         void MoveLeft();

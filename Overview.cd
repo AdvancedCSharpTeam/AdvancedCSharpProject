@@ -40,7 +40,7 @@
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIIAEAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAgQAAAAAgAAAAAIIAEAAAAAAAAAAAIAAAAIAAAIA=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,7 +62,7 @@
   <Interface Name="TeamWork.IPlayer" Collapsed="true">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACEAAAAAAAAAgAAAAAAAAAAAAAAAAAAKQAAAAAAAAAA=</HashCode>
+      <HashCode>ACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -73,7 +73,7 @@
       <FileName>Objects\IObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="TeamWork.IEntity">
+  <Interface Name="TeamWork.IEntity" Collapsed="true">
     <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
