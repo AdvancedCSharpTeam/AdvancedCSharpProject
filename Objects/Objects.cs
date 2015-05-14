@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TeamWork
 {
-    abstract public class Objects : Entity, IObject
+    abstract public class Objects : Entity, IObject, IEntity
     {
         public Objects()
         {
