@@ -9,7 +9,12 @@ namespace TeamWork
     {
         public FastObject()
         {
+            base.Speed = 3;
+        }
 
+        public FastObject(Point2D point) : base(point)
+        {
+            base.Speed = 3;
         }
     }
 }

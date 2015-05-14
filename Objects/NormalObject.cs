@@ -9,7 +9,12 @@ namespace TeamWork
     {
         public NormalObject()
         {
+            base.Speed = 2;
+        }
 
+        public NormalObject(Point2D point) : base(point)
+        {
+            base.Speed = 2;
         }
     }
 }

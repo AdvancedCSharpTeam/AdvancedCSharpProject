@@ -7,8 +7,13 @@ namespace TeamWork
 {
     abstract public class Objects : Entity, IObject
     {
-        private Point2D point;
+        public Objects()
+        {
 
-        public Point2D Point { get; set; }
+        }
+        public Objects(Point2D point) : base(point)
+        {
+
+        }
     }
 }

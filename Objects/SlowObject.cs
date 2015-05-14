@@ -9,7 +9,11 @@ namespace TeamWork
     {
         public SlowObject()
         {
-
+            base.Speed = 1;
+        }
+        public SlowObject(Point2D point) : base(point)
+        {
+            base.Speed = 1;
         }
     }
 }

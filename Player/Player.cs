@@ -5,23 +5,17 @@ using System.Text;
 
 namespace TeamWork
 {
-    public class Player : Entity, IPlayer
+    public class Player : Entity, IPlayer, IEntity
     {
         private int lives;
         private int ammo;
-
-        private Point2D point;
 
         public Player()
         {
             this.Lives = lives;
             this.Ammo = ammo;
-
-            this.Point.X = 0;
-            this.Point.Y = 0;
         }
 
-        public Point2D Point { get; set; }
         public int Ammo { get; set; }
         public int Lives { get; set; }
 
