@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine.cs" />
     <Compile Include="Objects\Entity.cs" />
     <Compile Include="Field\Drawing.cs" />
     <Compile Include="Objects\IEntity.cs" />
