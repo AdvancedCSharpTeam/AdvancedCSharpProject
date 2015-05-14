@@ -21,20 +21,31 @@ namespace TeamWork
 
         public void MoveUp()
         {
-            throw new System.NotImplementedException();
+            if (!(base.Point.Y <= 30 && base.Point.Y >= 0))
+            {
+                base.Point.Y += 1;
+            }
         }
         public void MoveDown()
         {
-            throw new System.NotImplementedException();
-        }
-        public void MoveLeft()
-        {
-            throw new System.NotImplementedException();
+            if (!(base.Point.Y <= 30 && base.Point.Y >= 0))
+            {
+                base.Point.Y -= 1;
+            }
         }
         public void MoveRight()
         {
-            throw new System.NotImplementedException();
+            if (!(base.Point.Y <= 80 && base.Point.Y >= 0))
+            {
+                base.Point.Y += 1;
+            }
         }
-
+        public void MoveLeft()
+        {
+            if (!(base.Point.X <= 80 && base.Point.X >= 0))
+            {
+                base.Point.X -= 1;
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace TeamWork
 {
     abstract public class Entity : IEntity
     {
-        private Point2D point = new Point2D(0, 0);
+        private Point2D point = new Point2D(50, 50);
         private int speed;
 
         public Entity()
