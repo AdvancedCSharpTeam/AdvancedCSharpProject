@@ -18,6 +18,15 @@
   </Class>
   <Class Name="TeamWork.SlowObject">
     <Position X="5" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="TeamWork.Objects" ManuallyRouted="true">
+      <Path>
+        <Point X="7.5" Y="3.233" />
+        <Point X="7.5" Y="3.804" />
+        <Point X="6.623" Y="3.804" />
+        <Point X="6.623" Y="5.116" />
+        <Point X="6.5" Y="5.116" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\SlowObject.cs</FileName>
@@ -25,6 +34,14 @@
   </Class>
   <Class Name="TeamWork.FastObject">
     <Position X="8.5" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="TeamWork.Objects" ManuallyRouted="true">
+      <Path>
+        <Point X="7.5" Y="3.233" />
+        <Point X="7.5" Y="3.781" />
+        <Point X="9.25" Y="3.781" />
+        <Point X="9.25" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\FastObject.cs</FileName>
@@ -32,6 +49,12 @@
   </Class>
   <Class Name="TeamWork.NormalObject">
     <Position X="6.75" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="TeamWork.Objects" ManuallyRouted="true">
+      <Path>
+        <Point X="7.5" Y="3.233" />
+        <Point X="7.5" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\NormalObject.cs</FileName>
@@ -62,7 +85,7 @@
   <Class Name="TeamWork.Engine">
     <Position X="8.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
