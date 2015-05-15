@@ -7,6 +7,7 @@ namespace TeamWork
 {
     abstract public class Objects : Entity, IObject, IEntity
     {
+        
         public Objects()
         {
 

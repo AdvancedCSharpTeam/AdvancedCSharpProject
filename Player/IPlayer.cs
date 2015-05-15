@@ -8,12 +8,13 @@ namespace TeamWork
     public interface IPlayer
     {
         int Ammo { get; set; }
-
+        string Name { get; set; }
         int Lives { get; set; }
 
         void MoveUp();
         void MoveDown();
         void MoveLeft();
         void MoveRight();
+        void setName(string name);
     }
 }

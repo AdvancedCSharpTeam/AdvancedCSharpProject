@@ -7,15 +7,15 @@ namespace TeamWork
 {
     public class Player : Entity, IPlayer, IEntity
     {
-        private int lives;
-        private int ammo;
-        private string name;
+        private int lives = 3;
+        private int ammo = 10;
+        private string name = "Default";
 
         public Player()
         {
-            this.Lives = lives;
-            this.Ammo = ammo;
-            this.Name = name;
+            this.Lives = this.lives;
+            this.Ammo = this.ammo;
+            this.Name = this.name;
         }
 
         public int Ammo { get; set; }
@@ -24,33 +24,48 @@ namespace TeamWork
 
         public void MoveUp()
         {
-            if (!(base.Point.Y <= 30 && base.Point.Y >= 0))
+            if (!(base.Point.X.Equals(30)))
             {
-                base.Point.Y += 1;
+                if ((base.Point.Y < 30))
+                {
+                    base.Point.Y += 1;
+                    Console.WriteLine("Moving Up");
+                }
             }
         }
         public void MoveDown()
         {
-            if (!(base.Point.Y <= 30 && base.Point.Y >= 0))
+            if (!(base.Point.X.Equals(1)))
             {
-                base.Point.Y -= 1;
+                if ((base.Point.Y >= 0))
+                {
+                    base.Point.Y -= 1;
+                    Console.WriteLine("Moving Down");
+                }
             }
         }
         public void MoveRight()
         {
-            if (!(base.Point.Y <= 80 && base.Point.Y >= 0))
+            if (!(base.Point.X.Equals(80)))
             {
-                base.Point.Y += 1;
+                if ((base.Point.X < 80))
+                {
+                    base.Point.Y += 1;
+                    Console.WriteLine("Moving Right");
+                }
             }
         }
         public void MoveLeft()
         {
-            if (!(base.Point.X <= 80 && base.Point.X >= 0))
+            if (!(base.Point.X.Equals(1)))
             {
-                base.Point.X -= 1;
+                if ((base.Point.X > 0))
+                {
+                    base.Point.X -= 1;
+                    Console.WriteLine("Moving Left");
+                }
             }
         }
-
         public void setName(string name)
         {
             this.Name = name;

@@ -196,6 +196,15 @@ _______  _______  _______  _______    _______           _______  _______
         {
             DrawAt(0, 0, credits, ConsoleColor.Cyan);
         }
-
+        public static string generateObject()
+        {
+            string generatedObject = string.Empty;
+            Random rnd = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                generatedObject += rnd.Next(0, 2);
+            }
+            return generatedObject;
+        }
     }
 }

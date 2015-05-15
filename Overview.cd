@@ -43,8 +43,8 @@
     <InheritanceLine Type="TeamWork.Objects" ManuallyRouted="true">
       <Path>
         <Point X="7.5" Y="3.233" />
-        <Point X="7.5" Y="3.864" />
-        <Point X="9.25" Y="3.864" />
+        <Point X="7.5" Y="4.406" />
+        <Point X="9.25" Y="4.406" />
         <Point X="9.25" Y="4.5" />
       </Path>
     </InheritanceLine>
@@ -69,7 +69,7 @@
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
     <Position X="1.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAgQAAAAAgAAAAAIIAEAAAAAAAAAAAIAAAAIAAAIA=</HashCode>
+      <HashCode>gAAAgQAAAAAiAAAAAIIAEAAAAAAAAAAAIAAAAIAAAIA=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -91,14 +91,14 @@
   <Class Name="TeamWork.Engine">
     <Position X="8.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAACAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">
     <Position X="3.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQAAAAAAAAAA=</HashCode>
+      <HashCode>ACEAAAAAAAAAAAAAAAAAAAQAAAAAAABKQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
