@@ -48,6 +48,8 @@ namespace TeamWork
 
             Drawing.DrawRectangleAt(new Point2D(3,4),5,'*');
             Console.ReadKey();
+
+            Drawing.DrawVLineAt(1,1,5,'a');
         }
     }
 }

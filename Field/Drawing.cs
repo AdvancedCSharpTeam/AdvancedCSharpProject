@@ -128,6 +128,18 @@ _______  _______  _______  _______    _______           _______  _______
         }
 
         /// <summary>
+        /// Draw a vertical line with given lenght starting at X and Y
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="lenght"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
+        public static void DrawVLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
+        {
+            DrawVLineAt(new Point2D(x,y),lenght,obj,clr);
+        }
+
+        /// <summary>
         /// Draw a horizontal line with given lenght starting at Point2D
         /// </summary>
         /// <param name="point"></param>
@@ -144,7 +156,19 @@ _______  _______  _______  _______    _______           _______  _______
         }
 
         /// <summary>
-        /// Draw a Rectangle starting at position with given size
+        /// Draw a horizontal line with given lenght starting at X and Y
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="lenght"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
+        public static void DrawHLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
+        {
+           DrawHLineAt(new Point2D(x,y),lenght,obj,clr);
+        }
+
+        /// <summary>
+        /// Draw a Rectangle starting at position Point2D with given size
         /// </summary>
         /// <param name="point"></param>
         /// <param name="size"></param>
@@ -171,6 +195,18 @@ _______  _______  _______  _______    _______           _______  _______
             {
                 DrawAt(point.X , point.Y + side4++, obj, clr);
             }
+        }
+
+        /// <summary>
+        /// Draw a Rectangle starting at position X Y with given size
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="size"></param>
+        /// <param name="obj"></param>
+        /// <param name="clr"></param>
+        public static void DrawRectangleAt(int x, int y, int size, object obj, ConsoleColor clr = ConsoleColor.White)
+        {
+            DrawRectangleAt(new Point2D(x,y),size,obj,clr);
         }
 
         /// <summary>
