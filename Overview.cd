@@ -82,17 +82,31 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Engine">
-    <Position X="8.5" Y="2" Width="1.5" />
+    <Position X="8.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAACAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAKAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
     <Position X="1.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQAgQAAAAAiAAABAIIAEAAAAAAAAAAAIAAAAIBAAIA=</HashCode>
+      <HashCode>gARAkQAAAAkiAAARAIIAMAAAAAAAAAAAIQAAAYFAAIg=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.MoveArgs" Collapsed="true">
+    <Position X="1.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MoveEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.MoveListener" Collapsed="true">
+    <Position X="1.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MoveListener.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">

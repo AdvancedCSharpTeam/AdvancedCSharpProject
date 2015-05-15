@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Threading;
 
 namespace TeamWork.Field
 {
     public static class Drawing
     {
+        public static IPlayer Player = new Player();
+        public static Point2D PlayerPoint = new Point2D(40, 29);
+        public static Point2D GameFieldRightSide = new Point2D(60, 0);
+        public static Point2D MenuField = new Point2D(75, 4);
+
         #region Constants
         private const string Logo = @"
               _    _  ____  __    ___  _____  __  __  ____
@@ -33,7 +39,7 @@ namespace TeamWork.Field
                 | |  (_)) | |_   ((_) ((_)_\| ((_)_ )(_)) 
                 | |__/ -_)|  _|  (_-< | '_ \) / _` | || | 
                 |____\___| \__|  /__/ | .__/|_\__,_|\_, | 
-                                      |_|           |__/";                                          
+                                      |_|           |__/";
         private const string gameOver = @"
      _______  _______  _______  _______    _______           _______  _______
     (  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ )
@@ -130,7 +136,7 @@ namespace TeamWork.Field
             for (int i = 0; i < lenght; i++)
             {
                 DrawAt(point, obj, clr);
-                point.Y++;
+                //point.Y++;
             }
         }
 
@@ -158,7 +164,7 @@ namespace TeamWork.Field
             for (int i = 0; i < lenght; i++)
             {
                 DrawAt(point, obj, clr);
-                point.X++;
+                //point.X++;
             }
         }
 
@@ -215,7 +221,86 @@ namespace TeamWork.Field
         {
             DrawRectangleAt(new Point2D(x, y), size, obj, clr);
         }
-
+        #region Methods for Drawing the Game
+        public static void DrawPlayer()
+        {
+            string player;
+            switch (Drawing.Player.Lives)
+            {
+                case 3:
+                    player =
+        @"                           
+                            ||
+                            ..
+                      |     /\    |
+                      :    /||\   :
+                      :__ /|C#|\__:
+";
+                    Drawing.DrawHLineAt(PlayerPoint, 1, player);
+                    break;
+                //TODO: Implement cases 1 & 2, where for each life a wing from the ship is lost.
+                    // At Player.Lives.Equals(2) right wing is missing, and for 1 - left one.
+                default: throw new Exception("You shouldn't see this!");
+            }
+        }
+        public static void DrawMenu()
+        {
+            string menu;
+            menu = @" 
+                                                              LIVES:    |    " + Player.Lives + @"
+                                                                
+                                                                
+                                                                |||||||||||||
+                                                              AMMO:     |    " + Player.Ammo + @"
+                                                                
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||
+                                                                |||||||||||||";
+            Drawing.DrawHLineAt(GameFieldRightSide, 1, menu);
+            Drawing.DrawVLineAt(GameFieldRightSide, 1, @"|
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |
+                                                            |");
+        }
+        public static void DrawField()
+        {
+            Thread.Sleep(5);
+            Drawing.DrawPlayer();
+            Thread.Sleep(0);
+            Drawing.DrawMenu();
+            Thread.Sleep(0);
+        }
+        #endregion
         #endregion
 
         #region Clearing Methods

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace TeamWork
 {
@@ -25,7 +26,8 @@ namespace TeamWork
         //TODO: Implement new moving methods!
         public void MoveUp()
         {
-
+            Console.WriteLine("STOP");
+            Thread.Sleep(10000);
         }
         public void MoveDown()
         {

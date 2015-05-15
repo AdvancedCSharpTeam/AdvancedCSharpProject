@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Field\Engine.cs" />
+    <Compile Include="MoveEvent.cs" />
+    <Compile Include="MoveListener.cs" />
     <Compile Include="Objects\Entity.cs" />
     <Compile Include="Field\Drawing.cs" />
     <Compile Include="Objects\IEntity.cs" />

@@ -7,11 +7,19 @@ using TeamWork.Field;
 
 namespace TeamWork
 {
+    public delegate void MoveHandler(object obj, MoveArgs move);
+
     public class Engine
     {
-        public static IPlayer player = new Player();
+        public static event MoveHandler Move;
 
-        //TODO: Implement Engine Class!
+        public static void OnEventMove(MoveArgs moveArgs)
+        {
+            var handler = Move;
+            if (Move != null)
+                Move(null, moveArgs);
+        }
+
         public Engine()
         {
             this.Start();
@@ -20,20 +28,51 @@ namespace TeamWork
 
         public void Start()
         {
-            Drawing.WelcomeScreen();
-            Thread.Sleep(2500);
-            Console.Clear();       
-            Drawing.LetsPlay();
-            Thread.Sleep(2500);
-            Console.Clear();            
-            Drawing.UserName();           
-            this.TakeName();  
-                        
+            //Drawing.WelcomeScreen();
+            //Thread.Sleep(2500);
+            //Console.Clear();       
+            //Drawing.LetsPlay();
+            //Thread.Sleep(2500);
+            //Console.Clear();            
+            //Drawing.UserName();           
+            //this.TakeName();
+
+            Console.WindowWidth = 80;
+            Console.BufferWidth = 80;
+            Console.WindowHeight = 30;
+            Console.BufferHeight = 30;
+
+            //Drawing.DrawHLineAt(0, 0, 30, '*');
+            //Drawing.DrawHLineAt(0, 5, 30, '*');
+            //Drawing.DrawHLineAt(0, 10, 30, '*');
+            //Drawing.DrawHLineAt(0, 15, 30, '*');
+            //Drawing.DrawHLineAt(0, 20, 30, '*');
+            //Drawing.DrawHLineAt(0, 25, 80, '*');
+            //Drawing.DrawVLineAt(5, 5, 25, '~', ConsoleColor.Yellow);
+            //Console.ReadKey();
+            //Drawing.ClearFromTo(1, 0, 20, 20);
+            //Console.ReadKey();
+            //Drawing.ClearY(25);
+            //Drawing.ClearX(5);
+
+            //Drawing.Credits();
+            //Console.ReadKey();
+
+            //Drawing.DrawRectangleAt(new Point2D(3, 4), 5, '*');
+
+            Console.WriteLine("Press any key to start!");
+            Console.ReadLine();
+
+            MoveListener moveListener = new MoveListener();
+            Move += new MoveHandler(moveListener.Move);
+
             while (true)
             {
-                this.TakeInput();
-
-                if (player.Lives.Equals(0))
+                
+                Drawing.DrawField();
+                Thread.Sleep(0);
+                
+                if (Drawing.Player.Lives.Equals(0))
                 {
                     break;
                 }
@@ -51,21 +90,7 @@ namespace TeamWork
         }
         private void TakeInput()
         {
-            //TODO: Implement reading input for using the methods for moving in the Class Player!
-            ConsoleKeyInfo currentkey = Console.ReadKey();
-            switch (currentkey.KeyChar)
-            {
-                case 'w': player.MoveUp();
-                    break;
-                case 's': player.MoveDown();
-                    break;
-                case 'a': player.MoveLeft();
-                    break;
-                case 'd': player.MoveRight();
-                    break;
-                default: Console.WriteLine("You shouldn't see this!");
-                    break;
-            }
+            Console.ReadKey();
         }
 
         private void TakeName()
@@ -83,7 +108,7 @@ namespace TeamWork
             }
             else
             {
-                player.setName(name);
+                Drawing.Player.setName(name);
                 Console.Clear();
             }
         }
