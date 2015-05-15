@@ -21,13 +21,14 @@ namespace TeamWork
         public void Start()
         {
             Drawing.WelcomeScreen();
-            Thread.Sleep(2000);
-            Console.Clear();
-            Drawing.Credits();
-            Thread.Sleep(2000);
-            Console.Clear();
-            this.TakeName();
-            
+            Thread.Sleep(2500);
+            Console.Clear();       
+            Drawing.LetsPlay();
+            Thread.Sleep(2500);
+            Console.Clear();            
+            Drawing.UserName();           
+            this.TakeName();  
+                        
             while (true)
             {
                 this.TakeInput();
@@ -44,7 +45,9 @@ namespace TeamWork
         private void End()
         {
             Drawing.GameOver();
+            Thread.Sleep(2500);
             Console.Clear();
+            Drawing.Credits();
         }
         private void TakeInput()
         {
@@ -67,10 +70,22 @@ namespace TeamWork
 
         private void TakeName()
         {
-            Console.Write("Enter Name: ");
+            Console.WriteLine();
+            Console.Write("\n\t\t\t\tName:");
             string name = Console.ReadLine();
-            player.setName(name);
-            Console.Clear();
+            if (String.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("\t\t\t\tPlease entry your name");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Drawing.UserName();
+                TakeName();
+            }
+            else
+            {
+                player.setName(name);
+                Console.Clear();
+            }
         }
     }
 }
