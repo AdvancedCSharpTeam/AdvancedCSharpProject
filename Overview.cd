@@ -66,13 +66,6 @@
       <FileName>Objects\NormalObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.Field.Drawing" Collapsed="true">
-    <Position X="1.5" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAAgQAAAAAiAAAAAIIAEAAAAAAAAAAAIAAAAIAAAIA=</HashCode>
-      <FileName>Field\Drawing.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TeamWork.Point2D">
     <Position X="1.5" Y="2" Width="1.5" />
     <TypeIdentifier>
@@ -93,6 +86,13 @@
     <TypeIdentifier>
       <HashCode>AAIAABAAACAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.Field.Drawing" Collapsed="true">
+    <Position X="1.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAgQAAAAAiAAABAIIAEAAAAAAAAAAAIAAAAIBAAIA=</HashCode>
+      <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">

@@ -58,7 +58,7 @@ _______  _______  _______  _______    _______           _______  _______
                               DHristoskov
                               NKNenkov
                               nOwayOut
-                              Shano"; 
+                              Shano";
         #endregion
 
         #region Drawing Methods
@@ -209,7 +209,7 @@ _______  _______  _______  _______    _______           _______  _______
         {
             DrawRectangleAt(new Point2D(x, y), size, obj, clr);
         }
-        
+
         #endregion
 
         #region Clearing Methods
@@ -221,7 +221,7 @@ _______  _______  _______  _______    _______           _______  _______
         /// <param name="y"></param>
         public static void ClearAtPosition(int x, int y)
         {
-            Console.SetCursorPosition(x,y);
+            Console.SetCursorPosition(x, y);
             Console.Write(' ');
         }
 
@@ -243,7 +243,7 @@ _______  _______  _______  _______    _______           _______  _______
         /// <param name="fromY"></param>
         /// <param name="toX"></param>
         /// <param name="toY"></param>
-        public static void ClearFromTo(int fromX, int fromY,int toX,int toY)
+        public static void ClearFromTo(int fromX, int fromY, int toX, int toY)
         {
             Console.SetCursorPosition(fromX, fromY);
             string x = new string(' ', toX - fromX);
@@ -262,7 +262,7 @@ _______  _______  _______  _______    _______           _______  _______
         /// <param name="toY"></param>
         public static void ClearFromTo(Point2D startingPoint, Point2D endingPoint)
         {
-            ClearFromTo(startingPoint.X,startingPoint.Y,endingPoint.X,endingPoint.Y);
+            ClearFromTo(startingPoint.X, startingPoint.Y, endingPoint.X, endingPoint.Y);
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ _______  _______  _______  _______    _______           _______  _______
             int gameWidth = 80; // should be assigned from a constant somewhere
             for (int i = 0; i < gameWidth; i++)
             {
-                DrawAt(i,y,' ');
+                DrawAt(i, y, ' ');
             }
         }
 
@@ -316,7 +316,6 @@ _______  _______  _______  _______    _______           _______  _______
         public static void Credits()
         {
             DrawAt(0, 0, credits, ConsoleColor.Cyan);
-<<<<<<< HEAD
         }
         public static string generateObject()
         {
@@ -328,10 +327,7 @@ _______  _______  _______  _______    _______           _______  _______
             }
             return generatedObject;
         }
-=======
-        } 
         #endregion
-
->>>>>>> acd9a750828bef7da253f863ad46525c36f5692e
     }
 }
+

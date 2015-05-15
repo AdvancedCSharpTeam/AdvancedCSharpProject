@@ -12,7 +12,6 @@ namespace TeamWork
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
             //Console.WindowWidth = 80;
             //Console.BufferWidth = 80;
             //Console.WindowHeight = 30;
@@ -53,7 +52,7 @@ namespace TeamWork
 
             Engine eng = new Engine();
             eng.Start();
-=======
+
             Console.WindowWidth = 80;
             Console.BufferWidth = 80;
             Console.WindowHeight = 30;
@@ -101,7 +100,6 @@ namespace TeamWork
             Console.ReadKey();
 
             Drawing.DrawVLineAt(1,1,5,'a');
->>>>>>> acd9a750828bef7da253f863ad46525c36f5692e
         }
     }
 }
