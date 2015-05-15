@@ -3,13 +3,19 @@
   <Class Name="TeamWork.Player">
     <Position X="3.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACEAAAAAAAAAAAAAAAAAAAAAAAIAAAAKQAAAAAAgAAA=</HashCode>
+      <HashCode>ACEAAAAAAAAAAAAAAAAAAAQAAAIEAABKQAAAAAAgAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Objects">
     <Position X="6.75" Y="2" Width="1.5" />
+    <InheritanceLine Type="TeamWork.Entity" ManuallyRouted="true">
+      <Path>
+        <Point X="6.5" Y="2.616" />
+        <Point X="6.75" Y="2.616" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\Objects.cs</FileName>
@@ -37,8 +43,8 @@
     <InheritanceLine Type="TeamWork.Objects" ManuallyRouted="true">
       <Path>
         <Point X="7.5" Y="3.233" />
-        <Point X="7.5" Y="3.781" />
-        <Point X="9.25" Y="3.781" />
+        <Point X="7.5" Y="3.864" />
+        <Point X="9.25" Y="3.864" />
         <Point X="9.25" Y="4.5" />
       </Path>
     </InheritanceLine>

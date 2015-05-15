@@ -9,15 +9,18 @@ namespace TeamWork
     {
         private int lives;
         private int ammo;
+        private string name;
 
         public Player()
         {
             this.Lives = lives;
             this.Ammo = ammo;
+            this.Name = name;
         }
 
         public int Ammo { get; set; }
         public int Lives { get; set; }
+        public string Name { get; set; }
 
         public void MoveUp()
         {
@@ -46,6 +49,11 @@ namespace TeamWork
             {
                 base.Point.X -= 1;
             }
+        }
+
+        public void setName(string name)
+        {
+            this.Name = name;
         }
     }
 }
