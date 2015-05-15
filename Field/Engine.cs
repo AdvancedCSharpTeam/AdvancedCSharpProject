@@ -9,7 +9,7 @@ namespace TeamWork
 {
     public class Engine
     {
-        public static IPlayer player = new Player();
+        public static Player player = new Player();
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
@@ -32,9 +32,15 @@ namespace TeamWork
             Drawing.UserName();           
             this.TakeName();  
                         
+            Console.Clear();
+            player.Print();
             while (true)
             {
-                this.TakeInput();
+                if (Console.KeyAvailable)
+                {
+                    this.TakeInput(Console.ReadKey(true));
+                }
+                
 
                 if (player.Lives.Equals(0))
                 {
@@ -52,11 +58,10 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
-        private void TakeInput()
+        private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             //TODO: Implement reading input for using the methods for moving in the Class Player!
-            ConsoleKeyInfo currentkey = Console.ReadKey();
-            switch (currentkey.KeyChar)
+            switch (keyPressed.KeyChar)
             {
                 case 'w': player.MoveUp();
                     break;
@@ -96,6 +101,7 @@ namespace TeamWork
         /// </summary>
         public static void InitConsole()
         {
+            Console.CursorVisible = false;
             Console.WindowWidth = WindowWidth;
             Console.BufferWidth = WindowWidth;
             Console.WindowHeight = WindowHeight;

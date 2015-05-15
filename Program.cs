@@ -13,8 +13,8 @@ namespace TeamWork
         static void Main(string[] args)
         {           
             Engine.InitConsole(); // Must initialize the console size before starting the engine
-            //Engine eng = new Engine();
-            //eng.Start();
+            Engine eng = new Engine();
+            eng.Start();
 
 
             IEntity player = new Player();

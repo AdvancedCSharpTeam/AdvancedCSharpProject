@@ -339,6 +339,10 @@ namespace TeamWork.Field
         {
             DrawAt(0, 0, credits, ConsoleColor.Green);
         }
+       
+        #endregion
+
+
         public static string generateObject()
         {
             string generatedObject = string.Empty;
@@ -349,7 +353,6 @@ namespace TeamWork.Field
             }
             return generatedObject;
         }
-        #endregion
     }
 }
 
