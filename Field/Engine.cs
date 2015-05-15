@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using TeamWork.Field;
+using System.Media;
 
 namespace TeamWork
 {
@@ -11,6 +12,7 @@ namespace TeamWork
 
     public class Engine
     {
+<<<<<<< HEAD
         public static event MoveHandler Move;
 
         public static void OnEventMove(MoveArgs moveArgs)
@@ -20,14 +22,21 @@ namespace TeamWork
                 Move(null, moveArgs);
         }
 
+=======
+        public static Player player = new Player();
+
+        public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
+        public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
+        
+        //TODO: Implement Engine Class!
+>>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
         public Engine()
         {
             this.Start();
         }
-
-
         public void Start()
         {
+<<<<<<< HEAD
             //Drawing.WelcomeScreen();
             //Thread.Sleep(2500);
             //Console.Clear();       
@@ -73,13 +82,40 @@ namespace TeamWork
                 Thread.Sleep(0);
                 
                 if (Drawing.Player.Lives.Equals(0))
+=======
+            //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
+            Drawing.WelcomeScreen();
+            Thread.Sleep(2500);
+            Console.Clear();       
+            Drawing.LetsPlay();
+            Thread.Sleep(2500);
+            Console.Clear();            
+            Drawing.UserName();           
+            this.TakeName();  
+                        
+            Console.Clear();
+            player.Print();
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    this.TakeInput(Console.ReadKey(true));
+                    while (Console.KeyAvailable)
+                    {
+                        Console.ReadKey(true); // Seems to clear the buffer of keys
+                    }
+                }
+                MoveAndPrintBullets();
+                
+
+                if (player.Lives.Equals(0))
+>>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
                 {
                     break;
                 }
+                Thread.Sleep(50);
             }
-
-            this.End();
-            
+            this.End();            
         }
         private void End()
         {
@@ -88,9 +124,64 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
-        private void TakeInput()
+        private void TakeInput(ConsoleKeyInfo keyPressed)
         {
+<<<<<<< HEAD
             Console.ReadKey();
+=======
+            switch (keyPressed.Key)
+            {
+                case ConsoleKey.W: player.MoveUp();
+                    break;
+                case ConsoleKey.S: player.MoveDown();
+                    break;
+                case ConsoleKey.A: player.MoveLeft();
+                    break;
+                case ConsoleKey.D: player.MoveRight();
+                    break;
+                // Create a new bullet object
+                case ConsoleKey.Spacebar: bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
+                    break;
+                default: Console.WriteLine("You shouldn't see this!");
+                    break;
+            }
+>>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
+        }
+
+        #region Player Bullets
+
+        private List<FastObject> bullets = new List<FastObject>(); // Stores all bullets fired
+        /// <summary>
+        /// Print and move the bullets
+        /// </summary>
+        private void MoveAndPrintBullets()
+        {
+            List<FastObject> newBullets = new List<FastObject>(); //Stores the new coordinates of the bullets
+
+            for (int i = 0; i < bullets.Count; i++) // Cycle thru all bullets and change their position
+            {
+                Drawing.ClearAtPosition(bullets[i].Point); // Clear bullet at its current position
+                if (bullets[i].Point.X + bullets[i].Speed >= Engine.WindowWidth)
+                {
+                    // If the bullet exceeds sceen size, dont add it to new Bullets list
+                }
+                else
+                {
+                    bullets[i].Point.X += bullets[i].Speed;
+                    Drawing.DrawAt(bullets[i].Point, '-', ConsoleColor.Cyan); // Print the bullets at their new position;
+                    newBullets.Add((bullets[i]));
+                }
+            }
+            bullets = newBullets; // Overwrite global bullets list, with newBullets list
+        }
+
+        #endregion
+
+        private void LoadMusic()
+        {
+            var sound = new System.Media.SoundPlayer();
+            sound.SoundLocation = "STARS.wav";
+            sound.PlaySync();
         }
 
         private void TakeName()
@@ -111,6 +202,18 @@ namespace TeamWork
                 Drawing.Player.setName(name);
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// Initialize Console size;
+        /// </summary>
+        public static void InitConsole()
+        {
+            Console.CursorVisible = false;
+            Console.WindowWidth = WindowWidth;
+            Console.BufferWidth = WindowWidth;
+            Console.WindowHeight = WindowHeight;
+            Console.BufferHeight = WindowHeight;
         }
     }
 }

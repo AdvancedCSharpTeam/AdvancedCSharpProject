@@ -74,36 +74,37 @@ namespace TeamWork.Field
         #endregion
 
         #region Drawing Methods
-        /// <summary>
-        /// Draw an object at a Point2D
-        /// </summary>
-        /// <param name="point"></param>
-        /// <param name="obj"></param>
-        public static void DrawAt(Point2D point, object obj)
-        {
-            Console.SetCursorPosition(point.X, point.Y);
-            Console.Write(obj.ToString());
-        }
 
         /// <summary>
         /// Draw an object at given X and Y Coordinates
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="obj"></param>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="obj">Object to print</param>
         public static void DrawAt(int x, int y, object obj)
         {
             Console.SetCursorPosition(x, y);
             Console.Write(obj.ToString());
         }
 
+
+        /// <summary>
+        /// Draw an object at a Point2D
+        /// </summary>
+        /// <param name="point">Point2D to print at</param>
+        /// <param name="obj">Object to print</param>
+        public static void DrawAt(Point2D point, object obj)
+        {
+            Console.SetCursorPosition(point.X, point.Y);
+            Console.Write(obj.ToString());
+        }
         /// <summary>
         /// Draw an object at given X and Y Coordinates with a color
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawAt(int x, int y, object obj, ConsoleColor clr)
         {
             Console.ForegroundColor = clr;
@@ -114,9 +115,9 @@ namespace TeamWork.Field
         /// <summary>
         /// Draw an object at given Point2D with color
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
+        /// <param name="point">Point2D to print at</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawAt(Point2D point, object obj, ConsoleColor clr)
         {
             Console.ForegroundColor = clr;
@@ -125,12 +126,25 @@ namespace TeamWork.Field
         }
 
         /// <summary>
+        /// Draw a vertical line with given lenght starting at X and Y
+        /// </summary>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="lenght">Lenght of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
+        public static void DrawVLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
+        {
+            DrawVLineAt(new Point2D(x, y), lenght, obj, clr);
+        }
+
+        /// <summary>
         /// Draw a vertical line with given lenght starting at Point2D
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="lenght"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
+        /// <param name="point">Point2D to print at</param>
+        /// <param name="lenght">Length of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawVLineAt(Point2D point, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
             for (int i = 0; i < lenght; i++)
@@ -140,86 +154,83 @@ namespace TeamWork.Field
             }
         }
 
+
         /// <summary>
-        /// Draw a vertical line with given lenght starting at X and Y
+        /// Draw a horizontal line with given lenght starting at X and Y
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="lenght"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
-        public static void DrawVLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="lenght">Lenght of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
+        public static void DrawHLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            DrawVLineAt(new Point2D(x, y), lenght, obj, clr);
+            for (int i = 0; i < lenght; i++)
+            {
+<<<<<<< HEAD
+                DrawAt(point, obj, clr);
+                //point.X++;
+=======
+                DrawAt(x,y, obj, clr);
+                x++;
+>>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
+            }
         }
 
         /// <summary>
         /// Draw a horizontal line with given lenght starting at Point2D
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="lenght"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
+        /// <param name="point">Point2D to print at</param>
+        /// <param name="lenght">Lenght of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawHLineAt(Point2D point, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            for (int i = 0; i < lenght; i++)
-            {
-                DrawAt(point, obj, clr);
-                //point.X++;
-            }
+            DrawHLineAt(point.X,point.Y, lenght, obj, clr);
         }
 
         /// <summary>
-        /// Draw a horizontal line with given lenght starting at X and Y
+        /// Draw a Rectangle starting at given X Y position with set size
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="lenght"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
-        public static void DrawHLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="size">Size of the rectangle</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
+        public static void DrawRectangleAt(int x, int y, int size, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            DrawHLineAt(new Point2D(x, y), lenght, obj, clr);
+
+            for (int i = 0, side1 = 0; i < size; i++)
+            {
+                DrawAt(x + side1++, y, obj, clr);
+            }
+
+            for (int i = 0, side2 = 0; i < size; i++)
+            {
+                DrawAt(x + size - 1, y + side2++, obj, clr);
+            }
+
+            for (int i = 0, side3 = 0; i < size; i++)
+            {
+                DrawAt(x + side3++, y + size, obj, clr);
+            }
+
+            for (int i = 0, side4 = 0; i < size; i++)
+            {
+                DrawAt(x, y + side4++, obj, clr);
+            }
         }
 
         /// <summary>
         /// Draw a Rectangle starting at position Point2D with given size
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="size"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
+        /// <param name="point">Point2D to start at</param>
+        /// <param name="size">Size of the rectangle</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawRectangleAt(Point2D point, int size, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            for (int i = 0, side1 = 0; i < size; i++)
-            {
-                DrawAt(point.X + side1++, point.Y, obj, clr);
-            }
-
-            for (int i = 0, side2 = 0; i < size; i++)
-            {
-                DrawAt(point.X + size - 1, point.Y + side2++, obj, clr);
-            }
-
-            for (int i = 0, side3 = 0; i < size; i++)
-            {
-                DrawAt(point.X + side3++, point.Y + size, obj, clr);
-            }
-
-            for (int i = 0, side4 = 0; i < size; i++)
-            {
-                DrawAt(point.X, point.Y + side4++, obj, clr);
-            }
-        }
-
-        /// <summary>
-        /// Draw a Rectangle starting at position X Y with given size
-        /// </summary>
-        /// <param name="point"></param>
-        /// <param name="size"></param>
-        /// <param name="obj"></param>
-        /// <param name="clr"></param>
-        public static void DrawRectangleAt(int x, int y, int size, object obj, ConsoleColor clr = ConsoleColor.White)
-        {
-            DrawRectangleAt(new Point2D(x, y), size, obj, clr);
+            DrawRectangleAt(point.X,point.Y, size, obj, clr);
         }
         #region Methods for Drawing the Game
         public static void DrawPlayer()
@@ -308,8 +319,8 @@ namespace TeamWork.Field
         /// <summary>
         /// Clear a character at given position
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x" >Column number</param>
+        /// <param name="y" >Row number</param>
         public static void ClearAtPosition(int x, int y)
         {
             Console.SetCursorPosition(x, y);
@@ -319,8 +330,7 @@ namespace TeamWork.Field
         /// <summary>
         /// Clear a character at given position
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="point">Point2D to clear at</param>
         public static void ClearAtPosition(Point2D point)
         {
             Console.SetCursorPosition(point.X, point.Y);
@@ -330,10 +340,10 @@ namespace TeamWork.Field
         /// <summary>
         /// Clears an area from given coordinates to given coordinates
         /// </summary>
-        /// <param name="fromX"></param>
-        /// <param name="fromY"></param>
-        /// <param name="toX"></param>
-        /// <param name="toY"></param>
+        /// <param name="fromX"> Starting Column number</param>
+        /// <param name="fromY"> Starting Row number</param>
+        /// <param name="toX">Ending Column number</param>
+        /// <param name="toY">Ending Row number</param>
         public static void ClearFromTo(int fromX, int fromY, int toX, int toY)
         {
             Console.SetCursorPosition(fromX, fromY);
@@ -344,13 +354,11 @@ namespace TeamWork.Field
             }
         }
 
-        /// <summary>
+       /// <summary>
         /// Clears an area from given coordinates to given coordinates
-        /// </summary>
-        /// <param name="fromX"></param>
-        /// <param name="fromY"></param>
-        /// <param name="toX"></param>
-        /// <param name="toY"></param>
+       /// </summary>
+       /// <param name="startingPoint">Starting Point2D</param>
+       /// <param name="endingPoint">Ending Point2D</param>
         public static void ClearFromTo(Point2D startingPoint, Point2D endingPoint)
         {
             ClearFromTo(startingPoint.X, startingPoint.Y, endingPoint.X, endingPoint.Y);
@@ -359,7 +367,7 @@ namespace TeamWork.Field
         /// <summary>
         /// Clears a whole row at given position
         /// </summary>
-        /// <param name="y"></param>
+        /// <param name="y">Row number</param>
         public static void ClearY(int y)
         {
             int gameWidth = 80; // should be assigned from a constant somewhere
@@ -370,9 +378,9 @@ namespace TeamWork.Field
         }
 
         /// <summary>
-        /// Clears a whole columnt at given position
+        /// Clears a whole column at given position
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">Column number</param>
         public static void ClearX(int x)
         {
             int gameHeight = 30; // should be assigned from a constant somewhere
@@ -421,6 +429,10 @@ namespace TeamWork.Field
         {
             DrawAt(0, 0, credits, ConsoleColor.Green);
         }
+       
+        #endregion
+
+
         public static string generateObject()
         {
             string generatedObject = string.Empty;
@@ -431,7 +443,6 @@ namespace TeamWork.Field
             }
             return generatedObject;
         }
-        #endregion
     }
 }
 
