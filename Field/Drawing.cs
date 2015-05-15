@@ -10,9 +10,7 @@ namespace TeamWork.Field
              ( \/\/ )( ___)(  )  / __)(  _  )(  \/  )( ___)
               )    (  )__)  )(__( (__  )(_)(  )    (  )__)
              (__/\__)(____)(____)\___)(_____)(_/\/\_)(____)
-                         Made by: Team ECHIDNA    
- 
-                                                                         
+                         Made by: Team ECHIDNA                                                                             
                            ._`-\ )\,`-.-.
                           \'\` \)\ \)\ \|.)
                         \`)  |\)  )\ .)\ )\|
@@ -25,8 +23,9 @@ namespace TeamWork.Field
                                /||\   `.  * _*|
                                         `-.( `\
                                             `. \
-                                              `() 
-                 (                                        
+                                              `() ";
+        private const string letsPlay = @"
+                  )
                  )\ )         ) (            (            
                 (()/(   (  ( /( )\           )\   ) (     
                 /(_)) ))\ )\()|(_|    `  ) ((_| /( )\ )  
@@ -34,16 +33,16 @@ namespace TeamWork.Field
                 | |  (_)) | |_   ((_) ((_)_\| ((_)_ )(_)) 
                 | |__/ -_)|  _|  (_-< | '_ \) / _` | || | 
                 |____\___| \__|  /__/ | .__/|_\__,_|\_, | 
-                                      |_|           |__/  ";
+                                      |_|           |__/";                                          
         private const string gameOver = @"
-_______  _______  _______  _______    _______           _______  _______
-(  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ )
-| (    \/| (   ) || /   \ || (    \/  | (   ) || )   ( || (    \/| (    )|
-| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|
-| | ____ |  ___  || ||_|| ||  __)     | |   | |( (   ) )|  __)   |     __)
-| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (  
-| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__
-(_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/";
+     _______  _______  _______  _______    _______           _______  _______
+    (  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ )
+    | (    \/| (   ) || /   \ || (    \/  | (   ) || )   ( || (    \/| (    )|
+    | |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|
+    | | ____ |  ___  || ||_|| ||  __)     | |   | |( (   ) )|  __)   |     __)
+    | | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (  
+    | (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__
+    (_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/";
 
         private const string credits = @"
                          _____           ___ __    
@@ -59,6 +58,13 @@ _______  _______  _______  _______    _______           _______  _______
                               NKNenkov
                               nOwayOut
                               Shano";
+        private const string userName = @"
+              ______       _                                         
+             |  ____|     | |                                        
+             | |__   _ __ | |_ ___ _ __   _ __   __ _ _ __ ___   ___ 
+             |  __| | '_ \| __/ _ \ '__| | '_ \ / _` | '_ ` _ \ / _ \
+             | |____| | | | ||  __/ |    | | | | (_| | | | | | |  __/
+             |______|_| |_|\__\___|_|    |_| |_|\__,_|_| |_| |_|\___|";
         #endregion
 
         #region Drawing Methods
@@ -299,15 +305,28 @@ _______  _______  _______  _______    _______           _______  _______
         /// </summary>
         public static void WelcomeScreen()
         {
-            DrawAt(0, 0, Logo, ConsoleColor.Cyan);
+            DrawAt(0, 0, Logo, ConsoleColor.Green);
         }
-
+        /// <summary>
+        /// Draw LetsPlay Screen
+        /// </summary>
+        public static void LetsPlay()
+        {
+            DrawAt(0, 5, letsPlay, ConsoleColor.Red);
+        }
+        /// <summary>
+        /// Draw UserName Screen
+        /// </summary>
+        public static void UserName()
+        {
+            DrawAt(0, 5, userName, ConsoleColor.Green);
+        }
         /// <summary>
         /// Draw GameOver Screen
         /// </summary>
         public static void GameOver()
         {
-            DrawAt(0, 0, gameOver, ConsoleColor.Cyan);
+            DrawAt(0, 5, gameOver, ConsoleColor.Green);
         }
 
         /// <summary>
@@ -315,7 +334,7 @@ _______  _______  _______  _______    _______           _______  _______
         /// </summary>
         public static void Credits()
         {
-            DrawAt(0, 0, credits, ConsoleColor.Cyan);
+            DrawAt(0, 0, credits, ConsoleColor.Green);
         }
         public static string generateObject()
         {
