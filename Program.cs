@@ -59,6 +59,7 @@ namespace TeamWork
             Console.ReadKey();
 
             Drawing.DrawVLineAt(1,1,5,'a');
+            
         }
     }
 }
