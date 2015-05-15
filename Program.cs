@@ -14,7 +14,7 @@ namespace TeamWork
         {           
             Engine.InitConsole(); // Must initialize the console size before starting the engine
             Engine eng = new Engine();
-            eng.Start();
+            //eng.Start();
 
 
             IEntity player = new Player();
@@ -59,6 +59,7 @@ namespace TeamWork
             Console.ReadKey();
 
             Drawing.DrawVLineAt(1,1,5,'a');
+            
         }
     }
 }

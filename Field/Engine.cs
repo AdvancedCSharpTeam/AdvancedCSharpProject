@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using TeamWork.Field;
+using System.Media;
 
 namespace TeamWork
 {
@@ -13,16 +14,15 @@ namespace TeamWork
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
-
+        
         //TODO: Implement Engine Class!
         public Engine()
         {
             this.Start();
         }
-
-
         public void Start()
         {
+            LoadMusic();
             Drawing.WelcomeScreen();
             Thread.Sleep(2500);
             Console.Clear();       
@@ -47,9 +47,7 @@ namespace TeamWork
                     break;
                 }
             }
-
-            this.End();
-            
+            this.End();            
         }
         private void End()
         {
@@ -75,7 +73,12 @@ namespace TeamWork
                     break;
             }
         }
-
+        private void LoadMusic()
+        {
+            var sound = new System.Media.SoundPlayer();
+            sound.SoundLocation = "STARS.wav";
+            sound.PlaySync();
+        }
         private void TakeName()
         {
             Console.WriteLine();
