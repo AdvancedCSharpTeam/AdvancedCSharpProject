@@ -21,50 +21,23 @@ namespace TeamWork
         public int Ammo { get; set; }
         public int Lives { get; set; }
         public string Name { get; set; }
-
+        
+        //TODO: We need to implement new moving methods, because the last ones weren't going to work!
         public void MoveUp()
         {
-            if (!(base.Point.X.Equals(30)))
-            {
-                if ((base.Point.Y < 30))
-                {
-                    base.Point.Y += 1;
-                    Console.WriteLine("Moving Up");
-                }
-            }
+
         }
         public void MoveDown()
         {
-            if (!(base.Point.X.Equals(1)))
-            {
-                if ((base.Point.Y >= 0))
-                {
-                    base.Point.Y -= 1;
-                    Console.WriteLine("Moving Down");
-                }
-            }
+
         }
         public void MoveRight()
         {
-            if (!(base.Point.X.Equals(80)))
-            {
-                if ((base.Point.X < 80))
-                {
-                    base.Point.Y += 1;
-                    Console.WriteLine("Moving Right");
-                }
-            }
+
         }
         public void MoveLeft()
         {
-            if (!(base.Point.X.Equals(1)))
-            {
-                if ((base.Point.X > 0))
-                {
-                    base.Point.X -= 1;
-                    Console.WriteLine("Moving Left");
-                }
-            }
+
         }
         public void setName(string name)
         {
