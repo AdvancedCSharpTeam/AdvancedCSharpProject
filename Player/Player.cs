@@ -22,7 +22,7 @@ namespace TeamWork
         public int Lives { get; set; }
         public string Name { get; set; }
         
-        //TODO: We need to implement new moving methods, because the last ones weren't going to work!
+        //TODO: Implement new moving methods!
         public void MoveUp()
         {
 

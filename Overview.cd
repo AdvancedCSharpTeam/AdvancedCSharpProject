@@ -85,7 +85,7 @@
     <Position X="8.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAABAAACAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Engine.cs</FileName>
+      <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
