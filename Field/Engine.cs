@@ -48,6 +48,7 @@ namespace TeamWork
         }
         private void TakeInput()
         {
+            //TODO: Implement reading input for using the methods for moving in the Class Player!
             ConsoleKeyInfo currentkey = Console.ReadKey();
             switch (currentkey.KeyChar)
             {
