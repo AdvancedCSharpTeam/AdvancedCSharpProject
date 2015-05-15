@@ -12,13 +12,10 @@ namespace TeamWork
     {
         static void Main(string[] args)
         {           
-            Engine eng = new Engine();
-            eng.Start();
+            Engine.InitConsole(); // Must initialize the console size before starting the engine
+            //Engine eng = new Engine();
+            //eng.Start();
 
-            Console.WindowWidth = 80;
-            Console.BufferWidth = 80;
-            Console.WindowHeight = 30;
-            Console.BufferHeight = 30;
 
             IEntity player = new Player();
             Console.WriteLine("({0}, {1})", player.Point.X, player.Point.Y);

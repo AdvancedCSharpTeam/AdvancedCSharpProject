@@ -11,6 +11,9 @@ namespace TeamWork
     {
         public static IPlayer player = new Player();
 
+        public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
+        public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
+
         //TODO: Implement Engine Class!
         public Engine()
         {
@@ -86,6 +89,17 @@ namespace TeamWork
                 player.setName(name);
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// Initialize Console size;
+        /// </summary>
+        public static void InitConsole()
+        {
+            Console.WindowWidth = WindowWidth;
+            Console.BufferWidth = WindowWidth;
+            Console.WindowHeight = WindowHeight;
+            Console.BufferHeight = WindowHeight;
         }
     }
 }
