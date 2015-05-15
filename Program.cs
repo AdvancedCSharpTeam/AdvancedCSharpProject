@@ -38,13 +38,21 @@ namespace TeamWork
             Console.ReadKey();
             Console.Clear();
 
-            Drawing.GameOver();
+            Drawing.DrawHLineAt(0,0,30,'*');
+            Drawing.DrawHLineAt(0, 5, 30, '*');
+            Drawing.DrawHLineAt(0, 10, 30, '*');
+            Drawing.DrawHLineAt(0, 15, 30, '*');
+            Drawing.DrawHLineAt(0, 20, 30, '*');
+            Drawing.DrawHLineAt(0, 25, 80, '*');
+            Drawing.DrawVLineAt(5,5,25,'~',ConsoleColor.Yellow);
             Console.ReadKey();
-            Console.Clear();
+            Drawing.ClearFromTo(1,0,20,20);
+            Console.ReadKey();
+            Drawing.ClearY(25);
+            Drawing.ClearX(5);
 
             Drawing.Credits();
             Console.ReadKey();
-            Console.Clear();
 
             Drawing.DrawRectangleAt(new Point2D(3,4),5,'*');
             Console.ReadKey();
