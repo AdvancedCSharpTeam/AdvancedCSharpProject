@@ -34,37 +34,7 @@ namespace TeamWork
         public void Start()
         {
 
-            //Drawing.WelcomeScreen();
-            //Thread.Sleep(2500);
-            //Console.Clear();       
-            //Drawing.LetsPlay();
-            //Thread.Sleep(2500);
-            //Console.Clear();            
-            //Drawing.UserName();           
-            //this.TakeName();
-
-            Console.WindowWidth = 80;
-            Console.BufferWidth = 80;
-            Console.WindowHeight = 30;
-            Console.BufferHeight = 30;
-
-            //Drawing.DrawHLineAt(0, 0, 30, '*');
-            //Drawing.DrawHLineAt(0, 5, 30, '*');
-            //Drawing.DrawHLineAt(0, 10, 30, '*');
-            //Drawing.DrawHLineAt(0, 15, 30, '*');
-            //Drawing.DrawHLineAt(0, 20, 30, '*');
-            //Drawing.DrawHLineAt(0, 25, 80, '*');
-            //Drawing.DrawVLineAt(5, 5, 25, '~', ConsoleColor.Yellow);
-            //Console.ReadKey();
-            //Drawing.ClearFromTo(1, 0, 20, 20);
-            //Console.ReadKey();
-            //Drawing.ClearY(25);
-            //Drawing.ClearX(5);
-
-            //Drawing.Credits();
-            //Console.ReadKey();
-
-            //Drawing.DrawRectangleAt(new Point2D(3, 4), 5, '*');
+            
 
             Console.WriteLine("Press enter key to start!");
             Console.ReadLine();
@@ -169,7 +139,7 @@ namespace TeamWork
 
         #endregion
 
-        private void LoadMusic()
+        public static void LoadMusic()
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
