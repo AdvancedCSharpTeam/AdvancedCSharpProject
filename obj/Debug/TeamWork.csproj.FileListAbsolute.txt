@@ -29,3 +29,8 @@ C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject\obj\Debug\TeamWork.pdb
 C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject\bin\Debug\TeamWork.exe
 C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject\bin\Debug\TeamWork.pdb
 C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject\obj\Debug\TeamWork.csprojResolveAssemblyReference.cache
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\bin\Debug\TeamWork.exe.config
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\obj\Debug\TeamWork.exe
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\obj\Debug\TeamWork.pdb
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\bin\Debug\TeamWork.exe
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\bin\Debug\TeamWork.pdb

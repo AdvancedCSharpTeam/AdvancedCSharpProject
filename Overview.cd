@@ -12,30 +12,9 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\Objects.cs</FileName>
+      <FileName>Objects\GameObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="TeamWork.SlowObject" Collapsed="true">
-    <Position X="8" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\SlowObject.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TeamWork.FastObject" Collapsed="true">
-    <Position X="8" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\FastObject.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TeamWork.NormalObject" Collapsed="true">
-    <Position X="8" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\NormalObject.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Point2D" Collapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
@@ -55,7 +34,7 @@
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
     <Position X="4.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gARAkQAAAAEgAAARAMIAMAAAAAAAACAAIQAgAYFAAIg=</HashCode>
+      <HashCode>gARAkQAAAAEgAAARAIIAMAAAAAAAACAAIQAgAYNAAIg=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -84,12 +63,12 @@
   <Class Name="TeamWork.Engine">
     <Position X="0.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIAgBgAAKASAAAAAAAAAAAAQAAAAAABAAABAAAAABA=</HashCode>
+      <HashCode>AgIEgBCAAKASQAAAAAAAAAAARAAAAAEBAAABQEAAABA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Field.Interface">
-    <Position X="9.75" Y="1.75" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Field\Interface.cs</FileName>
@@ -106,7 +85,7 @@
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\IObject.cs</FileName>
+      <FileName>Objects\IGameObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="TeamWork.IEntity" Collapsed="true">
