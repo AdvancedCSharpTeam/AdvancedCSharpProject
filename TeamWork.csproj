@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Field\Engine.cs" />
-    <Compile Include="Field\Interface.cs" />
     <Compile Include="IObjectGenerator.cs" />
     <Compile Include="MoveEvent.cs" />
     <Compile Include="MoveListener.cs" />

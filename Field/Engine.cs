@@ -33,28 +33,12 @@ namespace TeamWork
         }
         public void Start()
         {
-
-            
-
-            Console.WriteLine("Press enter key to start!");
-            Console.ReadLine();
-
             MoveListener moveListener = new MoveListener();
             Move += new MoveHandler(moveListener.Move);
 
             while (true)
             {
-                if (Drawing.Player.Lives.Equals(0))
-                    //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
-                    Drawing.WelcomeScreen();
-                Thread.Sleep(1000);
-                Console.Clear();
-                Drawing.LetsPlay();
-                Thread.Sleep(2500);
-                Console.Clear();
-                Drawing.UserName();
-                this.TakeName();
-
+                GameIntor();               
                 Console.Clear();
                 player.Print();
                 Drawing.DrawField();
@@ -89,6 +73,20 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
+        private void GameIntor()
+        {
+            Drawing.WelcomeScreen();
+            Thread.Sleep(3500);
+            Console.Clear();
+            Drawing.GameName();
+            Thread.Sleep(2500);
+            Console.Clear();
+            Drawing.LetsPlay();
+            Thread.Sleep(2500);
+            Console.Clear();
+            Drawing.UserName();
+            this.TakeName();
+        }
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             Console.ReadKey();
@@ -105,8 +103,8 @@ namespace TeamWork
                 // Create a new bullet object
                 case ConsoleKey.Spacebar: bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
                     break;
-                default: Console.WriteLine("You shouldn't see this!");
-                    break;
+                //default: Console.WriteLine("You shouldn't see this!");
+                //    break;
             }
         }
 
@@ -153,11 +151,11 @@ namespace TeamWork
             string name = Console.ReadLine();
             if (String.IsNullOrEmpty(name))
             {
-                Console.WriteLine("\t\t\t\tPlease entry your name");
+                Console.WriteLine("\t\t\t    Please entry your name");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Drawing.UserName();
-                TakeName();
+                TakeName();               
             }
             else
             {

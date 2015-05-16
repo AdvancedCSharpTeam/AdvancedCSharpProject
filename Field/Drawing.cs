@@ -11,12 +11,35 @@ namespace TeamWork.Field
         public static Point2D MenuField = new Point2D(75, 4);
 
         #region Constants
+        private const string gameName = @"
+.                                                               +
+      .           +                 ,             *                             
+   .                             .     .                         .        
+     ,              *                     .                '
+                                .                                       
+          ____  ____  ____  ____    ____  ____   __    ___  ____ 
+         (    \(  __)(  __)(  _ \  / ___)(  _ \ / _\  / __)(  __)
+          ) D ( ) _)  ) _)  ) __/  \___ \ ) __//    \( (__  ) _) 
+         (____/(____)(____)(__)    (____/(__)  \_/\_/ \___)(____)                                        .                        
+   .                              +                          .                   
+                  *         .                                                  
+      .                             .                   *                       
+          .  .                                .                    .          
+____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
+     -    ---  /\^             ^     ^       ^          ^       /\       
+         --       __ _-                                           --  -      
+   --  __                           ___--  ^  ^                                
+
+";
         private const string Logo = @"
               _    _  ____  __    ___  _____  __  __  ____
              ( \/\/ )( ___)(  )  / __)(  _  )(  \/  )( ___)
               )    (  )__)  )(__( (__  )(_)(  )    (  )__)
              (__/\__)(____)(____)\___)(_____)(_/\/\_)(____)
-                         Made by: Team ECHIDNA                                                                             
+                         Made by: Team ECHIDNA
+
+
+                                                                             
                            ._`-\ )\,`-.-.
                           \'\` \)\ \)\ \|.)
                         \`)  |\)  )\ .)\ )\|
@@ -344,21 +367,28 @@ namespace TeamWork.Field
         /// </summary>
         public static void WelcomeScreen()
         {
-            DrawAt(0, 0, Logo, ConsoleColor.Green);
+            DrawAt(0, 0, Logo, ConsoleColor.Cyan);
         }
         /// <summary>
         /// Draw LetsPlay Screen
         /// </summary>
         public static void LetsPlay()
         {
-            DrawAt(0, 5, letsPlay, ConsoleColor.Red);
+            DrawAt(0, 5, letsPlay, ConsoleColor.Yellow);
         }
         /// <summary>
         /// Draw UserName Screen
         /// </summary>
         public static void UserName()
         {
-            DrawAt(0, 5, userName, ConsoleColor.Green);
+            DrawAt(0, 5, userName, ConsoleColor.Yellow);
+        }
+        /// <summary>
+        /// Draw GameName Screen
+        /// </summary>
+        public static void GameName()
+        {
+            DrawAt(0, 5, gameName, ConsoleColor.Cyan);
         }
         /// <summary>
         /// Draw GameOver Screen
