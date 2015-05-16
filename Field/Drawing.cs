@@ -388,7 +388,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         /// </summary>
         public static void GameName()
         {
-            DrawAt(0, 5, gameName, ConsoleColor.Cyan);
+            DrawAt(4, 2, gameName, ConsoleColor.Cyan);
         }
         /// <summary>
         /// Draw GameOver Screen

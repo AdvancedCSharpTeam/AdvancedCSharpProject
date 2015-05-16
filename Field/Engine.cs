@@ -13,7 +13,8 @@ namespace TeamWork
     public class Engine
     {
         public static event MoveHandler Move;
-
+        public Thread musicThread;
+              
         public static void OnEventMove(MoveArgs moveArgs)
         {
             var handler = Move;
@@ -38,6 +39,8 @@ namespace TeamWork
 
             while (true)
             {
+                musicThread = new Thread(Engine.LoadMusic);
+                musicThread.Start();
                 GameIntor();               
                 Console.Clear();
                 player.Print();
@@ -159,8 +162,9 @@ namespace TeamWork
             }
             else
             {
-                Drawing.Player.setName(name);
+                Drawing.Player.setName(name);               
                 Console.Clear();
+                musicThread.Interrupt();
             }
         }
 

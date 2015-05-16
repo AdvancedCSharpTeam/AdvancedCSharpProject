@@ -84,7 +84,7 @@ namespace TeamWork
               //you can change it with this it is smaller    
               //    ____
               //     \  \_____________
-              //#####<[==)_)_)_)star)_=>
+              //     <[=)_)_)_)star)_=>
               //    _/__/
 
         }
