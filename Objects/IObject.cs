@@ -5,7 +5,14 @@ using System.Text;
 
 namespace TeamWork
 {
-    public interface IObject
+    public interface IGameObject : IEntity
     {
+        Point2D Point { get; set; }
+
+        int Speed { get; set; }
+
+        void GameObjectFall();
+
+        void SetGeneratedObject(string generatedObject);
     }
 }

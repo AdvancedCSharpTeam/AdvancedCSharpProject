@@ -8,9 +8,20 @@ using System.Media;
 
 namespace TeamWork
 {
+    public delegate void MoveHandler(object obj, MoveArgs move);
+
     public class Engine
     {
-        public static IPlayer player = new Player();
+        public static event MoveHandler Move;
+
+        public static void OnEventMove(MoveArgs moveArgs)
+        {
+            var handler = Move;
+            if (Move != null)
+                Move(null, moveArgs);
+        }
+
+        public static Player player = new Player();
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
@@ -22,26 +33,54 @@ namespace TeamWork
         }
         public void Start()
         {
-            LoadMusic();
-            Drawing.WelcomeScreen();
-            Thread.Sleep(2500);
-            Console.Clear();       
-            Drawing.LetsPlay();
-            Thread.Sleep(2500);
-            Console.Clear();            
-            Drawing.UserName();           
-            this.TakeName();  
-                        
+
+            
+
+            Console.WriteLine("Press enter key to start!");
+            Console.ReadLine();
+
+            MoveListener moveListener = new MoveListener();
+            Move += new MoveHandler(moveListener.Move);
+
             while (true)
             {
-                this.TakeInput();
+                if (Drawing.Player.Lives.Equals(0))
+                    //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
+                    Drawing.WelcomeScreen();
+                Thread.Sleep(1000);
+                Console.Clear();
+                Drawing.LetsPlay();
+                Thread.Sleep(2500);
+                Console.Clear();
+                Drawing.UserName();
+                this.TakeName();
 
-                if (player.Lives.Equals(0))
+                Console.Clear();
+                player.Print();
+                Drawing.DrawField();
+                
+                while (true)
                 {
-                    break;
+
+                    if (Console.KeyAvailable)
+                    {
+                        this.TakeInput(Console.ReadKey(true));
+                        while (Console.KeyAvailable)
+                        {
+                            Console.ReadKey(true); // Seems to clear the buffer of keys
+                        }
+                    }
+                    MoveAndPrintBullets();
+
+
+                    if (player.Lives.Equals(0))
+                    {
+                        break;
+                    }
+                    Thread.Sleep(50);
                 }
+                this.End();
             }
-            this.End();            
         }
         private void End()
         {
@@ -50,30 +89,63 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
-        private void TakeInput()
+        private void TakeInput(ConsoleKeyInfo keyPressed)
         {
-            //TODO: Implement reading input for using the methods for moving in the Class Player!
-            ConsoleKeyInfo currentkey = Console.ReadKey();
-            switch (currentkey.KeyChar)
+            Console.ReadKey();
+            switch (keyPressed.Key)
             {
-                case 'w': player.MoveUp();
+                case ConsoleKey.W: player.MoveUp();
                     break;
-                case 's': player.MoveDown();
+                case ConsoleKey.S: player.MoveDown();
                     break;
-                case 'a': player.MoveLeft();
+                case ConsoleKey.A: player.MoveLeft();
                     break;
-                case 'd': player.MoveRight();
+                case ConsoleKey.D: player.MoveRight();
+                    break;
+                // Create a new bullet object
+                case ConsoleKey.Spacebar: bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
                     break;
                 default: Console.WriteLine("You shouldn't see this!");
                     break;
             }
         }
-        private void LoadMusic()
+
+        #region Player Bullets
+
+        private List<FastObject> bullets = new List<FastObject>(); // Stores all bullets fired
+        /// <summary>
+        /// Print and move the bullets
+        /// </summary>
+        private void MoveAndPrintBullets()
+        {
+            List<FastObject> newBullets = new List<FastObject>(); //Stores the new coordinates of the bullets
+
+            for (int i = 0; i < bullets.Count; i++) // Cycle thru all bullets and change their position
+            {
+                Drawing.ClearAtPosition(bullets[i].Point); // Clear bullet at its current position
+                if (bullets[i].Point.X + bullets[i].Speed >= Engine.WindowWidth)
+                {
+                    // If the bullet exceeds sceen size, dont add it to new Bullets list
+                }
+                else
+                {
+                    bullets[i].Point.X += bullets[i].Speed;
+                    Drawing.DrawAt(bullets[i].Point, '-', ConsoleColor.Cyan); // Print the bullets at their new position;
+                    newBullets.Add((bullets[i]));
+                }
+            }
+            bullets = newBullets; // Overwrite global bullets list, with newBullets list
+        }
+
+        #endregion
+
+        public static void LoadMusic()
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
             sound.PlaySync();
         }
+
         private void TakeName()
         {
             Console.WriteLine();
@@ -89,7 +161,7 @@ namespace TeamWork
             }
             else
             {
-                player.setName(name);
+                Drawing.Player.setName(name);
                 Console.Clear();
             }
         }
@@ -99,6 +171,7 @@ namespace TeamWork
         /// </summary>
         public static void InitConsole()
         {
+            Console.CursorVisible = false;
             Console.WindowWidth = WindowWidth;
             Console.BufferWidth = WindowWidth;
             Console.WindowHeight = WindowHeight;
