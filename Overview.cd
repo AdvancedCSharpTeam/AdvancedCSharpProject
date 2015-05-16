@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TeamWork.GameObject">
-    <Position X="6.75" Y="2" Width="1.5" />
+    <Position X="6.25" Y="1.75" Width="1.5" />
     <InheritanceLine Type="TeamWork.Entity" ManuallyRouted="true">
       <Path>
-        <Point X="6.5" Y="3.196" />
-        <Point X="6.75" Y="3.196" />
+        <Point X="5.75" Y="2.946" />
+        <Point X="6.25" Y="2.946" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -14,36 +14,36 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TeamWork.SlowObject">
-    <Position X="5" Y="5" Width="1.5" />
+  <Class Name="TeamWork.SlowObject" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\SlowObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.FastObject">
-    <Position X="8.5" Y="5" Width="1.5" />
+  <Class Name="TeamWork.FastObject" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\FastObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.NormalObject">
-    <Position X="6.75" Y="5" Width="1.5" />
+  <Class Name="TeamWork.NormalObject" Collapsed="true">
+    <Position X="8" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\NormalObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.Point2D" Collapsed="true">
-    <Position X="8.5" Y="2.75" Width="1.5" />
+  <Class Name="TeamWork.Point2D">
+    <Position X="6" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
       <FileName>Field\Point2D.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Entity">
-    <Position X="5" Y="2" Width="1.5" />
+    <Position X="4.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAgAAAAAAAAAABAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\Entity.cs</FileName>
@@ -51,28 +51,28 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Field.Drawing" Collapsed="true">
-    <Position X="1.5" Y="0.75" Width="1.5" />
+    <Position X="4.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gARAkQAAAAEgAAARAIIAMAAAAAAAAAAAIQAAAYFAAIg=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.MoveArgs" Collapsed="true">
-    <Position X="10.25" Y="0.75" Width="1.5" />
+    <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MoveEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.MoveListener" Collapsed="true">
-    <Position X="8.5" Y="2" Width="1.5" />
+    <Position X="6" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MoveListener.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Player">
-    <Position X="3.25" Y="2" Width="1.5" />
+    <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACEAAAAAAAAAAAAAAAAAAAQAAAIEAABKQAAAAABkAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
@@ -80,14 +80,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Engine">
-    <Position X="10.25" Y="2" Width="1.5" />
+    <Position X="0.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAgBAAAKASAAAAAAAAAAAAQAAAAAARAAABAAAAABA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.ObjectGenerator">
-    <Position X="1.5" Y="3" Width="1.5" />
+    <Position X="4.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACACAAAAAgAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>ObjectGenerator.cs</FileName>
@@ -95,35 +95,35 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">
-    <Position X="3.25" Y="0.75" Width="1.5" />
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACEAAAAAAAAAAAAAAAAAAAQAAAAAAABKQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="TeamWork.IGameObject" Collapsed="true">
-    <Position X="6.75" Y="0.75" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAgAAAAAAAAAABgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\IObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="TeamWork.IEntity" Collapsed="true">
-    <Position X="5" Y="0.75" Width="1.5" />
+    <Position X="4.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\IEntity.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="TeamWork.IObjectGenerator" Collapsed="true">
-    <Position X="1.5" Y="2" Width="1.5" />
+    <Position X="4.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IObjectGenerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Delegate Name="TeamWork.MoveHandler" Collapsed="true">
-    <Position X="8.5" Y="0.75" Width="1.5" />
+    <Position X="6" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Field\Engine.cs</FileName>

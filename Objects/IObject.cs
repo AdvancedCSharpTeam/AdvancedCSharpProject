@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TeamWork
 {
-    public interface IGameObject
+    public interface IGameObject : IEntity
     {
         Point2D Point { get; set; }
 

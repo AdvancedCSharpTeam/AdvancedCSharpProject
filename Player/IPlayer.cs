@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TeamWork
 {
-    public interface IPlayer
+    public interface IPlayer : IEntity
     {
         int Ammo { get; set; }
         string Name { get; set; }
