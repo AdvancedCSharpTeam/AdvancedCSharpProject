@@ -36,11 +36,11 @@ namespace TeamWork
         {
             MoveListener moveListener = new MoveListener();
             Move += new MoveHandler(moveListener.Move);
+            musicThread = new Thread(Engine.LoadMusic);
+            musicThread.Start();
 
             while (true)
-            {
-                musicThread = new Thread(Engine.LoadMusic);
-                musicThread.Start();
+            {               
                 GameIntor();               
                 Console.Clear();
                 player.Print();

@@ -24,14 +24,8 @@ namespace TeamWork
 
         public Point2D Point
         {
-            get
-            {
-                return this.point;
-            }
-            set
-            {
-                this.point = value;
-            }
+            get {return this.point;}
+            set {this.point = value;}
         }
 
         public int Speed { get; set; }
