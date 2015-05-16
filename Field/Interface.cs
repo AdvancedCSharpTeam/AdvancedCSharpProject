@@ -20,7 +20,6 @@ namespace TeamWork.Field
                 }
                 Drawing.DrawAt(new Point2D(i, 1), '\u255D', ConsoleColor.DarkRed);
             }
-
             // Bottom
             for (int i = 0; i < 80; i++)
             {
