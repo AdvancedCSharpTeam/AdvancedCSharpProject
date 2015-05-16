@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using TeamWork.Field;
 using System.Media;
+using System.Runtime.ExceptionServices;
+using System.Security.AccessControl;
 
 namespace TeamWork
 {
@@ -12,6 +15,7 @@ namespace TeamWork
 
     public class Engine
     {
+        public static Random rnd = new Random();
         public static event MoveHandler Move;
         public Thread musicThread;
 
@@ -41,7 +45,7 @@ namespace TeamWork
 
             while (true)
             {
-                GameIntor();
+                GameIntro();
                 Console.Clear();
                 player.Print();
                 //Drawing.DrawField();
@@ -59,19 +63,25 @@ namespace TeamWork
                             Console.ReadKey(true); // Seems to clear the buffer of keys
                         }
                     }
-                    MoveAndPrintBullets();
-                    DrawObject();
-                    Thread.Sleep(2);
-
+                    UpdateAndRender();
                     if (player.Lives.Equals(0))
                     {
                         break;
                     }
+                    
                     Thread.Sleep(50);
                 }
                 this.End();
             }
         }
+
+        private void UpdateAndRender()
+        {
+            MoveAndPrintBullets();
+            GenerateMeteorit();
+            DrawAndMoveMeteor();
+        }
+
         private void End()
         {
             Drawing.GameOver();
@@ -79,7 +89,8 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
-        private void GameIntor()
+
+        private void GameIntro()
         {
             Drawing.WelcomeScreen();
             Thread.Sleep(3500);
@@ -93,6 +104,7 @@ namespace TeamWork
             Drawing.UserName();
             this.TakeName();
         }
+
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             switch (keyPressed.Key)
@@ -106,7 +118,7 @@ namespace TeamWork
                 case ConsoleKey.D: player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
+                case ConsoleKey.Spacebar: _bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
                     break;
                 //default: Console.WriteLine("You shouldn't see this!");
                 //    break;
@@ -115,7 +127,7 @@ namespace TeamWork
 
         #region Player Bullets
 
-        private List<FastObject> bullets = new List<FastObject>(); // Stores all bullets fired
+        private List<FastObject> _bullets = new List<FastObject>(); // Stores all bullets fired
         /// <summary>
         /// Print and move the bullets
         /// </summary>
@@ -123,40 +135,62 @@ namespace TeamWork
         {
             List<FastObject> newBullets = new List<FastObject>(); //Stores the new coordinates of the bullets
 
-            for (int i = 0; i < bullets.Count; i++) // Cycle through all bullets and change their position
+            for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
             {
-                Drawing.ClearAtPosition(bullets[i].Point); // Clear bullet at its current position
-                if (bullets[i].Point.X + bullets[i].Speed >= Engine.WindowWidth)
+                Drawing.ClearAtPosition(_bullets[i].Point); // Clear bullet at its current position
+                if (_bullets[i].Point.X + _bullets[i].Speed >= Engine.WindowWidth)
                 {
                     // If the bullet exceeds sceen size, dont add it to new Bullets list
                 }
                 else
                 {
-                    bullets[i].Point.X += bullets[i].Speed;
-                    Drawing.DrawAt(bullets[i].Point, '-', ConsoleColor.Cyan); // Print the bullets at their new position;
-                    newBullets.Add((bullets[i]));
+                    _bullets[i].Point.X += _bullets[i].Speed;
+                    Drawing.DrawAt(_bullets[i].Point, '-', ConsoleColor.Cyan); // Print the bullets at their new position;
+                    newBullets.Add((_bullets[i]));
                 }
             }
-            bullets = newBullets; // Overwrite global bullets list, with newBullets list
+            _bullets = newBullets; // Overwrite global bullets list, with newBullets list
         }
 
         #endregion
-        #region Object Generator
 
-        private void DrawObject()
+        #region Object Generator
+        private List<NormalObject> _meteorits = new List<NormalObject>();
+        private int counter = 0; // Just a counter
+        public int chance = 25; // Chance variable 1 per 25 loops spawn a meteor
+        private void GenerateMeteorit()
         {
-            Random rnd = new Random();
-            List<GameObject> objects = new List<GameObject>();
-            for (int i = 0; i < 3; i++)
+            if (counter % chance == 0)
             {
-                objects.Add(new GameObject(new Point2D(WindowWidth-1, rnd.Next(5, WindowHeight - 5))));
+                _meteorits.Add(new NormalObject(new Point2D(WindowWidth - 1, rnd.Next(5, WindowHeight - 5))));
+                counter++;
             }
-            for (int i = 0; i < 3; i++)
+            else
             {
-                Drawing.DrawAt(objects[i].Point, objects[i]);
-                objects[i].Point.X--;
+                counter++;
             }
-            //Drawing.DrawHLineAt(x, y, 1, Drawing.GameObject, ConsoleColor.DarkMagenta);
+            
+        }
+
+        private void DrawAndMoveMeteor()
+        {
+            List<NormalObject> newMeteorits = new List<NormalObject>();
+            for (int i = 0; i < _meteorits.Count; i++)
+            {
+
+                Drawing.ClearAtPosition(_meteorits[i].Point); // Clear bullet at its current position
+                if (_meteorits[i].Point.X - _meteorits[i].Speed <= 1)
+                {
+                    // If the meteorit exceeds sceen size, dont add it to new meteorit list
+                }
+                else
+                {
+                    _meteorits[i].Point.X -= _meteorits[i].Speed;
+                    Drawing.DrawAt(_meteorits[i].Point, '*', ConsoleColor.Cyan);
+                    newMeteorits.Add((_meteorits[i]));
+                } 
+            }
+            _meteorits = newMeteorits;
         }
         #endregion
 
