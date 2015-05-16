@@ -10,9 +10,5 @@ namespace TeamWork
         Point2D Point { get; set; }
 
         int Speed { get; set; }
-
-        void GameObjectFall();
-
-        void SetGeneratedObject(string generatedObject);
     }
 }

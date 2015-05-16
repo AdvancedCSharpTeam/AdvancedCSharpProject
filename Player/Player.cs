@@ -12,13 +12,12 @@ namespace TeamWork
     {
         private int lives = 3;
         private int ammo = 10;
-        private string name = "Default";
+        
 
         public Player()
         {
             this.Lives = this.lives;
             this.Ammo = this.ammo;
-            this.Name = this.name;
         }
 
         public int Ammo { get; set; }
@@ -27,8 +26,8 @@ namespace TeamWork
         
         public void MoveUp()
         {
-            // Limit player movement on X axis
-            if (this.Point.Y - 1 >= 3) // Limit so the temporary ship does not go out of screen and crash the game
+            // Limit player movement on Y axis
+            if (this.Point.Y - 1 >= 5) // Limit so the temporary ship does not go out of screen and crash the game
             {
                 
                 Clear();
@@ -39,7 +38,7 @@ namespace TeamWork
         public void MoveDown()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y + 1 < Engine.WindowHeight - 1) 
+            if (this.Point.Y + 1 < Engine.WindowHeight - 5) 
             {
                 Clear();
                 this.Point.Y++;
@@ -69,7 +68,7 @@ namespace TeamWork
 
         public void setName(string newName) // There was issue with the private field name in this class
         {
-            this.Name = name;
+            this.Name = newName;
         }
 
         //Method to print the player at its current position

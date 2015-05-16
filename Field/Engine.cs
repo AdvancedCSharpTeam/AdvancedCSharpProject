@@ -14,7 +14,7 @@ namespace TeamWork
     {
         public static event MoveHandler Move;
         public Thread musicThread;
-              
+
         public static void OnEventMove(MoveArgs moveArgs)
         {
             var handler = Move;
@@ -25,8 +25,8 @@ namespace TeamWork
         public static Player player = new Player();
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
-        public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
-        
+        public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
+
         //TODO: Implement Engine Class!
         public Engine()
         {
@@ -36,16 +36,18 @@ namespace TeamWork
         {
             MoveListener moveListener = new MoveListener();
             Move += new MoveHandler(moveListener.Move);
-            musicThread = new Thread(Engine.LoadMusic);
-            musicThread.Start();
+            //musicThread = new Thread(Engine.LoadMusic);
+            //musicThread.Start();
 
             while (true)
-            {               
-                GameIntor();               
+            {
+                GameIntor();
                 Console.Clear();
                 player.Print();
-                Drawing.DrawField();
-                
+                //Drawing.DrawField();
+                Interface.Table();
+                Interface.UIDescription();
+
                 while (true)
                 {
 
@@ -58,7 +60,8 @@ namespace TeamWork
                         }
                     }
                     MoveAndPrintBullets();
-
+                    DrawObject();
+                    Thread.Sleep(2);
 
                     if (player.Lives.Equals(0))
                     {
@@ -92,7 +95,6 @@ namespace TeamWork
         }
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
-            Console.ReadKey();
             switch (keyPressed.Key)
             {
                 case ConsoleKey.W: player.MoveUp();
@@ -121,7 +123,7 @@ namespace TeamWork
         {
             List<FastObject> newBullets = new List<FastObject>(); //Stores the new coordinates of the bullets
 
-            for (int i = 0; i < bullets.Count; i++) // Cycle thru all bullets and change their position
+            for (int i = 0; i < bullets.Count; i++) // Cycle through all bullets and change their position
             {
                 Drawing.ClearAtPosition(bullets[i].Point); // Clear bullet at its current position
                 if (bullets[i].Point.X + bullets[i].Speed >= Engine.WindowWidth)
@@ -139,13 +141,31 @@ namespace TeamWork
         }
 
         #endregion
+        #region Object Generator
 
-        public static void LoadMusic()
+        private void DrawObject()
+        {
+            Random rnd = new Random();
+            List<GameObject> objects = new List<GameObject>();
+            for (int i = 0; i < 3; i++)
+            {
+                objects.Add(new GameObject(new Point2D(WindowWidth-1, rnd.Next(5, WindowHeight - 5))));
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Drawing.DrawAt(objects[i].Point, objects[i]);
+                objects[i].Point.X--;
+            }
+            //Drawing.DrawHLineAt(x, y, 1, Drawing.GameObject, ConsoleColor.DarkMagenta);
+        }
+        #endregion
+
+        /*public static void LoadMusic()
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
             sound.PlaySync();
-        }
+        }*/
 
         private void TakeName()
         {
@@ -158,13 +178,13 @@ namespace TeamWork
                 Thread.Sleep(2000);
                 Console.Clear();
                 Drawing.UserName();
-                TakeName();               
+                TakeName();
             }
             else
             {
-                Drawing.Player.setName(name);               
+                Drawing.Player.setName(name);
                 Console.Clear();
-                musicThread.Interrupt();
+                //musicThread.Interrupt();
             }
         }
 

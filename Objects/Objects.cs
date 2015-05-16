@@ -9,31 +9,20 @@ namespace TeamWork
 {
     public class GameObject : Entity, IGameObject, IEntity
     {
-        private string generatedObject;
         public GameObject()
         {
-
+            base.Speed = 3;
         }
         public GameObject(Point2D point)
             : base(point)
         {
-
+            base.Speed = 1;
         }
-        public string GeneratedObject { get; set; }
-        public void GameObjectFall()
+        public override string ToString()
         {
-            for (int i = 0; i < 25; i++)
-            {
-                Drawing.ClearX(0);
-                Drawing.ClearFromTo(0, 10, 0, 10);
-                base.Point.Y++;
-                Drawing.DrawHLineAt(base.Point, 1, this.generatedObject);
-                Thread.Sleep(1);
-            }
-        }
-        public void SetGeneratedObject(string generatedObject)
-        {
-            this.GeneratedObject = generatedObject;
+            string output = string.Empty;
+            output = "&&";
+            return output;
         }
     }
 }

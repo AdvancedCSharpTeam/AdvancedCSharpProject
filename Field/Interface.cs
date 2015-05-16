@@ -42,7 +42,7 @@ namespace TeamWork.Field
             string live = " Lives: 1 2 3 ";
             string score = " Scores: 1234 ";
             string ammo = " Ammo: ";
-            string playerName = " Player .thisName?! ";
+            string playerName = string.Format("Player: {0}", Drawing.Player.Name);
 
             Drawing.DrawAt(new Point2D(3, 0), playerName, ConsoleColor.DarkYellow);
             Drawing.DrawAt(new Point2D(39, 0), level, ConsoleColor.DarkYellow);
