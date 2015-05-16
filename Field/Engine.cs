@@ -12,7 +12,6 @@ namespace TeamWork
 
     public class Engine
     {
-<<<<<<< HEAD
         public static event MoveHandler Move;
 
         public static void OnEventMove(MoveArgs moveArgs)
@@ -22,21 +21,19 @@ namespace TeamWork
                 Move(null, moveArgs);
         }
 
-=======
         public static Player player = new Player();
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 30; //Window height constant to be accesed from everywhere
         
         //TODO: Implement Engine Class!
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
         public Engine()
         {
             this.Start();
         }
         public void Start()
         {
-<<<<<<< HEAD
+
             //Drawing.WelcomeScreen();
             //Thread.Sleep(2500);
             //Console.Clear();       
@@ -69,7 +66,7 @@ namespace TeamWork
 
             //Drawing.DrawRectangleAt(new Point2D(3, 4), 5, '*');
 
-            Console.WriteLine("Press any key to start!");
+            Console.WriteLine("Press enter key to start!");
             Console.ReadLine();
 
             MoveListener moveListener = new MoveListener();
@@ -77,45 +74,43 @@ namespace TeamWork
 
             while (true)
             {
-                
-                Drawing.DrawField();
-                Thread.Sleep(0);
-                
                 if (Drawing.Player.Lives.Equals(0))
-=======
-            //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
-            Drawing.WelcomeScreen();
-            Thread.Sleep(2500);
-            Console.Clear();       
-            Drawing.LetsPlay();
-            Thread.Sleep(2500);
-            Console.Clear();            
-            Drawing.UserName();           
-            this.TakeName();  
-                        
-            Console.Clear();
-            player.Print();
-            while (true)
-            {
-                if (Console.KeyAvailable)
-                {
-                    this.TakeInput(Console.ReadKey(true));
-                    while (Console.KeyAvailable)
-                    {
-                        Console.ReadKey(true); // Seems to clear the buffer of keys
-                    }
-                }
-                MoveAndPrintBullets();
-                
+                    //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
+                    Drawing.WelcomeScreen();
+                Thread.Sleep(1000);
+                Console.Clear();
+                Drawing.LetsPlay();
+                Thread.Sleep(2500);
+                Console.Clear();
+                Drawing.UserName();
+                this.TakeName();
 
-                if (player.Lives.Equals(0))
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
+                Console.Clear();
+                player.Print();
+                Drawing.DrawField();
+                
+                while (true)
                 {
-                    break;
+
+                    if (Console.KeyAvailable)
+                    {
+                        this.TakeInput(Console.ReadKey(true));
+                        while (Console.KeyAvailable)
+                        {
+                            Console.ReadKey(true); // Seems to clear the buffer of keys
+                        }
+                    }
+                    MoveAndPrintBullets();
+
+
+                    if (player.Lives.Equals(0))
+                    {
+                        break;
+                    }
+                    Thread.Sleep(50);
                 }
-                Thread.Sleep(50);
+                this.End();
             }
-            this.End();            
         }
         private void End()
         {
@@ -126,9 +121,7 @@ namespace TeamWork
         }
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
-<<<<<<< HEAD
             Console.ReadKey();
-=======
             switch (keyPressed.Key)
             {
                 case ConsoleKey.W: player.MoveUp();
@@ -145,7 +138,6 @@ namespace TeamWork
                 default: Console.WriteLine("You shouldn't see this!");
                     break;
             }
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
         }
 
         #region Player Bullets

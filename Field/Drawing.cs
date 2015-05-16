@@ -167,13 +167,10 @@ namespace TeamWork.Field
         {
             for (int i = 0; i < lenght; i++)
             {
-<<<<<<< HEAD
-                DrawAt(point, obj, clr);
+                //DrawAt(point, obj, clr);
                 //point.X++;
-=======
                 DrawAt(x,y, obj, clr);
                 x++;
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
             }
         }
 
@@ -233,27 +230,6 @@ namespace TeamWork.Field
             DrawRectangleAt(point.X,point.Y, size, obj, clr);
         }
         #region Methods for Drawing the Game
-        public static void DrawPlayer()
-        {
-            string player;
-            switch (Drawing.Player.Lives)
-            {
-                case 3:
-                    player =
-        @"                           
-                            ||
-                            ..
-                      |     /\    |
-                      :    /||\   :
-                      :__ /|C#|\__:
-";
-                    Drawing.DrawHLineAt(PlayerPoint, 1, player);
-                    break;
-                //TODO: Implement cases 1 & 2, where for each life a wing from the ship is lost.
-                    // At Player.Lives.Equals(2) right wing is missing, and for 1 - left one.
-                default: throw new Exception("You shouldn't see this!");
-            }
-        }
         public static void DrawMenu()
         {
             string menu;
@@ -273,40 +249,10 @@ namespace TeamWork.Field
                                                                 |||||||||||||
                                                                 |||||||||||||";
             Drawing.DrawHLineAt(GameFieldRightSide, 1, menu);
-            Drawing.DrawVLineAt(GameFieldRightSide, 1, @"|
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |
-                                                            |");
         }
         public static void DrawField()
         {
             Thread.Sleep(5);
-            Drawing.DrawPlayer();
             Thread.Sleep(0);
             Drawing.DrawMenu();
             Thread.Sleep(0);
@@ -431,18 +377,6 @@ namespace TeamWork.Field
         }
        
         #endregion
-
-
-        public static string generateObject()
-        {
-            string generatedObject = string.Empty;
-            Random rnd = new Random();
-            for (int i = 0; i < 5; i++)
-            {
-                generatedObject += rnd.Next(0, 2);
-            }
-            return generatedObject;
-        }
     }
 }
 

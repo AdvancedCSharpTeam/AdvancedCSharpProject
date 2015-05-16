@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-<<<<<<< HEAD
 using System.Threading;
-=======
 using TeamWork.Field;
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
 
 namespace TeamWork
 {
@@ -30,10 +27,6 @@ namespace TeamWork
         
         public void MoveUp()
         {
-<<<<<<< HEAD
-            Console.WriteLine("STOP");
-            Thread.Sleep(10000);
-=======
             // Limit player movement on X axis
             if (this.Point.Y - 1 >= 3) // Limit so the temporary ship does not go out of screen and crash the game
             {
@@ -42,7 +35,6 @@ namespace TeamWork
                 this.Point.Y--;
                 Print();
             }
->>>>>>> 004388e7921a01bda1444e6b4b92ada455cf9ae6
         }
         public void MoveDown()
         {

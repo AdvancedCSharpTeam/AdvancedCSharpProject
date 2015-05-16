@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TeamWork
 {
-    public class FastObject : Objects
+    public class FastObject : GameObject
     {
         public FastObject()
         {
