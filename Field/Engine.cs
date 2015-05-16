@@ -13,7 +13,8 @@ namespace TeamWork
     public class Engine
     {
         public static event MoveHandler Move;
-
+        public Thread musicThread;
+              
         public static void OnEventMove(MoveArgs moveArgs)
         {
             var handler = Move;
@@ -33,58 +34,14 @@ namespace TeamWork
         }
         public void Start()
         {
-
-            //Drawing.WelcomeScreen();
-            //Thread.Sleep(2500);
-            //Console.Clear();       
-            //Drawing.LetsPlay();
-            //Thread.Sleep(2500);
-            //Console.Clear();            
-            //Drawing.UserName();           
-            //this.TakeName();
-
-            Console.WindowWidth = 80;
-            Console.BufferWidth = 80;
-            Console.WindowHeight = 30;
-            Console.BufferHeight = 30;
-
-            //Drawing.DrawHLineAt(0, 0, 30, '*');
-            //Drawing.DrawHLineAt(0, 5, 30, '*');
-            //Drawing.DrawHLineAt(0, 10, 30, '*');
-            //Drawing.DrawHLineAt(0, 15, 30, '*');
-            //Drawing.DrawHLineAt(0, 20, 30, '*');
-            //Drawing.DrawHLineAt(0, 25, 80, '*');
-            //Drawing.DrawVLineAt(5, 5, 25, '~', ConsoleColor.Yellow);
-            //Console.ReadKey();
-            //Drawing.ClearFromTo(1, 0, 20, 20);
-            //Console.ReadKey();
-            //Drawing.ClearY(25);
-            //Drawing.ClearX(5);
-
-            //Drawing.Credits();
-            //Console.ReadKey();
-
-            //Drawing.DrawRectangleAt(new Point2D(3, 4), 5, '*');
-
-            Console.WriteLine("Press enter key to start!");
-            Console.ReadLine();
-
             MoveListener moveListener = new MoveListener();
             Move += new MoveHandler(moveListener.Move);
+            musicThread = new Thread(Engine.LoadMusic);
+            musicThread.Start();
 
             while (true)
-            {
-                if (Drawing.Player.Lives.Equals(0))
-                    //LoadMusic(); // It seems that commiting doesnt upload the sound file and this makes the game crash
-                    Drawing.WelcomeScreen();
-                Thread.Sleep(1000);
-                Console.Clear();
-                Drawing.LetsPlay();
-                Thread.Sleep(2500);
-                Console.Clear();
-                Drawing.UserName();
-                this.TakeName();
-
+            {               
+                GameIntor();               
                 Console.Clear();
                 player.Print();
                 Drawing.DrawField();
@@ -119,6 +76,20 @@ namespace TeamWork
             Console.Clear();
             Drawing.Credits();
         }
+        private void GameIntor()
+        {
+            Drawing.WelcomeScreen();
+            Thread.Sleep(3500);
+            Console.Clear();
+            Drawing.GameName();
+            Thread.Sleep(2500);
+            Console.Clear();
+            Drawing.LetsPlay();
+            Thread.Sleep(2500);
+            Console.Clear();
+            Drawing.UserName();
+            this.TakeName();
+        }
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             Console.ReadKey();
@@ -135,8 +106,8 @@ namespace TeamWork
                 // Create a new bullet object
                 case ConsoleKey.Spacebar: bullets.Add(new FastObject(new Point2D(player.Point.X + 20, player.Point.Y)));
                     break;
-                default: Console.WriteLine("You shouldn't see this!");
-                    break;
+                //default: Console.WriteLine("You shouldn't see this!");
+                //    break;
             }
         }
 
@@ -169,7 +140,7 @@ namespace TeamWork
 
         #endregion
 
-        private void LoadMusic()
+        public static void LoadMusic()
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
@@ -183,16 +154,17 @@ namespace TeamWork
             string name = Console.ReadLine();
             if (String.IsNullOrEmpty(name))
             {
-                Console.WriteLine("\t\t\t\tPlease entry your name");
+                Console.WriteLine("\t\t\t    Please entry your name");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Drawing.UserName();
-                TakeName();
+                TakeName();               
             }
             else
             {
-                Drawing.Player.setName(name);
+                Drawing.Player.setName(name);               
                 Console.Clear();
+                musicThread.Interrupt();
             }
         }
 

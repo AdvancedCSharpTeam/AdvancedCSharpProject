@@ -80,6 +80,13 @@ namespace TeamWork
             Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
             Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
             Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
+
+              //you can change it with this it is smaller    
+              //    ____
+              //     \  \_____________
+              //     <[=)_)_)_)star)_=>
+              //    _/__/
+
         }
 
         // Method to clear players last position
