@@ -17,8 +17,7 @@ namespace TeamWork
     public class Engine
     {
         public static Random rnd = new Random();
-        public static Thread musicThread;
-        public static Thread effects; 
+        public Thread musicThread;
 
         public static Player player = new Player();
 
@@ -204,6 +203,7 @@ namespace TeamWork
                     else
                     {
                         //Collision Handling
+
                         if (BulletCollision(_meteorits[i].Point) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
@@ -217,6 +217,7 @@ namespace TeamWork
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                         {
+                            //SoundEffects(1);
                             Printing.ClearAtPosition(_meteorits[i].Point);
                             Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
                             Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
@@ -247,6 +248,7 @@ namespace TeamWork
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                             {
+                                //SoundEffects(2);
                                 Printing.ClearAtPosition(_meteorits[i].Point);
                                 Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
                                 Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
@@ -325,7 +327,7 @@ namespace TeamWork
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
-            sound.PlaySync();
+            sound.PlayLooping();
         }
         public static void SoundEffects(int num)
         {
@@ -333,9 +335,9 @@ namespace TeamWork
 
             switch (num)
             {
-                case 1: soundFX.SoundLocation = "meteor";
+                case 1: soundFX.SoundLocation = "meteor.wav";
                     soundFX.PlaySync();break;
-                case 2: soundFX.SoundLocation = "ship";
+                case 2: soundFX.SoundLocation = "meteor.wav";
                     soundFX.PlaySync(); break;
             }
         }
@@ -365,7 +367,7 @@ namespace TeamWork
             {
                 Printing.Player.setName(name);
                 Console.Clear();
-                musicThread.Interrupt();
+                musicThread.Abort();
             }
         }
         
