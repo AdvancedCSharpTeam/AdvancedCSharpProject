@@ -33,7 +33,7 @@ namespace TeamWork
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
 
-            while (Printing.Player.Lives != 0)
+            while (true)
             {
                 GameIntro();
                 Console.Clear();
@@ -47,7 +47,7 @@ namespace TeamWork
                     break;
                 }
 
-                while (Printing.Player.Lives != 0)
+                while (true)
                 {
 
                     if (Console.KeyAvailable)
@@ -64,9 +64,11 @@ namespace TeamWork
                 }
                 if (Printing.Player.Lives < 1)
                 {
+                    Console.Clear();
                     End();
                     break;
                 }
+                Console.Clear();
                 this.End();
                 break;
             }
