@@ -39,7 +39,7 @@
   <Class Name="TeamWork.Player">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACEAAABAAAAACAgAAAAIAQQAAAIAAABKQAAAAABkAAA=</HashCode>
+      <HashCode>ACEAAABAAAAACAgAAAAIAQQAAAMAAABLQAAAAABkAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -63,6 +63,8 @@
     <InheritanceLine Type="TeamWork.IEntity" ManuallyRouted="true">
       <Path>
         <Point X="4.25" Y="0.781" />
+        <Point X="4.125" Y="0.781" />
+        <Point X="4.125" Y="0.781" />
         <Point X="4" Y="0.781" />
       </Path>
     </InheritanceLine>
