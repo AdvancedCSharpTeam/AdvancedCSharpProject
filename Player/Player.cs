@@ -11,15 +11,18 @@ namespace TeamWork
     public class Player : Entity, IPlayer, IEntity
     {
         private int lives = 3;
-        private int ammo = 10;
+        private int ammo = 50;
+        private int score = 0;
         
 
         public Player()
         {
             this.Lives = this.lives;
             this.Ammo = this.ammo;
+            this.Score = this.score;
         }
 
+        public int Score { get; set; }
         public int Ammo { get; set; }
         public int Lives { get; set; }
         public string Name { get; set; }
@@ -75,11 +78,14 @@ namespace TeamWork
         public void Print()
         {
             // Temporary ship design
-            Drawing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
 
+            Drawing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
+            Drawing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
+            Drawing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_=>", ConsoleColor.Cyan);
               //you can change it with this it is smaller    
               //    ____
               //     \  \_____________
@@ -93,9 +99,22 @@ namespace TeamWork
         {
             //Had to use strings to get rid of artefacts
             Drawing.DrawAt(Point.X, Point.Y - 2, @"                ");
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"                      ");
-            Drawing.DrawAt(Point.X, Point.Y,     @"                        ");
-            Drawing.DrawAt(Point.X, Point.Y + 1, @"                   ");
+            Drawing.DrawAt(Point.X, Point.Y - 1, @"                         ");
+            Drawing.DrawAt(Point.X, Point.Y,     @"                           ");
+            Drawing.DrawAt(Point.X, Point.Y + 1, @"                           ");
+        }
+
+        public void IncreasePoints()
+        {
+            this.Score++;
+        }
+        public void DecreaseAmmo()
+        {
+            this.Ammo--;
+        }
+        public void DecreaseLives()
+        {
+            this.Lives--;
         }
     }
 }

@@ -37,3 +37,6 @@ C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject-master\
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\bin\Debug\TeamWork.exe.config
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\obj\Debug\TeamWork.exe
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\obj\Debug\TeamWork.pdb
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\obj\Debug\TeamWork.csprojResolveAssemblyReference.cache
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\bin\Debug\TeamWork.exe
+C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\bin\Debug\TeamWork.pdb

@@ -39,8 +39,8 @@ namespace TeamWork.Field
         public static void UIDescription()
         {
             string level = "LvL";
-            string live = " Lives: 1 2 3 ";
-            string score = " Scores: 1234 ";
+            string live = string.Format(" Lives: {0}", Drawing.Player.Lives);
+            string score = string.Format(" Score: {0}", Drawing.Player.Score);
             string ammo = " Ammo: ";
             string playerName = string.Format("Player: {0}", Drawing.Player.Name);
 

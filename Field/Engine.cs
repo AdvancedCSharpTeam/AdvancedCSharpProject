@@ -39,12 +39,10 @@ namespace TeamWork
         }
         public void Start()
         {
-            MoveListener moveListener = new MoveListener();
-            Move += new MoveHandler(moveListener.Move);
             //musicThread = new Thread(Engine.LoadMusic);
             //musicThread.Start();
 
-            while (true)
+            while (player.Lives != 0)
             {
                 GameIntro();
                 Console.Clear();
@@ -53,7 +51,7 @@ namespace TeamWork
                 Interface.Table();
                 Interface.UIDescription();
 
-                while (true)
+                while (player.Lives != 0)
                 {
 
                     if (Console.KeyAvailable)
@@ -67,22 +65,30 @@ namespace TeamWork
                     UpdateAndRender();
                     if (player.Lives.Equals(0))
                     {
+                        End();
                         break;
                     }
 
-                    Thread.Sleep(50);
+                    Thread.Sleep(100);
+                }
+                if (player.Lives.Equals(0))
+                {
+                    End();
+                    break;
                 }
                 this.End();
+                break;
             }
         }
 
         private void UpdateAndRender()
-        {   
-            // nqkyde tuk mejdu tezi predi da se risuvat i tn... i kato namerish collision trqbva da iztriesh risunkata i da mahnesh ot lista dadeniq meteor i patron
-            MoveAndPrintBullets();
-            
-            GenerateMeteorit();
+        {
+            // nqkyde tuk mejdu tezi predi da se risuvat i tn... i kato namerish collision trqbva da 
+            //iztriesh risunkata i da mahnesh ot lista dadeniq meteor i patron
+
             DrawAndMoveMeteor();
+            MoveAndPrintBullets();
+            GenerateMeteorit();
         }
 
         private void End()
@@ -121,7 +127,7 @@ namespace TeamWork
                 case ConsoleKey.D: player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(player.Point.X + 20, player.Point.Y)));
+                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(player.Point.X + 22, player.Point.Y+1)));
                     break;
                 //default: Console.WriteLine("You shouldn't see this!");
                 //    break;
@@ -147,8 +153,8 @@ namespace TeamWork
                 }
                 else
                 {
-                    _bullets[i].Point.X += _bullets[i].Speed;
-                    Drawing.DrawAt(_bullets[i].Point, '-', ConsoleColor.Cyan); // Print the bullets at their new position;
+                    _bullets[i].Point.X += _bullets[i].Speed + 1;
+                    Drawing.DrawAt(_bullets[i].Point, ".", ConsoleColor.Cyan); // Print the bullets at their new position;
                     newBullets.Add((_bullets[i]));
                 }
             }
@@ -178,53 +184,104 @@ namespace TeamWork
         private void DrawAndMoveMeteor()
         {
             List<GameObject> newMeteorits = new List<GameObject>();
-            if (counter%4 == 0)
-            {
-            
-            for (int i = 0; i < _meteorits.Count; i++)
+            if (counter % 1 == 0)
             {
 
-                Drawing.ClearAtPosition(_meteorits[i].Point); // Clear meteorit at its current position
-                Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
-                Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
-
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
-
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
-                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
-                if (_meteorits[i].Point.X - _meteorits[i].Speed <= 1)
+                for (int i = 0; i < _meteorits.Count; i++)
                 {
-                    // If the meteorit exceeds sceen size, dont add it to new meteorit list
-                }
-                else
-                {
-                    if (BulletCollision(_meteorits[i].Point))
+
+                    Drawing.ClearAtPosition(_meteorits[i].Point); // Clear meteorit at its current position
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
+
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
+
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
+                    Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
+                    if (_meteorits[i].Point.X - _meteorits[i].Speed <= 1)
                     {
-                        
+                        // If the meteorit exceeds sceen size, dont add it to new meteorit list
                     }
                     else
                     {
-                        _meteorits[i].Point.X -= _meteorits[i].Speed;
-                        Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Cyan);
+                        if (BulletCollision(_meteorits[i].Point) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1)) ||
 
-                        Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Cyan);
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1)) ||
 
-                        Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Cyan);
-                        Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Cyan);
-                        newMeteorits.Add((_meteorits[i]));
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
+                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
+                        {
+                            Drawing.ClearAtPosition(_meteorits[i].Point);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
+
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
+
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
+                            Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
+
+
+                        }
+                        else
+                        {
+                            if (MeteoriteCollision(_meteorits[i].Point) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1)) ||
+
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1)) ||
+
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
+                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
+                            {
+                                Drawing.ClearAtPosition(_meteorits[i].Point);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
+
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
+
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
+                                Drawing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
+                            }
+                            else
+                            {
+                                _meteorits[i].Point.X -= _meteorits[i].Speed;
+                                Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y, '|', ConsoleColor.Green);
+                                Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Green);
+                                Drawing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Green);
+
+                                Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y, '|', ConsoleColor.Yellow);
+                                Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Yellow);
+                                Drawing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Yellow);
+
+                                Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y, '|', ConsoleColor.Red);
+                                Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1, '|', ConsoleColor.Red);
+                                Drawing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1, '|', ConsoleColor.Red);
+                                newMeteorits.Add((_meteorits[i]));
+                            }
+                        }
+
                     }
-                    
                 }
-            }
-            _meteorits = newMeteorits;
+                _meteorits = newMeteorits;
 
             }
         }
@@ -233,12 +290,28 @@ namespace TeamWork
         {
             if (_bullets.Any(bullet => point == bullet.Point))
             {
-                Drawing.DrawAt(0,0,"hit");
+                Point2D currentBulletPoint = _bullets.FirstOrDefault(bullet => point == bullet.Point).Point;
+                _bullets.Remove(_bullets.FirstOrDefault(bullet => point == bullet.Point));
+                Drawing.ClearAtPosition(currentBulletPoint.X, currentBulletPoint.Y);
+                Drawing.Player.IncreasePoints();
+                Interface.Table();
+                Interface.UIDescription();
                 return true;
             }
             return false;
         }
-
+        private bool MeteoriteCollision(Point2D point)
+        {
+            if (player.Point.X + 22 == point.X && (player.Point.Y == point.Y || player.Point.Y == point.Y - 1 || player.Point.Y == point.Y + 1))
+            {
+                //_meteorits.Remove(_meteorits.FirstOrDefault(m => point == m.Point));
+                Drawing.Player.DecreaseLives();
+                Interface.Table();
+                Interface.UIDescription();
+                return true;
+            }
+            return false;
+        }
         #endregion
 
         /*public static void LoadMusic()

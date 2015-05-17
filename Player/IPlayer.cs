@@ -10,11 +10,16 @@ namespace TeamWork
         int Ammo { get; set; }
         string Name { get; set; }
         int Lives { get; set; }
+        int Score { get; set; }
 
         void MoveUp();
         void MoveDown();
         void MoveLeft();
         void MoveRight();
         void setName(string name);
+
+        void IncreasePoints();
+        void DecreaseAmmo();
+        void DecreaseLives();
     }
 }

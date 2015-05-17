@@ -19,7 +19,7 @@
   <Class Name="TeamWork.Point2D" Collapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
       <FileName>Field\Point2D.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,13 +45,6 @@
       <FileName>MoveEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.MoveListener" Collapsed="true">
-    <Position X="4.25" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MoveListener.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TeamWork.Player">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
@@ -63,7 +56,7 @@
   <Class Name="TeamWork.Engine">
     <Position X="0.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIEgBCAAKASQAAAAAAAAAAARAAAAAEBAAABQEAAABA=</HashCode>
+      <HashCode>AgIEgBCAAKASQAAAAAAAAAAARAAAAAEBAAABQkAAABA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>

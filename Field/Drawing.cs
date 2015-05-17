@@ -6,6 +6,7 @@ namespace TeamWork.Field
     public static class Drawing
     {
         public static IPlayer Player = new Player();
+
         public static Point2D PlayerPoint = new Point2D(40, 29);
         public static Point2D GameFieldRightSide = new Point2D(60, 0);
         public static Point2D MenuField = new Point2D(75, 4);
