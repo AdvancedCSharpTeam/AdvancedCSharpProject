@@ -12,20 +12,18 @@ using System.Security.AccessControl;
 
 namespace TeamWork
 {
-    public delegate void MoveHandler(object obj, MoveArgs move);
-
     public class Engine
     {
         public static Random rnd = new Random();
-        public static event MoveHandler Move;
+        //public static event MoveHandler Move;
         public Thread musicThread;
 
-        public static void OnEventMove(MoveArgs moveArgs)
-        {
-            var handler = Move;
-            if (Move != null)
-                Move(null, moveArgs);
-        }
+        //public static void OnEventMove(MoveArgs moveArgs)
+        //{
+        //    var handler = Move;
+        //    if (Move != null)
+        //        Move(null, moveArgs);
+        //}
 
         public static Player player = new Player();
 
@@ -62,8 +60,9 @@ namespace TeamWork
                             Console.ReadKey(true); // Seems to clear the buffer of keys
                         }
                     }
+
                     UpdateAndRender();
-                    if (player.Lives.Equals(0))
+                    if (player.Lives < 1)
                     {
                         End();
                         break;
@@ -71,7 +70,7 @@ namespace TeamWork
 
                     Thread.Sleep(100);
                 }
-                if (player.Lives.Equals(0))
+                if (player.Lives < 1)
                 {
                     End();
                     break;
@@ -83,9 +82,6 @@ namespace TeamWork
 
         private void UpdateAndRender()
         {
-            // nqkyde tuk mejdu tezi predi da se risuvat i tn... i kato namerish collision trqbva da 
-            //iztriesh risunkata i da mahnesh ot lista dadeniq meteor i patron
-
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
@@ -127,10 +123,8 @@ namespace TeamWork
                 case ConsoleKey.D: player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(player.Point.X + 22, player.Point.Y+1)));
+                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(player.Point.X + 22, player.Point.Y + 1)));
                     break;
-                //default: Console.WriteLine("You shouldn't see this!");
-                //    break;
             }
         }
 
@@ -285,7 +279,6 @@ namespace TeamWork
 
             }
         }
-        // trabva da proverqvash vsi4ki pointove i mislq 4e trqbva da stava mejdu tova 
         private bool BulletCollision(Point2D point)
         {
             if (_bullets.Any(bullet => point == bullet.Point))
@@ -304,7 +297,6 @@ namespace TeamWork
         {
             if (player.Point.X + 22 == point.X && (player.Point.Y == point.Y || player.Point.Y == point.Y - 1 || player.Point.Y == point.Y + 1))
             {
-                //_meteorits.Remove(_meteorits.FirstOrDefault(m => point == m.Point));
                 Drawing.Player.DecreaseLives();
                 Interface.Table();
                 Interface.UIDescription();

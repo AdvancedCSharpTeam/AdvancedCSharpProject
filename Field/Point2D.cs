@@ -26,10 +26,10 @@ namespace TeamWork
             return point.X != point2.X || point.Y != point2.Y;
         }
 
-        //public override bool Equals(object obj) // Should be overrided
-        //{
-        //    return base.Equals(obj);
-        //}
+        public override bool Equals(object obj) // Should be overrided
+        {
+            return base.Equals(obj);
+        }
 
         public override int GetHashCode()
         {

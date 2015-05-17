@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Field\Engine.cs" />
     <Compile Include="Field\Interface.cs" />
-    <Compile Include="MoveEvent.cs" />
     <Compile Include="Objects\Entity.cs" />
     <Compile Include="Field\Drawing.cs" />
     <Compile Include="Objects\IEntity.cs" />
@@ -52,12 +51,12 @@
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Field\Point2D.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Field\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Overview.cd" />
+    <None Include="Field\Overview.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
