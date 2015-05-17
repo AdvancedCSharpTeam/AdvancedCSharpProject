@@ -388,9 +388,9 @@ namespace TeamWork
             Console.WriteLine();
             Console.Write("\n\t\t\t\tName:");
             string name = Console.ReadLine();
-            if (String.IsNullOrEmpty(name))
+            if (String.IsNullOrEmpty(name) || name.Length >= 10)
             {
-                Console.WriteLine("\t\t\t    Please entry your name");
+                Console.WriteLine("\t\t\t    Please enter your name! Name must also be less than/or 10 symbols");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Printing.UserName();
