@@ -11,7 +11,6 @@ namespace TeamWork
     public class Player : Entity, IPlayer, IEntity
     {
         private int lives = 3;
-        private int ammo = 50;
         private int score = 0;
         private int level = 1;
         
@@ -19,13 +18,11 @@ namespace TeamWork
         public Player()
         {
             this.Lives = this.lives;
-            this.Ammo = this.ammo;
             this.Score = this.score;
             this.Level = this.level;
         }
 
         public int Score { get; set; }
-        public int Ammo { get; set; }
         public int Lives { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
@@ -111,10 +108,6 @@ namespace TeamWork
         public void IncreasePoints()
         {
             this.Score++;
-        }
-        public void DecreaseAmmo()
-        {
-            this.Ammo--;
         }
         public void DecreaseLives()
         {

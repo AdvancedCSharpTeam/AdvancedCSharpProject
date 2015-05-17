@@ -44,14 +44,14 @@
     <InheritanceLine Type="TeamWork.Entity" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.438" Y="0.5" />
-        <Point X="4.438" Y="0.346" />
-        <Point X="4.102" Y="0.346" />
-        <Point X="4.102" Y="3.125" />
-        <Point X="4" Y="3.125" />
+        <Point X="4.438" Y="0.377" />
+        <Point X="4.123" Y="0.377" />
+        <Point X="4.123" Y="2.845" />
+        <Point X="4" Y="2.845" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ACEAAABAAAAACAgAAAAIAQQAAAMAAABLQAAAAABkAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAACAgAAAAIAQQAAAMAAABLQAAAAABEAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -59,7 +59,7 @@
   <Class Name="TeamWork.Engine">
     <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIEgBCAgCASQAAAAAAAAAgERAACAAEQAAABQlAAAAA=</HashCode>
+      <HashCode>AgIEgBCAgCASQAAAAAAAAAgARAACAAEQAAABQlAAAAA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -77,14 +77,14 @@
         <Point X="4.938" Y="3.25" />
         <Point X="4.938" Y="3.127" />
         <Point X="4.186" Y="3.127" />
-        <Point X="4.186" Y="6.043" />
-        <Point X="2.373" Y="6.043" />
-        <Point X="2.373" Y="2.4" />
-        <Point X="2.25" Y="2.4" />
+        <Point X="4.186" Y="5.449" />
+        <Point X="2.373" Y="5.449" />
+        <Point X="2.373" Y="2.304" />
+        <Point X="2.25" Y="2.304" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ACEAAABAAAAACAgAAAAAAQQAAAAAAABKQAAAAAAEAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAACAgAAAAAAQQAAAAAAABLQAAAAAAEAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>

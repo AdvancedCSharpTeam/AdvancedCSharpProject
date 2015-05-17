@@ -7,10 +7,10 @@ namespace TeamWork
 {
     public interface IPlayer : IEntity
     {
-        int Ammo { get; set; }
         string Name { get; set; }
         int Lives { get; set; }
         int Score { get; set; }
+        int Level { get; set; }
 
         void MoveUp();
         void MoveDown();
@@ -19,7 +19,6 @@ namespace TeamWork
         void setName(string name);
 
         void IncreasePoints();
-        void DecreaseAmmo();
         void DecreaseLives();
         void Print();
     }
