@@ -33,7 +33,7 @@ namespace TeamWork
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
 
-            while (player.Lives != 0)
+            while (Printing.Player.Lives != 0)
             {
                 GameIntro();
                 Console.Clear();
@@ -41,8 +41,13 @@ namespace TeamWork
                 GraphicsPrint();
                 Interface.Table();
                 Interface.UIDescription();
+                if (Printing.Player.Lives < 1)
+                {
+                    End();
+                    break;
+                }
 
-                while (player.Lives != 0)
+                while (Printing.Player.Lives != 0)
                 {
 
                     if (Console.KeyAvailable)
@@ -57,7 +62,7 @@ namespace TeamWork
                     UpdateAndRender();
                     Thread.Sleep(100);
                 }
-                if (player.Lives < 1)
+                if (Printing.Player.Lives < 1)
                 {
                     End();
                     break;
@@ -68,10 +73,12 @@ namespace TeamWork
         }
         private void UpdateAndRender()
         {
-            if (player.Lives < 1)
+            if (Printing.Player.Lives < 1)
             {
                 End();
+                Thread.Sleep(100000);
             }
+
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
@@ -344,6 +351,8 @@ namespace TeamWork
                 musicThread.Interrupt();
             }
         }
+        
+        //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
         private void SetHighscore()
         {
             string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", Printing.Player.Name, Printing.Player.Score,
@@ -353,7 +362,7 @@ namespace TeamWork
             
             string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
             int oldHighScoreToInt = int.Parse(oldHighScore);
-
+            
             if (oldHighScoreToInt < Printing.Player.Score)
                 File.WriteAllText("Highscore.txt", highscore);
         }
