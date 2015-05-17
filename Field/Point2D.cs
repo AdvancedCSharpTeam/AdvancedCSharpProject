@@ -25,7 +25,6 @@ namespace TeamWork
         {
             return point.X != point2.X || point.Y != point2.Y;
         }
-
         public override bool Equals(object obj) // Should be overrided
         {
             return base.Equals(obj);
@@ -35,6 +34,7 @@ namespace TeamWork
         {
             return this.X + this.Y;
         }
+
         public int X { get; set; }
         public int Y { get; set; }
     }

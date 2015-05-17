@@ -47,7 +47,7 @@
   <Class Name="TeamWork.Engine">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIEgBCAACASQAAAAAAAAAAARAAAAAERAAABQlAAAAA=</HashCode>
+      <HashCode>AgIEgBCAACASQAEAAAAAAAAARAACAAERAAABQlAAAAA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -60,6 +60,12 @@
   </Class>
   <Interface Name="TeamWork.IPlayer" Collapsed="true">
     <Position X="2.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="TeamWork.IEntity" ManuallyRouted="true">
+      <Path>
+        <Point X="4.25" Y="0.781" />
+        <Point X="4" Y="0.781" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>ACEAAABAAAAACAgAAAAAAQQAAAAAAABKQAAAAAAAAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>

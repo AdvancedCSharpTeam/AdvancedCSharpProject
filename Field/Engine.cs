@@ -10,6 +10,7 @@ using System.Reflection.Emit;
 using System.Runtime.ExceptionServices;
 using System.Security.AccessControl;
 using System.Drawing;
+using System.IO;
 
 namespace TeamWork
 {
@@ -54,12 +55,6 @@ namespace TeamWork
                     }
 
                     UpdateAndRender();
-                    if (player.Lives < 1)
-                    {
-                        End();
-                        break;
-                    }
-
                     Thread.Sleep(100);
                 }
                 if (player.Lives < 1)
@@ -71,23 +66,26 @@ namespace TeamWork
                 break;
             }
         }
-
         private void UpdateAndRender()
         {
+            if (player.Lives < 1)
+            {
+                End();
+            }
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
             GraphicsPrint();
+            SetHighscore();
         }
-
         private void End()
         {
             Printing.GameOver();
             Thread.Sleep(2500);
             Console.Clear();
             Printing.Credits();
+            Thread.Sleep(1000000);
         }
-
         private void GameIntro()
         {
             Printing.WelcomeScreen();
@@ -102,7 +100,6 @@ namespace TeamWork
             Printing.UserName();
             this.TakeName();
         }
-
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             switch (keyPressed.Key)
@@ -318,6 +315,8 @@ namespace TeamWork
             sound.SoundLocation = "STARS.wav";
             sound.PlaySync();
         }
+
+        //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
         public static void GraphicsPrint()
         {
             Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
@@ -325,7 +324,6 @@ namespace TeamWork
 
             graphics.DrawImageUnscaled(bitmap, 0, 0);
         }
-
         private void TakeName()
         {
             Console.WriteLine();
@@ -346,7 +344,19 @@ namespace TeamWork
                 musicThread.Interrupt();
             }
         }
+        private void SetHighscore()
+        {
+            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", Printing.Player.Name, Printing.Player.Score,
+                DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
+            string[] oldText = File.ReadAllText("Highscore.txt").Split();
+            
+            string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
+            int oldHighScoreToInt = int.Parse(oldHighScore);
+
+            if (oldHighScoreToInt < Printing.Player.Score)
+                File.WriteAllText("Highscore.txt", highscore);
+        }
         /// <summary>
         /// Initialize Console size;
         /// </summary>
