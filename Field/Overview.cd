@@ -15,7 +15,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TeamWork.Point2D">
-    <Position X="4.25" Y="4" Width="1.5" />
+    <Position X="6" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
       <FileName>Field\Point2D.cs</FileName>
@@ -29,10 +29,10 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TeamWork.Field.Drawing">
+  <Class Name="TeamWork.Field.Printing">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gARAkQAAAAEgAAARAIIAMAAAAAAAACAAIQAgAYNAAIg=</HashCode>
+      <HashCode>gARAkQAAAAEgAAABAIIAEAAAAAAAACAAIQAgAYNAAIg=</HashCode>
       <FileName>Field\Drawing.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -47,12 +47,12 @@
   <Class Name="TeamWork.Engine">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIEgBCAACASQAAAAAAAAAAARAAAAAEBAAABQlAAAAA=</HashCode>
+      <HashCode>AgIEgBCAACASQAAAAAAAAAAARAAAAAERAAABQlAAAAA=</HashCode>
       <FileName>Field\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Field.Interface">
-    <Position X="6" Y="3.5" Width="1.5" />
+    <Position X="4.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Field\Interface.cs</FileName>

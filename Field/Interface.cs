@@ -15,23 +15,23 @@ namespace TeamWork.Field
             {
                 if (i < 37 || i > 42)
                 {
-                    Drawing.DrawAt(new Point2D(i, 0), '\u2591', ConsoleColor.DarkRed);
+                    Printing.DrawAt(new Point2D(i, 0), '\u2591', ConsoleColor.DarkRed);
 
                 }
-                Drawing.DrawAt(new Point2D(i, 1), '\u255D', ConsoleColor.DarkRed);
+                Printing.DrawAt(new Point2D(i, 1), '\u255D', ConsoleColor.DarkRed);
             }
             // Bottom
             for (int i = 0; i < 80; i++)
             {
-                Drawing.DrawAt(new Point2D(i, 29), '\u2550', ConsoleColor.DarkGray);
-                Drawing.DrawAt(new Point2D(i, 30), '\u2566', ConsoleColor.DarkRed);
+                Printing.DrawAt(new Point2D(i, 29), '\u2550', ConsoleColor.DarkGray);
+                Printing.DrawAt(new Point2D(i, 30), '\u2566', ConsoleColor.DarkRed);
             }
-            Drawing.DrawAt(new Point2D(20, 29), '\u2566', ConsoleColor.DarkGray);   //live
-            Drawing.DrawAt(new Point2D(20, 30), '\u2551', ConsoleColor.DarkGray);   //live
-            Drawing.DrawAt(new Point2D(40, 29), '\u2566', ConsoleColor.DarkGray);   //ammo
-            Drawing.DrawAt(new Point2D(40, 30), '\u2551', ConsoleColor.DarkGray);   //ammo
-            Drawing.DrawAt(new Point2D(58, 29), '\u2566', ConsoleColor.DarkGray);   //score
-            Drawing.DrawAt(new Point2D(58, 30), '\u2551', ConsoleColor.DarkGray);   //score
+            Printing.DrawAt(new Point2D(20, 29), '\u2566', ConsoleColor.DarkGray);   //live
+            Printing.DrawAt(new Point2D(20, 30), '\u2551', ConsoleColor.DarkGray);   //live
+            Printing.DrawAt(new Point2D(40, 29), '\u2566', ConsoleColor.DarkGray);   //ammo
+            Printing.DrawAt(new Point2D(40, 30), '\u2551', ConsoleColor.DarkGray);   //ammo
+            Printing.DrawAt(new Point2D(58, 29), '\u2566', ConsoleColor.DarkGray);   //score
+            Printing.DrawAt(new Point2D(58, 30), '\u2551', ConsoleColor.DarkGray);   //score
 
         }
 
@@ -39,17 +39,17 @@ namespace TeamWork.Field
         public static void UIDescription()
         {
             string level = "LvL";
-            string live = string.Format(" Lives: {0}", Drawing.Player.Lives);
-            string score = string.Format(" Score: {0}", Drawing.Player.Score);
+            string live = string.Format(" Lives: {0}", Printing.Player.Lives);
+            string score = string.Format(" Score: {0}", Printing.Player.Score);
             string ammo = " Ammo: ";
-            string playerName = string.Format("Player: {0}", Drawing.Player.Name);
+            string playerName = string.Format("Player: {0}", Printing.Player.Name);
 
-            Drawing.DrawAt(new Point2D(3, 0), playerName, ConsoleColor.DarkYellow);
-            Drawing.DrawAt(new Point2D(39, 0), level, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(3, 0), playerName, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(39, 0), level, ConsoleColor.DarkYellow);
 
-            Drawing.DrawAt(new Point2D(3, 30), live, ConsoleColor.DarkYellow);
-            Drawing.DrawAt(new Point2D(25, 30), ammo, ConsoleColor.DarkYellow);
-            Drawing.DrawAt(new Point2D(60, 30), score, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(3, 30), live, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(25, 30), ammo, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(60, 30), score, ConsoleColor.DarkYellow);
         }
     }
 }

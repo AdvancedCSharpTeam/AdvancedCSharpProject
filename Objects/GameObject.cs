@@ -13,6 +13,7 @@ namespace TeamWork
         {
             base.Speed = 1;
         }
+
         public GameObject(Point2D point)
             : base(point)
         {
@@ -21,9 +22,7 @@ namespace TeamWork
         }
         public override string ToString()
         {
-            string output = string.Empty;
-            output = "&&";
-            return output;
+            return string.Format("|");
         }
     }
 }

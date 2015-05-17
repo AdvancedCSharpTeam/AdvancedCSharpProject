@@ -3,15 +3,15 @@ using System.Threading;
 
 namespace TeamWork.Field
 {
-    public static class Drawing
+    public static class Printing
     {
         public static IPlayer Player = new Player();
+        public static IGameObject GameObject = new GameObject();
 
         public static Point2D PlayerPoint = new Point2D(40, 29);
         public static Point2D GameFieldRightSide = new Point2D(60, 0);
         public static Point2D MenuField = new Point2D(75, 4);
 
-        public static IGameObject GameObject = new GameObject();
 
         #region Constants
         private const string gameName = @"
@@ -99,7 +99,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
              |______|_| |_|\__\___|_|    |_| |_|\__,_|_| |_| |_|\___|";
         #endregion
 
-        #region Drawing Methods
+        #region Printing Methods
 
         /// <summary>
         /// Draw an object at given X and Y Coordinates
@@ -176,7 +176,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
             for (int i = 0; i < lenght; i++)
             {
                 DrawAt(point, obj, clr);
-                //point.Y++;
+                point.Y++;
             }
         }
 
@@ -256,36 +256,6 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
             DrawRectangleAt(point.X,point.Y, size, obj, clr);
         }
 
-        #region Methods for Drawing the Game
-        public static void DrawMenu()
-        {
-            string menu;
-            menu = @" 
-                                                              LIVES:    |    " + Player.Lives + @"
-                                                                
-                                                                
-                                                                |||||||||||||
-                                                              AMMO:     |    " + Player.Ammo + @"
-                                                                
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||
-                                                                |||||||||||||";
-            Drawing.DrawHLineAt(GameFieldRightSide, 1, menu);
-        }
-        public static void DrawField()
-        {
-            Thread.Sleep(5);
-            Thread.Sleep(0);
-       
-            Drawing.DrawMenu();
-            Thread.Sleep(0);
-        }
-        #endregion
         #endregion
 
         #region Clearing Methods

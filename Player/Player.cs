@@ -69,7 +69,7 @@ namespace TeamWork
             }
         }
 
-        public void setName(string newName) // There was issue with the private field name in this class
+        public void setName(string newName) 
         {
             this.Name = newName;
         }
@@ -78,14 +78,15 @@ namespace TeamWork
         public void Print()
         {
             // Temporary ship design
-            //Drawing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
-            //Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
-            //Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
-            //Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
+            //Printing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
+            //Printing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
+            //Printing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
+            //Printing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
 
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
-            Drawing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
-            Drawing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_=>", ConsoleColor.Cyan);
+            Printing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
+            Printing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
+            Printing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_=>", ConsoleColor.Cyan);
+
               //you can change it with this it is smaller    
               //    ____
               //     \  \_____________
@@ -98,10 +99,10 @@ namespace TeamWork
         public void Clear() 
         {
             //Had to use strings to get rid of artefacts
-            Drawing.DrawAt(Point.X, Point.Y - 2, @"                ");
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"                         ");
-            Drawing.DrawAt(Point.X, Point.Y,     @"                           ");
-            Drawing.DrawAt(Point.X, Point.Y + 1, @"                           ");
+            Printing.DrawAt(Point.X, Point.Y - 2, @"                ");
+            Printing.DrawAt(Point.X, Point.Y - 1, @"                         ");
+            Printing.DrawAt(Point.X, Point.Y,     @"                           ");
+            Printing.DrawAt(Point.X, Point.Y + 1, @"                           ");
         }
 
         public void IncreasePoints()
