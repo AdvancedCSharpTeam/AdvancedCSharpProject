@@ -17,7 +17,8 @@ namespace TeamWork
     public class Engine
     {
         public static Random rnd = new Random();
-        public Thread musicThread;
+        public static Thread musicThread;
+        public static Thread effects; 
 
         public static Player player = new Player();
 
@@ -326,6 +327,18 @@ namespace TeamWork
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
             sound.PlaySync();
+        }
+        public static void SoundEffects(int num)
+        {
+            var soundFX = new System.Media.SoundPlayer();
+
+            switch (num)
+            {
+                case 1: soundFX.SoundLocation = "meteor";
+                    soundFX.PlaySync();break;
+                case 2: soundFX.SoundLocation = "ship";
+                    soundFX.PlaySync(); break;
+            }
         }
 
         //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
