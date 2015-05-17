@@ -93,7 +93,8 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
                               Inspix
                               Gogok
                               DHristoskov                             
-                              Shano";
+                              Shano
+                              n0way0ut";
         private const string userName = @"
               ______       _                                         
              |  ____|     | |                                        

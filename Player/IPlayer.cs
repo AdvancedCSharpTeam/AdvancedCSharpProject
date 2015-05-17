@@ -21,5 +21,6 @@ namespace TeamWork
         void IncreasePoints();
         void DecreaseAmmo();
         void DecreaseLives();
+        void Print();
     }
 }

@@ -20,8 +20,6 @@ namespace TeamWork
         public static Thread musicThread;
         public static Thread effects; 
 
-        public static Player player = new Player();
-
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
 
@@ -38,7 +36,7 @@ namespace TeamWork
             {
                 GameIntro();
                 Console.Clear();
-                player.Print();
+                Printing.Player.Print();
                 Interface.Table();
                 Interface.UIDescription();
                 if (Printing.Player.Lives < 1)
@@ -73,6 +71,7 @@ namespace TeamWork
                 break;
             }
         }
+
         private void UpdateAndRender()
         {
             if (Printing.Player.Lives < 1)
@@ -117,16 +116,16 @@ namespace TeamWork
         {
             switch (keyPressed.Key)
             {
-                case ConsoleKey.W: player.MoveUp();
+                case ConsoleKey.W: Printing.Player.MoveUp();
                     break;
-                case ConsoleKey.S: player.MoveDown();
+                case ConsoleKey.S: Printing.Player.MoveDown();
                     break;
-                case ConsoleKey.A: player.MoveLeft();
+                case ConsoleKey.A: Printing.Player.MoveLeft();
                     break;
-                case ConsoleKey.D: player.MoveRight();
+                case ConsoleKey.D: Printing.Player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(player.Point.X + 22, player.Point.Y + 1)));
+                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 22, Printing.Player.Point.Y + 1)));
                     break;
             }
         }
@@ -308,7 +307,7 @@ namespace TeamWork
         //Collision Handling Methods
         private bool MeteoriteCollision(Point2D point)
         {
-            if (player.Point.X + 22 == point.X && (player.Point.Y == point.Y || player.Point.Y == point.Y - 1 || player.Point.Y == point.Y + 1))
+            if (Printing.Player.Point.X + 22 == point.X && (Printing.Player.Point.Y == point.Y || Printing.Player.Point.Y == point.Y - 1 || Printing.Player.Point.Y == point.Y + 1))
             {
                 Printing.Player.DecreaseLives();
 
@@ -320,6 +319,49 @@ namespace TeamWork
         }
         #endregion
 
+        #endregion
+
+        #region Highscore and Score Methods
+        //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
+        //Also adds all scores to the Scores.txt file
+        private void SetHighscore()
+        {
+            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", 
+                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+
+            string[] oldText = File.ReadAllText("Highscore.txt").Split();
+
+            string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
+            int oldHighScoreToInt = int.Parse(oldHighScore);
+
+            if (oldHighScoreToInt < Printing.Player.Score)
+                File.WriteAllText("Highscore.txt", highscore);
+
+            string currentScores = File.ReadAllText("Scores.txt");
+            highscore = string.Format("Player {0}, Score {1}, Time Achieved: {2} / {3} / {4}",
+                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+            currentScores += "#" + highscore + @"
+";
+            File.WriteAllText("Scores.txt", currentScores);
+        }
+        public void PrintHighscore()
+        {
+            Printing.DrawAt(0, 5, Printing.highScore, ConsoleColor.Green);
+            string currentHighscore = File.ReadAllText("Highscore.txt");
+            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
+
+            string[] currentScores = File.ReadAllLines("Scores.txt");
+            int y = 17;
+            int counter = 0;
+            for (int i = currentScores.Length-1; i >= currentScores.Length-10; i--)
+            {
+                y++;
+                counter++;
+                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
+            }
+        }
         #endregion
 
         public static void LoadMusic()
@@ -370,46 +412,7 @@ namespace TeamWork
             }
         }
 
-        //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
-        //Also adds all scores to the Scores.txt file
-        private void SetHighscore()
-        {
-            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", 
-                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
-            string[] oldText = File.ReadAllText("Highscore.txt").Split();
-
-            string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
-            int oldHighScoreToInt = int.Parse(oldHighScore);
-
-            if (oldHighScoreToInt < Printing.Player.Score)
-                File.WriteAllText("Highscore.txt", highscore);
-
-            string currentScores = File.ReadAllText("Scores.txt");
-            highscore = string.Format("Player {0}, Score {1}, Time Achieved: {2} / {3} / {4}",
-                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
-            currentScores += "#" + highscore + @"
-";
-            File.WriteAllText("Scores.txt", currentScores);
-        }
-        public void PrintHighscore()
-        {
-            Printing.DrawAt(0, 5, Printing.highScore, ConsoleColor.Green);
-            string currentHighscore = File.ReadAllText("Highscore.txt");
-            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
-
-            string[] currentScores = File.ReadAllLines("Scores.txt");
-            int y = 17;
-            int counter = 0;
-            for (int i = currentScores.Length-1; i >= currentScores.Length-10; i--)
-            {
-                y++;
-                counter++;
-                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
-            }
-        }
         /// <summary>
         /// Initialize Console size;
         /// </summary>
