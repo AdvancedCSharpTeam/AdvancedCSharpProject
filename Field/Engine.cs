@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using TeamWork.Field;
 using System.Media;
-using System.Reflection.Emit;
+using System.Windows.Media;
 using System.Runtime.ExceptionServices;
 using System.Security.AccessControl;
 using System.Drawing;
@@ -18,6 +18,7 @@ namespace TeamWork
     {
         public static Random rnd = new Random();
         public Thread musicThread;
+        public Thread EffectsThread;
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
@@ -30,7 +31,8 @@ namespace TeamWork
         {
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
-
+            EffectsThread = new Thread(SoundEffects);
+            EffectsThread.Start();
             while (true)
             {
                 GameIntro();
@@ -123,7 +125,9 @@ namespace TeamWork
                 case ConsoleKey.D: Printing.Player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 22, Printing.Player.Point.Y + 1)));
+                case ConsoleKey.Spacebar: 
+                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 22, Printing.Player.Point.Y + 1)));
+                    playEffect = true;
                     break;
             }
         }
@@ -216,6 +220,7 @@ namespace TeamWork
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                         {
+                            playMeteorEffect = true;
                             //SoundEffects(1);
                             Printing.ClearAtPosition(_meteorits[i].Point);
                             Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
@@ -247,6 +252,7 @@ namespace TeamWork
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                             {
+                                playMeteorEffect = true;
                                 //SoundEffects(2);
                                 Printing.ClearAtPosition(_meteorits[i].Point);
                                 Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
@@ -371,18 +377,31 @@ namespace TeamWork
             sound.SoundLocation = "STARS.wav";
             sound.PlayLooping();
         }
-        public static void SoundEffects(int num)
+        private bool playMeteorEffect;
+        private bool playEffect;
+        public void SoundEffects()
         {
-            var soundFX = new System.Media.SoundPlayer();
+            var soundFX = new MediaPlayer();
+            var soundFX2 = new MediaPlayer();
 
-            switch (num)
+            while (true)
             {
-                case 1: soundFX.SoundLocation = "meteor.wav";
-                    soundFX.PlaySync();break;
-                case 2: soundFX.SoundLocation = "meteor.wav";
-                    soundFX.PlaySync(); break;
+                if (playMeteorEffect)
+                {
+                    soundFX.Open(new Uri("meteor.wav", UriKind.Relative));
+                    soundFX.Volume = 500;
+                    soundFX.Play();
+                    playMeteorEffect = false;
+                }
+                if (playEffect)
+                {
+                    soundFX2.Open(new Uri("laser.wav", UriKind.Relative));
+                    soundFX2.Volume = 300;
+                    soundFX2.Play();
+                    playEffect = false;
+                }
             }
-        }     
+        }
         private void TakeName()
         {
             Console.WriteLine();
