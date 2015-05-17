@@ -38,7 +38,7 @@ namespace TeamWork
                 GameIntro();
                 Console.Clear();
                 player.Print();
-                GraphicsPrint();
+                //GraphicsPrint();
                 Interface.Table();
                 Interface.UIDescription();
                 if (Printing.Player.Lives < 1)
@@ -84,13 +84,16 @@ namespace TeamWork
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
-            GraphicsPrint();
+            //GraphicsPrint();
             SetHighscore();
         }
         private void End()
         {
             Printing.GameOver();
             Thread.Sleep(2500);
+            Console.Clear();
+            Printing.HighScore();
+            Thread.Sleep(3000);
             Console.Clear();
             Printing.Credits();
             Thread.Sleep(1000000);
@@ -326,13 +329,13 @@ namespace TeamWork
         }
 
         //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
-        public static void GraphicsPrint()
-        {
-            Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
-            Graphics graphics = Graphics.FromImage(bitmap);
+        //public static void GraphicsPrint()
+        //{
+        //    Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
+        //    Graphics graphics = Graphics.FromImage(bitmap);
 
-            graphics.DrawImageUnscaled(bitmap, 0, 0);
-        }
+        //    graphics.DrawImageUnscaled(bitmap, 0, 0);
+        //}
         private void TakeName()
         {
             Console.WriteLine();
