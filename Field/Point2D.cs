@@ -35,7 +35,6 @@ namespace TeamWork
         {
             return this.X + this.Y;
         }
-
         public int X { get; set; }
         public int Y { get; set; }
     }
