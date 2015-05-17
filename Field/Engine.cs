@@ -17,7 +17,8 @@ namespace TeamWork
     public class Engine
     {
         public static Random rnd = new Random();
-        public Thread musicThread;
+        public static Thread musicThread;
+        public static Thread effects; 
 
         public static Player player = new Player();
 
@@ -38,7 +39,6 @@ namespace TeamWork
                 GameIntro();
                 Console.Clear();
                 player.Print();
-                GraphicsPrint();
                 Interface.Table();
                 Interface.UIDescription();
                 if (Printing.Player.Lives < 1)
@@ -84,14 +84,22 @@ namespace TeamWork
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
+<<<<<<< HEAD
             GraphicsPrint();
             
 
+=======
+            SetHighscore();
+>>>>>>> fa862c622b4761fedb40a0da432a0a4d42e9af68
         }
         private void End()
         {
+            Console.Clear();
             Printing.GameOver();
             Thread.Sleep(2500);
+            Console.Clear();
+            Printing.HighScore();
+            Thread.Sleep(3000);
             Console.Clear();
             Printing.Credits();
             SetHighscore();
@@ -327,15 +335,27 @@ namespace TeamWork
             sound.SoundLocation = "STARS.wav";
             sound.PlaySync();
         }
+        public static void SoundEffects(int num)
+        {
+            var soundFX = new System.Media.SoundPlayer();
+
+            switch (num)
+            {
+                case 1: soundFX.SoundLocation = "meteor";
+                    soundFX.PlaySync();break;
+                case 2: soundFX.SoundLocation = "ship";
+                    soundFX.PlaySync(); break;
+            }
+        }
 
         //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
-        public static void GraphicsPrint()
-        {
-            Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
-            Graphics graphics = Graphics.FromImage(bitmap);
+        //public static void GraphicsPrint()
+        //{
+        //    Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
+        //    Graphics graphics = Graphics.FromImage(bitmap);
 
-            graphics.DrawImageUnscaled(bitmap, 0, 0);
-        }
+        //    graphics.DrawImageUnscaled(bitmap, 0, 0);
+        //}
         private void TakeName()
         {
             Console.WriteLine();

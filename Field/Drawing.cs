@@ -14,6 +14,12 @@ namespace TeamWork.Field
 
 
         #region Constants
+        private const string highScore = @"
+                     _  _ _      _      ___                 
+                    | || (_)__ _| |_   / __| __ ___ _ _ ___ 
+                    | __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)
+                    |_||_|_\__, |_||_| |___/\__\___/_| \___|
+                           |___/                            ";
         private const string gameName = @"
 .                                                               +
       .           +                 ,             *                             
@@ -355,6 +361,13 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         public static void UserName()
         {
             DrawAt(0, 5, userName, ConsoleColor.Yellow);
+        }
+        /// <summary>
+        /// Draw UserName Screen
+        /// </summary>
+        public static void HighScore()
+        {
+            DrawAt(0, 5, highScore, ConsoleColor.Cyan);
         }
         /// <summary>
         /// Draw GameName Screen
