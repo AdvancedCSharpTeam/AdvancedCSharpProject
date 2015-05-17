@@ -11,24 +11,26 @@ namespace TeamWork
     public class Player : Entity, IPlayer, IEntity
     {
         private int lives = 3;
-        private int ammo = 10;
-        private string name = "Default";
+        private int ammo = 50;
+        private int score = 0;
+        
 
         public Player()
         {
             this.Lives = this.lives;
             this.Ammo = this.ammo;
-            this.Name = this.name;
+            this.Score = this.score;
         }
 
+        public int Score { get; set; }
         public int Ammo { get; set; }
         public int Lives { get; set; }
         public string Name { get; set; }
         
         public void MoveUp()
         {
-            // Limit player movement on X axis
-            if (this.Point.Y - 1 >= 3) // Limit so the temporary ship does not go out of screen and crash the game
+            // Limit player movement on Y axis
+            if (this.Point.Y - 1 >= 5) // Limit so the temporary ship does not go out of screen and crash the game
             {
                 
                 Clear();
@@ -39,7 +41,7 @@ namespace TeamWork
         public void MoveDown()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y + 1 < Engine.WindowHeight - 1) 
+            if (this.Point.Y + 1 < Engine.WindowHeight - 5) 
             {
                 Clear();
                 this.Point.Y++;
@@ -69,18 +71,21 @@ namespace TeamWork
 
         public void setName(string newName) // There was issue with the private field name in this class
         {
-            this.Name = name;
+            this.Name = newName;
         }
 
         //Method to print the player at its current position
         public void Print()
         {
             // Temporary ship design
-            Drawing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
-            Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
+            //Drawing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
 
+            Drawing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
+            Drawing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
+            Drawing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_=>", ConsoleColor.Cyan);
               //you can change it with this it is smaller    
               //    ____
               //     \  \_____________
@@ -94,9 +99,22 @@ namespace TeamWork
         {
             //Had to use strings to get rid of artefacts
             Drawing.DrawAt(Point.X, Point.Y - 2, @"                ");
-            Drawing.DrawAt(Point.X, Point.Y - 1, @"                      ");
-            Drawing.DrawAt(Point.X, Point.Y,     @"                        ");
-            Drawing.DrawAt(Point.X, Point.Y + 1, @"                   ");
+            Drawing.DrawAt(Point.X, Point.Y - 1, @"                         ");
+            Drawing.DrawAt(Point.X, Point.Y,     @"                           ");
+            Drawing.DrawAt(Point.X, Point.Y + 1, @"                           ");
+        }
+
+        public void IncreasePoints()
+        {
+            this.Score++;
+        }
+        public void DecreaseAmmo()
+        {
+            this.Ammo--;
+        }
+        public void DecreaseLives()
+        {
+            this.Lives--;
         }
     }
 }

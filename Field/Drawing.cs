@@ -6,9 +6,12 @@ namespace TeamWork.Field
     public static class Drawing
     {
         public static IPlayer Player = new Player();
+
         public static Point2D PlayerPoint = new Point2D(40, 29);
         public static Point2D GameFieldRightSide = new Point2D(60, 0);
         public static Point2D MenuField = new Point2D(75, 4);
+
+        public static IGameObject GameObject = new GameObject();
 
         #region Constants
         private const string gameName = @"
@@ -252,6 +255,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         {
             DrawRectangleAt(point.X,point.Y, size, obj, clr);
         }
+
         #region Methods for Drawing the Game
         public static void DrawMenu()
         {
@@ -277,6 +281,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         {
             Thread.Sleep(5);
             Thread.Sleep(0);
+       
             Drawing.DrawMenu();
             Thread.Sleep(0);
         }

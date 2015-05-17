@@ -11,12 +11,13 @@ namespace TeamWork
     {
         public GameObject()
         {
-            base.Speed = 3;
+            base.Speed = 1;
         }
         public GameObject(Point2D point)
             : base(point)
         {
             base.Speed = 1;
+            base.Point = point;
         }
         public override string ToString()
         {

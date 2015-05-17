@@ -5,11 +5,10 @@ using System.Text;
 
 namespace TeamWork
 {
-    public class MoveListener
+    public interface IGameObject : IEntity
     {
-        public void Move(object obj, MoveArgs move)
-        {
-            
-        }
+        Point2D Point { get; set; }
+
+        int Speed { get; set; }
     }
 }

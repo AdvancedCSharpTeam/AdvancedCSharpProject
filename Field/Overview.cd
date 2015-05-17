@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TeamWork.GameObject">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="TeamWork.Entity" ManuallyRouted="true">
+      <Path>
+        <Point X="5.75" Y="2.463" />
+        <Point X="6" Y="2.463" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\GameObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TeamWork.Point2D">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
+      <FileName>Field\Point2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.Entity">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAAAAAAAAABAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TeamWork.Field.Drawing">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gARAkQAAAAEgAAARAIIAMAAAAAAAACAAIQAgAYNAAIg=</HashCode>
+      <FileName>Field\Drawing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.Player">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAABAAAAACAgAAAAIAQQAAAIAAABKQAAAAABkAAA=</HashCode>
+      <FileName>Player\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TeamWork.Engine">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIEgBCAACASQAAAAAAAAAAARAAAAAEBAAABQlAAAAA=</HashCode>
+      <FileName>Field\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamWork.Field.Interface">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Field\Interface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TeamWork.IPlayer" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAABAAAAACAgAAAAAAQQAAAAAAABKQAAAAAAAAAA=</HashCode>
+      <FileName>Player\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TeamWork.IGameObject" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\IGameObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TeamWork.IEntity" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
