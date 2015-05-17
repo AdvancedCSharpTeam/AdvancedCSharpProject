@@ -84,13 +84,7 @@ namespace TeamWork
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
-<<<<<<< HEAD
-            GraphicsPrint();
-            
-
-=======
-            SetHighscore();
->>>>>>> fa862c622b4761fedb40a0da432a0a4d42e9af68
+            //GraphicsPrint(); 
         }
         private void End()
         {
@@ -98,12 +92,11 @@ namespace TeamWork
             Printing.GameOver();
             Thread.Sleep(2500);
             Console.Clear();
-            Printing.HighScore();
-            Thread.Sleep(3000);
-            Console.Clear();
-            Printing.Credits();
             SetHighscore();
             PrintHighscore();
+            Thread.Sleep(6000);
+            Console.Clear();
+            Printing.Credits();
             Thread.Sleep(1000000);
         }
         private void GameIntro()
@@ -399,9 +392,9 @@ namespace TeamWork
 ";
             File.WriteAllText("Scores.txt", currentScores);
         }
-
-        private void PrintHighscore()
+        public void PrintHighscore()
         {
+            Printing.DrawAt(0, 5, Printing.highScore, ConsoleColor.Green);
             string currentHighscore = File.ReadAllText("Highscore.txt");
             Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
             Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);

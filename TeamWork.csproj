@@ -46,7 +46,7 @@
     <Compile Include="Field\Interface.cs" />
     <Compile Include="Field\SamplePatterns.cs" />
     <Compile Include="Objects\Entity.cs" />
-    <Compile Include="Field\Drawing.cs" />
+    <Compile Include="Field\Printing.cs" />
     <Compile Include="Objects\IEntity.cs" />
     <Compile Include="Objects\IGameObject.cs" />
     <Compile Include="Player\IPlayer.cs" />
