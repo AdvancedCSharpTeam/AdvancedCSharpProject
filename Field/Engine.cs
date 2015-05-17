@@ -17,8 +17,7 @@ namespace TeamWork
     public class Engine
     {
         public static Random rnd = new Random();
-        public static Thread musicThread;
-        public static Thread effects; 
+        public Thread musicThread;
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
@@ -83,7 +82,6 @@ namespace TeamWork
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
-            //GraphicsPrint(); 
         }
         private void End()
         {
@@ -204,6 +202,7 @@ namespace TeamWork
                     else
                     {
                         //Collision Handling
+
                         if (BulletCollision(_meteorits[i].Point) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
@@ -217,6 +216,7 @@ namespace TeamWork
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                         {
+                            //SoundEffects(1);
                             Printing.ClearAtPosition(_meteorits[i].Point);
                             Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
                             Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
@@ -247,6 +247,7 @@ namespace TeamWork
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
                             MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
                             {
+                                //SoundEffects(2);
                                 Printing.ClearAtPosition(_meteorits[i].Point);
                                 Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
                                 Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
@@ -368,7 +369,7 @@ namespace TeamWork
         {
             var sound = new System.Media.SoundPlayer();
             sound.SoundLocation = "STARS.wav";
-            sound.PlaySync();
+            sound.PlayLooping();
         }
         public static void SoundEffects(int num)
         {
@@ -376,21 +377,12 @@ namespace TeamWork
 
             switch (num)
             {
-                case 1: soundFX.SoundLocation = "meteor";
+                case 1: soundFX.SoundLocation = "meteor.wav";
                     soundFX.PlaySync();break;
-                case 2: soundFX.SoundLocation = "ship";
+                case 2: soundFX.SoundLocation = "meteor.wav";
                     soundFX.PlaySync(); break;
             }
-        }
-
-        //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
-        //public static void GraphicsPrint()
-        //{
-        //    Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
-        //    Graphics graphics = Graphics.FromImage(bitmap);
-
-        //    graphics.DrawImageUnscaled(bitmap, 0, 0);
-        //}
+        }     
         private void TakeName()
         {
             Console.WriteLine();
@@ -408,7 +400,7 @@ namespace TeamWork
             {
                 Printing.Player.setName(name);
                 Console.Clear();
-                musicThread.Interrupt();
+                musicThread.Abort();
             }
         }
 
