@@ -39,7 +39,6 @@ namespace TeamWork
                 GameIntro();
                 Console.Clear();
                 player.Print();
-                //GraphicsPrint();
                 Interface.Table();
                 Interface.UIDescription();
                 if (Printing.Player.Lives < 1)
@@ -85,11 +84,11 @@ namespace TeamWork
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
-            //GraphicsPrint();
             SetHighscore();
         }
         private void End()
         {
+            Console.Clear();
             Printing.GameOver();
             Thread.Sleep(2500);
             Console.Clear();
