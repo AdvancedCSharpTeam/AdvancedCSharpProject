@@ -340,16 +340,7 @@ namespace TeamWork
                 case 2: soundFX.SoundLocation = "meteor.wav";
                     soundFX.PlaySync(); break;
             }
-        }
-
-        //Grapchics Print Method (We will use it only if we transfer from console app to WPF or Forms)
-        //public static void GraphicsPrint()
-        //{
-        //    Bitmap bitmap = new Bitmap("C:\\Users\\HOME\\Desktop\\AdvancedCSharpProject-master\\AdvancedCSharpProject\\bin\\Debug\\cosmos.jpg");
-        //    Graphics graphics = Graphics.FromImage(bitmap);
-
-        //    graphics.DrawImageUnscaled(bitmap, 0, 0);
-        //}
+        }     
         private void TakeName()
         {
             Console.WriteLine();
