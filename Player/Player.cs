@@ -103,6 +103,10 @@ namespace TeamWork
         public void IncreasePoints()
         {
             this.Score++;
+            if (this.Score % 30 * Printing.Player.Level == 0)
+            {
+                Printing.Player.Level++;
+            }
         }
         public void DecreaseLives()
         {
