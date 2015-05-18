@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using TeamWork.Field;
 using System.Media;
 using System.Windows.Media;
-using System.Runtime.ExceptionServices;
-using System.Security.AccessControl;
-using System.Drawing;
 using System.IO;
+using TeamWork.Objects;
 
-namespace TeamWork
+namespace TeamWork.Field
 {
     public class Engine
     {
@@ -61,7 +55,8 @@ namespace TeamWork
                     UpdateAndRender();
                     Thread.Sleep(100);
                 }
-                if (Printing.Player.Lives < 1)
+                // Tozi kod tuk e nedostijim
+                if (Printing.Player.Lives < 1) 
                 {
                     Console.Clear();
                     End();
@@ -85,6 +80,8 @@ namespace TeamWork
             MoveAndPrintBullets();
             GenerateMeteorit();
         }
+
+        #region GameStates
         private void End()
         {
             Console.Clear();
@@ -112,6 +109,13 @@ namespace TeamWork
             Printing.UserName();
             this.TakeName();
         }
+
+        #endregion
+
+        /// <summary>
+        /// Player move handler
+        /// </summary>
+        /// <param name="keyPressed"></param>
         private void TakeInput(ConsoleKeyInfo keyPressed)
         {
             switch (keyPressed.Key)
@@ -162,159 +166,96 @@ namespace TeamWork
         #endregion
 
         #region Object Generator
+
+        /// <summary>
+        /// Generate meteorObjects
+        /// </summary>
         private List<GameObject> _meteorits = new List<GameObject>();
         private int counter = 0; // Just a counter
-        public int chance = 24; // Chance variable 1 per 25 loops spawn a meteor
+        public int chance = 24; // Chance variable 1 per # loops spawn a meteor
         private void GenerateMeteorit()
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(5, WindowHeight - 5))));
+                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(5, WindowHeight - 5)), rnd.Next(0, 5)));
                 counter++;
             }
             else
             {
                 counter++;
             }
-
         }
 
+        /// <summary>
+        /// Print and move meteorites
+        /// </summary>
         private void DrawAndMoveMeteor()
         {
             List<GameObject> newMeteorits = new List<GameObject>();
             if (counter % 1 == 0)
             {
-
                 for (int i = 0; i < _meteorits.Count; i++)
                 {
-
-                    Printing.ClearAtPosition(_meteorits[i].Point); // Clear meteorit at its current position
-                    Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
-                    Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
-
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
-
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
-                    Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
+                    _meteorits[i].ClearObject();
                     if (_meteorits[i].Point.X - _meteorits[i].Speed <= 1)
                     {
                         // If the meteorit exceeds sceen size, dont add it to new meteorit list
                     }
                     else
                     {
-                        //Collision Handling
-
-                        if (BulletCollision(_meteorits[i].Point) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1)) ||
-
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1)) ||
-
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
-                            BulletCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
+                        // Collision handling
+                        if (BulletCollision(_meteorits[i]) || ShipCollision(_meteorits[i])) // Bullet and ship collision check
                         {
                             playMeteorEffect = true;
-                            //SoundEffects(1);
-                            Printing.ClearAtPosition(_meteorits[i].Point);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
-
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
-
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
-                            Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
-
-
+                            _meteorits[i].ClearObject();
                         }
                         else
                         {
-                            //Collision Handling
-                            if (MeteoriteCollision(_meteorits[i].Point) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1)) ||
-
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1)) ||
-
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1)) ||
-                            MeteoriteCollision(new Point2D(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1)))
-                            {
-                                playMeteorEffect = true;
-                                //SoundEffects(2);
-                                Printing.ClearAtPosition(_meteorits[i].Point);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1);
-
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1);
-
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1);
-                                Printing.ClearAtPosition(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1);
-                            }
-                            else
-                            {
-                                _meteorits[i].Point.X -= _meteorits[i].Speed;
-
-                                Printing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y, _meteorits[i].ToString(), ConsoleColor.Green);
-                                Printing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y + 1, _meteorits[i].ToString(), ConsoleColor.Green);
-                                Printing.DrawAt(_meteorits[i].Point.X, _meteorits[i].Point.Y - 1, _meteorits[i].ToString(), ConsoleColor.Green);
-
-                                Printing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y, _meteorits[i].ToString(), ConsoleColor.Yellow);
-                                Printing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y + 1, _meteorits[i].ToString(), ConsoleColor.Yellow);
-                                Printing.DrawAt(_meteorits[i].Point.X + 1, _meteorits[i].Point.Y - 1, _meteorits[i].ToString(), ConsoleColor.Yellow);
-
-                                Printing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y, _meteorits[i].ToString(), ConsoleColor.Red);
-                                Printing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y + 1, _meteorits[i].ToString(), ConsoleColor.Red);
-                                Printing.DrawAt(_meteorits[i].Point.X + 2, _meteorits[i].Point.Y - 1, _meteorits[i].ToString(), ConsoleColor.Red);
-
-                                newMeteorits.Add((_meteorits[i]));
-                            }
+                            _meteorits[i].Point.X -= _meteorits[i].Speed;
+                            _meteorits[i].PrintObject();
+                            newMeteorits.Add((_meteorits[i]));
                         }
-
                     }
                 }
                 _meteorits = newMeteorits;
 
             }
         }
+        #endregion
 
         #region Collision Handling Methods
-        //Collision Handling Methods
-        private bool BulletCollision(Point2D point)
+        /// <summary>
+        /// Bullet collision check
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>If any bullet hits a meteorite</returns>
+        private bool BulletCollision(GameObject obj)
         {
-            if (_bullets.Any(bullet => point == bullet.Point))
+            for (int i = 0; i < _bullets.Count; i++)
             {
-                Point2D currentBulletPoint = _bullets.FirstOrDefault(bullet => point == bullet.Point).Point;
-                _bullets.Remove(_bullets.FirstOrDefault(bullet => point == bullet.Point));
-
-                Printing.ClearAtPosition(currentBulletPoint.X, currentBulletPoint.Y);
-                Printing.Player.IncreasePoints();
-
-                Interface.Table();
-                Interface.UIDescription();
-                return true;
+                if (obj.Collided(_bullets[i].Point))
+                {
+                    Printing.ClearAtPosition(_bullets[i].Point);
+                    _bullets.RemoveAt(i);
+                    
+                    Printing.Player.IncreasePoints();
+                    
+                    Interface.Table();
+                    Interface.UIDescription();
+                    return true;
+                }
             }
             return false;
         }
-        //Collision Handling Methods
-        private bool MeteoriteCollision(Point2D point)
+        /// <summary>
+        /// Ship collision handling
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>If ship was struck by meteorite</returns>
+        private bool ShipCollision(GameObject obj)
         {
-            if (Printing.Player.Point.X + 22 == point.X && (Printing.Player.Point.Y == point.Y || Printing.Player.Point.Y == point.Y - 1 || Printing.Player.Point.Y == point.Y + 1))
+            Point2D point = Printing.Player.Point;
+            if (obj.Collided(point.X + 21,point.Y) || obj.Collided(point.X+21, point.Y+1))
             {
                 Printing.Player.DecreaseLives();
 
@@ -324,8 +265,6 @@ namespace TeamWork
             }
             return false;
         }
-        #endregion
-
         #endregion
 
         #region Highscore and Score Methods
@@ -371,15 +310,18 @@ namespace TeamWork
         }
         #endregion
 
-        public static void LoadMusic()
+        #region Music
+        private static bool playMeteorEffect;
+        private static bool playEffect;
+        private static void LoadMusic()
         {
-            var sound = new System.Media.SoundPlayer();
+            var sound = new SoundPlayer();
             sound.SoundLocation = "STARS.wav";
             sound.PlayLooping();
+           
         }
-        private bool playMeteorEffect;
-        private bool playEffect;
-        public void SoundEffects()
+
+        private void SoundEffects()
         {
             var soundFX = new MediaPlayer();
             var soundFX2 = new MediaPlayer();
@@ -389,19 +331,22 @@ namespace TeamWork
                 if (playMeteorEffect)
                 {
                     soundFX.Open(new Uri("meteor.wav", UriKind.Relative));
-                    soundFX.Volume = 500;
+                    soundFX.Volume = 60;
                     soundFX.Play();
                     playMeteorEffect = false;
                 }
                 if (playEffect)
                 {
                     soundFX2.Open(new Uri("laser.wav", UriKind.Relative));
-                    soundFX2.Volume = 300;
+                    soundFX2.Volume = 400;
                     soundFX2.Play();
                     playEffect = false;
                 }
             }
         }
+
+        #endregion
+
         private void TakeName()
         {
             Console.WriteLine();
@@ -422,7 +367,6 @@ namespace TeamWork
                 musicThread.Abort();
             }
         }
-
 
         /// <summary>
         /// Initialize Console size;

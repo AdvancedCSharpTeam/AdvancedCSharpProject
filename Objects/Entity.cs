@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using TeamWork.Field;
 
-namespace TeamWork
+namespace TeamWork.Objects
 {
     abstract public class Entity : IEntity
     {
