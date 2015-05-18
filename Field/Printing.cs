@@ -176,25 +176,31 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
             
         }
 
-        public static void DrawVLineAt(int x, int y, int lenght, object obj, int speed,bool reverse, ConsoleColor clr = ConsoleColor.White)
+        /// <summary>
+        /// Draw vertical line with given lenght with a pause between characters
+        /// </summary>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="lenght">Lenght of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="sleep">Pause time between characters(ms)</param>
+        /// <param name="reverse">True if you want to draw from right to left</param>
+        /// <param name="clr">Color to print with</param>
+        public static void DrawVLineAt(int x, int y, int lenght, object obj, int sleep, bool reverse, ConsoleColor clr = ConsoleColor.White)
         {
-            if (!reverse)
+
+            for (int i = 0; i < lenght; i++)
             {
-                for (int i = 0; i < lenght; i++)
+                DrawAt(x, y, obj, clr);
+                if (reverse)
                 {
-                    DrawAt(x, y, obj, clr);
-                    y++;
-                    Thread.Sleep(speed);
-                } 
-            }
-            else
-            {
-                for (int i = lenght-1; i >= 0; i--)
-                {
-                    DrawAt(x, y, obj, clr);
                     y--;
-                    Thread.Sleep(speed);
-                } 
+                }
+                else
+                {
+                    y++;
+                }
+                Thread.Sleep(sleep);
             }
 
         }
@@ -224,37 +230,35 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         {
             for (int i = 0; i < lenght; i++)
             {
-                //DrawAt(point, obj, clr);
-                //point.X++;
                 DrawAt(x,y, obj, clr);
                 x++;
             }
         }
 
+        /// <summary>
+        /// Draw a horizontal line with given lenght and pause bethween characters
+        /// </summary>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="lenght">Lenght of the line</param>
+        /// <param name="obj">Object to print</param>
+        /// <param name="sleep">Pause time between characters(ms)</param>
+        /// <param name="reverse">True if you want to draw from right to left</param>
+        /// <param name="clr">Color to print with</param>
         public static void DrawHLineAt(int x, int y, int lenght, object obj,int sleep,bool reverse, ConsoleColor clr = ConsoleColor.White)
         {
-
-            if (!reverse)
+            for (int i = 0; i < lenght; i++)
             {
-                for (int i = 0; i < lenght; i++)
+                DrawAt(x, y, obj, clr);
+                if (reverse)
                 {
-                    //DrawAt(point, obj, clr);
-                    //point.X++;
-                    DrawAt(x, y, obj, clr);
-                    x++;
-                    Thread.Sleep(sleep);
-                } 
-            }
-            else
-            {
-                for (int i = lenght-1; i >= 0; i--)
-                {
-                    //DrawAt(point, obj, clr);
-                    //point.X++;
-                    DrawAt(x, y, obj, clr);
                     x--;
-                    Thread.Sleep(sleep);
-                } 
+                }
+                else
+                {
+                    x++;
+                }
+                Thread.Sleep(sleep);
             }
         }
 
@@ -316,6 +320,39 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
 
         #endregion
 
+        /// <summary>
+        /// Drawing given string character by character with a sleep between each one
+        /// </summary>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <param name="str">String to print</param>
+        /// <param name="sleep">Sleep time between chars(ms)</param>
+        /// <param name="reverse">If you want to print from right to left</param>
+        /// <param name="clr"></param>
+        public static void DrawStringCharByChar(int x, int y, string str, int sleep, bool reverse,
+            ConsoleColor clr = ConsoleColor.White)
+        {
+            if (reverse)
+            {
+                x = x + str.Length - 1;
+                for (int i = str.Length-1; i >= 0; i--)
+                {
+                    DrawAt(x,y,str[i],clr);
+                    x--;
+                    Thread.Sleep(sleep);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    DrawAt(x, y, str[i], clr);
+                    x++;
+                    Thread.Sleep(sleep);
+                }
+            }
+        }
+
         public static void DrawWelcome2()
         {
             DrawHLineAt(0, 0, 80, '\u2591',10,false,ConsoleColor.Red);
@@ -323,15 +360,11 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
             DrawHLineAt(79, 30, 80, '\u2591', 10,true, ConsoleColor.Red);
             DrawVLineAt(0, 30, 31, '\u2591', 10, true, ConsoleColor.Red);
 
-            DrawAt(10, 10," _  _ _      _      ___                 ",ConsoleColor.Magenta);
-            Thread.Sleep(200);
-            DrawAt(10, 11, "| || (_)__ _| |_   / __| __ ___ _ _ ___", ConsoleColor.Magenta);
-            Thread.Sleep(200);
-            DrawAt(10, 12, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)", ConsoleColor.Magenta);
-            Thread.Sleep(200);
-            DrawAt(10, 13, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|", ConsoleColor.Magenta);
-            Thread.Sleep(200);
-            DrawAt(10, 14, @"       |___/                            ", ConsoleColor.Magenta);
+            DrawStringCharByChar(10, 10, @" _  _ _      _      ___", 5, false, ConsoleColor.Magenta);
+            DrawStringCharByChar(10, 11, @"| || (_)__ _| |_   / __| __ ___ _ _ ___", 5, true, ConsoleColor.Magenta);
+            DrawStringCharByChar(10, 12, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)",5,false, ConsoleColor.Magenta);
+            DrawStringCharByChar(10, 13, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|",5,true, ConsoleColor.Magenta);
+            DrawStringCharByChar(17, 14,        @"|___/", 5, false, ConsoleColor.Magenta);
 
         }
         #region Clearing Methods
