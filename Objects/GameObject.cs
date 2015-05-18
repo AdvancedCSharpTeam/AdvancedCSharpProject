@@ -3,15 +3,15 @@ using TeamWork.Field;
 
 namespace TeamWork.Objects
 {
-    public class GameObject : Entity, IGameObject, IEntity
+    public class GameObject : Entity
     {
         public enum ObjectType
         {
-            Normal,
-            Small,
-            Silver,
-            Gold,
-            Lenghty
+            Normal, // 0
+            Small, // 1
+            Silver, // 2
+            Gold, // 3
+            Lenghty // 4
         }
 
         private ObjectType objectType;

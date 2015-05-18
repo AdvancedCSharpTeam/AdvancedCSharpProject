@@ -2,7 +2,7 @@
 
 namespace TeamWork.Objects
 {
-    abstract public class Entity : IEntity
+    abstract public class Entity
     {
         private Point2D point = new Point2D(20, 20);
         private int speed;

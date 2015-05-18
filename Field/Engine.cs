@@ -40,7 +40,7 @@ namespace TeamWork.Field
                     break;
                 }
 
-                while (true)
+                while (Printing.Player.Lives > 0)
                 {
 
                     if (Console.KeyAvailable)
@@ -56,26 +56,14 @@ namespace TeamWork.Field
                     Thread.Sleep(80);
                 }
                 // Tozi kod tuk e nedostijim
-                if (Printing.Player.Lives < 1) 
-                {
-                    Console.Clear();
-                    End();
-                    break;
-                }
-                Console.Clear();
-                this.End();
+                End();
+                Thread.Sleep(100000);
                 break;
             }
         }
 
         private void UpdateAndRender()
         {
-            if (Printing.Player.Lives < 1)
-            {
-                End();
-                Thread.Sleep(100000);
-            }
-
             DrawAndMoveMeteor();
             MoveAndPrintBullets();
             GenerateMeteorit();
@@ -158,7 +146,6 @@ namespace TeamWork.Field
                 {
                     _bullets[i].Point.X += _bullets[i].Speed + 1;
                     Printing.DrawAt(_bullets[i].Point, "-", ConsoleColor.DarkCyan); // Print the bullets at their new position;
-                    
                     newBullets.Add((_bullets[i]));
                 }
             }
@@ -179,7 +166,7 @@ namespace TeamWork.Field
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 6)));
+                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 5)));
                 counter++;
             }
             else

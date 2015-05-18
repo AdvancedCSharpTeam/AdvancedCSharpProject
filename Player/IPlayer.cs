@@ -2,7 +2,7 @@
 
 namespace TeamWork
 {
-    public interface IPlayer : IEntity
+    public interface IPlayer
     {
         string Name { get; set; }
         int Lives { get; set; }
