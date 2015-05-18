@@ -282,15 +282,15 @@ namespace TeamWork.Field
             string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", 
                 Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
-            string[] oldText = File.ReadAllText("Highscore.txt").Split();
+            string[] oldText = File.ReadAllText("Resources/Highscore.txt").Split();
 
             string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
             int oldHighScoreToInt = int.Parse(oldHighScore);
 
             if (oldHighScoreToInt < Printing.Player.Score)
-                File.WriteAllText("Highscore.txt", highscore);
+                File.WriteAllText("Resources/Highscore.txt", highscore);
 
-            string currentScores = File.ReadAllText("Scores.txt");
+            string currentScores = File.ReadAllText("Resources/Scores.txt");
             highscore = string.Format("Player {0}, Score {1}, Time Achieved: {2} / {3} / {4}",
                 Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
             currentScores += "#" + highscore + @"
@@ -300,12 +300,12 @@ namespace TeamWork.Field
         public void PrintHighscore()
         {
             Printing.DrawAt(0, 5, Printing.highScore, ConsoleColor.Green);
-            string currentHighscore = File.ReadAllText("Highscore.txt");
+            string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
             Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
             Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
             Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
 
-            string[] currentScores = File.ReadAllLines("Scores.txt");
+            string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
             int y = 17;
             int counter = 0;
             for (int i = currentScores.Length-1; i >= currentScores.Length-10; i--)
@@ -323,7 +323,7 @@ namespace TeamWork.Field
         private static void LoadMusic()
         {
             var sound = new SoundPlayer();
-            sound.SoundLocation = "STARS.wav";
+            sound.SoundLocation = "Resources/STARS.wav";
             sound.PlayLooping();
            
         }
@@ -338,7 +338,7 @@ namespace TeamWork.Field
             {
                 if (playMeteorEffect)
                 {
-                    soundFX.Open(new Uri("meteor.wav", UriKind.Relative));
+                    soundFX.Open(new Uri("Resources/meteor.wav", UriKind.Relative));
                     
                     soundFX.Volume = 60;
                     soundFX.Play();
@@ -346,7 +346,7 @@ namespace TeamWork.Field
                 }
                 if (playEffect)
                 {
-                    soundFX2.Open(new Uri("laser.wav", UriKind.Relative));
+                    soundFX2.Open(new Uri("Resources/laser.wav", UriKind.Relative));
                     soundFX2.Volume = 400;
                     soundFX2.Play();
                     playEffect = false;
