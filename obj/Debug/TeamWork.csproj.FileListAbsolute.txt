@@ -40,3 +40,6 @@ C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\obj\Deb
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\obj\Debug\TeamWork.csprojResolveAssemblyReference.cache
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\bin\Debug\TeamWork.exe
 C:\Users\HOME\Desktop\AdvancedCSharpProject-master\AdvancedCSharpProject\bin\Debug\TeamWork.pdb
+C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject - Copy\bin\Debug\TeamWork.exe.config
+C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject - Copy\obj\Debug\TeamWork.exe
+C:\Users\Gogo\Desktop\Team Work\AdvancedCSharpProject - Copy\obj\Debug\TeamWork.pdb
