@@ -274,7 +274,15 @@ namespace TeamWork.Field
             DrawStringCharByChar(18, 8, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|",3,true, ConsoleColor.Magenta);
             DrawStringCharByChar(25, 9,        @"|___/", 5, false, ConsoleColor.Magenta);
             Thread.Sleep(550);
-            DrawAt(28, 18, @"(B)ack to mine menu", ConsoleColor.Yellow); 
+            DrawAt(28, 18, @"(B)ack to mine menu", ConsoleColor.Yellow);
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.B)
+                {
+                    break;
+                }
+            }
 
         }        
         public static void WelcomeScreen()
@@ -344,7 +352,7 @@ namespace TeamWork.Field
             DrawStringCharByChar(1, 15,@"                                  (P)lay                +               ", 1, false, ConsoleColor.Cyan);
             DrawStringCharByChar(1, 16,@"                 *                (S)core Board                         ", 1, true, ConsoleColor.Cyan);
             DrawStringCharByChar(1, 17,@"     .                            (C)redits          *                  ", 1, false, ConsoleColor.Cyan);
-            DrawStringCharByChar(1, 18,@"                                  (Q)uite        *                      ", 1, true, ConsoleColor.Cyan);
+            DrawStringCharByChar(1, 18,@"                                  (Q)uit        *                      ", 1, true, ConsoleColor.Cyan);
             DrawAt(1, 19,@".                    *                                                    ", ConsoleColor.Cyan);
             DrawAt(1, 20,@".                            *                                     +      ",ConsoleColor.Cyan);
             DrawStringCharByChar(1, 21,@" ____^/\___^--___/\_____-^^-^--_______/\ /\---/\___________---/\---_______", 1, false, ConsoleColor.Green);
@@ -395,7 +403,7 @@ namespace TeamWork.Field
             DrawStringCharByChar(10, 11,@"\____/_/  |_/_/  /_/_____/   \____/ |___/_____/_/ |_|", 3, false, ConsoleColor.Yellow);
             Thread.Sleep(600);
             DrawAt(29, 17, @"(P)lay Again", ConsoleColor.Green);
-            DrawAt(29, 19, @"(Q)uite The Game", ConsoleColor.Red);
+            DrawAt(29, 19, @"(Q)uit The Game", ConsoleColor.Red);
 
         }
         public static void EnterName()

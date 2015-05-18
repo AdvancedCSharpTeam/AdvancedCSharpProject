@@ -12,18 +12,20 @@ namespace TeamWork.Field
     public class Engine
     {
         public static Random rnd = new Random();
+        //public static Menu menu = new Menu();
         public Thread musicThread;
         public Thread EffectsThread;
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
 
-        public Engine()
-        {
-            this.Start();
-        }
+        //public Engine()
+        //{
+        //    this.Start();
+        //}
         public void Start()
         {
+            Menu.StartMenu();
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
             EffectsThread = new Thread(SoundEffects);
