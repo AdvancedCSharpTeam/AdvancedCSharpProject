@@ -4,7 +4,7 @@ using TeamWork.Objects;
 
 namespace TeamWork
 {
-    public class Player : Entity, IPlayer, IEntity
+    public class Player : Entity, IPlayer
     {
         private int lives = 3;
         private int score = 0;

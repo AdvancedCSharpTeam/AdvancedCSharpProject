@@ -5,8 +5,7 @@ namespace TeamWork.Field
 {
     public static class Printing
     {
-        public static IPlayer Player = new Player();
-        public static IGameObject GameObject = new GameObject();
+        public static Player Player = new Player();
 
         public static Point2D PlayerPoint = new Point2D(40, 29);
         public static Point2D GameFieldRightSide = new Point2D(60, 0);
