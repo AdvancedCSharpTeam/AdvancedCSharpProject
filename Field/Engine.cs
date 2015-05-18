@@ -78,7 +78,7 @@ namespace TeamWork.Field
             Thread.Sleep(2500);
             Console.Clear();
             SetHighscore();
-            PrintHighscore();
+            Printing.HighScore();
             Thread.Sleep(6000);
             Console.Clear();
             Printing.Credits();
@@ -86,16 +86,16 @@ namespace TeamWork.Field
         }
         private void GameIntro()
         {
-            Printing.DrawWelcome2();
+            Printing.WelcomeScreen();
             Thread.Sleep(3500);
             Console.Clear();
-            Printing.GameName();
+            Printing.HighScore();
             Thread.Sleep(2500);
             Console.Clear();
-            Printing.LetsPlay();
+            Printing.StartMenu();
             Thread.Sleep(2500);
             Console.Clear();
-            Printing.UserName();
+            Printing.EnterName();
             this.TakeName();
         }
 
@@ -285,24 +285,24 @@ namespace TeamWork.Field
 ";
             File.WriteAllText("Scores.txt", currentScores);
         }
-        public void PrintHighscore()
-        {
-            Printing.DrawAt(0, 5, Printing.highScore, ConsoleColor.Green);
-            string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
-            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
+        //public void PrintHighscore()
+        //{
+        //    Printing.DrawAt(0, 5, Printing.HighScore, ConsoleColor.Green);
+        //    string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
+        //    Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
+        //    Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
+        //    Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
 
-            string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
-            int y = 17;
-            int counter = 0;
-            for (int i = currentScores.Length-1; i >= currentScores.Length-10; i--)
-            {
-                y++;
-                counter++;
-                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
-            }
-        }
+        //    string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
+        //    int y = 17;
+        //    int counter = 0;
+        //    for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
+        //    {
+        //        y++;
+        //        counter++;
+        //        Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
+        //    }
+        //}
         #endregion
 
         #region Music
@@ -354,7 +354,7 @@ namespace TeamWork.Field
                 Console.WriteLine("\t\t\t    Please enter your name! Name must also be less than/or 10 symbols");
                 Thread.Sleep(2000);
                 Console.Clear();
-                Printing.UserName();
+                //Printing.UserName();
                 TakeName();
             }
             else
