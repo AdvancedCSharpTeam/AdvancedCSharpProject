@@ -4,6 +4,7 @@ using System.Threading;
 using System.Media;
 using System.Windows.Media;
 using System.IO;
+using System.Text;
 using TeamWork.Objects;
 
 namespace TeamWork.Field
@@ -85,7 +86,7 @@ namespace TeamWork.Field
         }
         private void GameIntro()
         {
-            Printing.WelcomeScreen();
+            Printing.DrawWelcome2();
             Thread.Sleep(3500);
             Console.Clear();
             Printing.GameName();
@@ -369,6 +370,7 @@ namespace TeamWork.Field
         /// </summary>
         public static void InitConsole()
         {
+            Console.OutputEncoding = Encoding.Unicode;
             Console.CursorVisible = false;
             Console.WindowWidth = WindowWidth;
             Console.BufferWidth = WindowWidth;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using TeamWork.Objects;
 
 namespace TeamWork.Field
@@ -155,6 +156,8 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
             Console.ResetColor();
         }
 
+
+
         /// <summary>
         /// Draw a vertical line with given lenght starting at X and Y
         /// </summary>
@@ -165,7 +168,35 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         /// <param name="clr">Color to print with</param>
         public static void DrawVLineAt(int x, int y, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            DrawVLineAt(new Point2D(x, y), lenght, obj, clr);
+            for (int i = 0; i < lenght; i++)
+            {
+                DrawAt(x,y, obj, clr);
+                y++;
+            }
+            
+        }
+
+        public static void DrawVLineAt(int x, int y, int lenght, object obj, int speed,bool reverse, ConsoleColor clr = ConsoleColor.White)
+        {
+            if (!reverse)
+            {
+                for (int i = 0; i < lenght; i++)
+                {
+                    DrawAt(x, y, obj, clr);
+                    y++;
+                    Thread.Sleep(speed);
+                } 
+            }
+            else
+            {
+                for (int i = lenght-1; i >= 0; i--)
+                {
+                    DrawAt(x, y, obj, clr);
+                    y--;
+                    Thread.Sleep(speed);
+                } 
+            }
+
         }
 
         /// <summary>
@@ -177,11 +208,7 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         /// <param name="clr">Color to print with</param>
         public static void DrawVLineAt(Point2D point, int lenght, object obj, ConsoleColor clr = ConsoleColor.White)
         {
-            for (int i = 0; i < lenght; i++)
-            {
-                DrawAt(point, obj, clr);
-                point.Y++;
-            }
+            DrawVLineAt(point.X,point.Y, lenght, obj, clr);
         }
 
 
@@ -201,6 +228,33 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
                 //point.X++;
                 DrawAt(x,y, obj, clr);
                 x++;
+            }
+        }
+
+        public static void DrawHLineAt(int x, int y, int lenght, object obj,int sleep,bool reverse, ConsoleColor clr = ConsoleColor.White)
+        {
+
+            if (!reverse)
+            {
+                for (int i = 0; i < lenght; i++)
+                {
+                    //DrawAt(point, obj, clr);
+                    //point.X++;
+                    DrawAt(x, y, obj, clr);
+                    x++;
+                    Thread.Sleep(sleep);
+                } 
+            }
+            else
+            {
+                for (int i = lenght-1; i >= 0; i--)
+                {
+                    //DrawAt(point, obj, clr);
+                    //point.X++;
+                    DrawAt(x, y, obj, clr);
+                    x--;
+                    Thread.Sleep(sleep);
+                } 
             }
         }
 
@@ -262,6 +316,24 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
 
         #endregion
 
+        public static void DrawWelcome2()
+        {
+            DrawHLineAt(0, 0, 80, '\u2591',10,false,ConsoleColor.Red);
+            DrawVLineAt(79, 0, 31, '\u2591',10,false,ConsoleColor.Red);
+            DrawHLineAt(79, 30, 80, '\u2591', 10,true, ConsoleColor.Red);
+            DrawVLineAt(0, 30, 31, '\u2591', 10, true, ConsoleColor.Red);
+
+            DrawAt(10, 10," _  _ _      _      ___                 ",ConsoleColor.Magenta);
+            Thread.Sleep(200);
+            DrawAt(10, 11, "| || (_)__ _| |_   / __| __ ___ _ _ ___", ConsoleColor.Magenta);
+            Thread.Sleep(200);
+            DrawAt(10, 12, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)", ConsoleColor.Magenta);
+            Thread.Sleep(200);
+            DrawAt(10, 13, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|", ConsoleColor.Magenta);
+            Thread.Sleep(200);
+            DrawAt(10, 14, @"       |___/                            ", ConsoleColor.Magenta);
+
+        }
         #region Clearing Methods
 
         /// <summary>
@@ -391,4 +463,3 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
         #endregion
     }
 }
-
