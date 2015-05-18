@@ -1,42 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading;
+using System.Windows.Media;
 
 namespace TeamWork.Field
 {
     class Menu
     {
-        public static  bool menuActive = true;
+        public static bool menuActive = true;
+        public static bool validInput = true;
+        public static MediaPlayer mediaPlayer = new MediaPlayer();
 
         public static void StartMenu()
-        {
+        {            
+            mediaPlayer.Open(new Uri("Resources/Intro.wav", UriKind.Relative));
+            mediaPlayer.Play();
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
-            Console.Clear();
-            Printing.StartMenu();
+
+            //Printing.StartMenu();
             while (menuActive)
             {
-                if (Console.KeyAvailable)
+
+                if (validInput)
                 {
-                    UserChoice(Console.ReadKey(true));            
+                    Console.Clear();
+                    Printing.StartMenu();
+                    validInput = false;
+                }
+
+                if (UserChoice(Console.ReadKey(true)))
+                {
+                    validInput = true;
+                }
+                else
+                {
+                    validInput = false;
                 }
             }
-        }
-        public static void UserChoice(ConsoleKeyInfo key)
+        }      
+        public static bool UserChoice(ConsoleKeyInfo key)
         {
             switch (key.Key)
             {
-                case ConsoleKey.P: Printing.Player.MoveUp();
-                    break;
-                case ConsoleKey.S: Printing.HighScore();
-                    break;
-                case ConsoleKey.C: Printing.Credits();
-                    break;
+                case ConsoleKey.P: Console.Clear();
+                    mediaPlayer.Stop();                  
+                    menuActive = false;
+                    return true;
+                case ConsoleKey.S:
+                    Console.Clear();
+                    Printing.HighScore();
+                    return true;
+                case ConsoleKey.C: Console.Clear();
+                    Printing.Credits();
+                    return true;
                 case ConsoleKey.Q: Environment.Exit(0);
-                    break;
+                    return false;
+                default:
+                    return false;
             }
-        }
+        }      
     }
 }

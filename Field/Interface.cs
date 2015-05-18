@@ -33,7 +33,7 @@ namespace TeamWork.Field
         public static void UIDescription()
         {
             string level = string.Format("{0}", Printing.Player.Level).PadLeft(2, '0');
-            string live = string.Format("Lives: {0} ", new string('\u2708', Printing.Player.Lives));      //    \u2708  ==  ✈ \u2665
+            string live = string.Format("Lives: {0} ", new string('\u2665', Printing.Player.Lives));      //    \u2708  ==  ✈ \u2665
 
             string score = string.Format("Score: {0} ", Printing.Player.Score).PadLeft(3, '0');
             string playerName = string.Format("Player: {0}", Printing.Player.Name);

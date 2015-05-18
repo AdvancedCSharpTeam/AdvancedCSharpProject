@@ -8,7 +8,7 @@ namespace TeamWork.Field
     {
         public static Player Player = new Player();
 
-        public static Point2D PlayerPoint = new Point2D(40, 29);
+        public static Point2D PlayerPoint = new Point2D(10, 15);
         public static Point2D GameFieldRightSide = new Point2D(60, 0);
         public static Point2D MenuField = new Point2D(75, 4);
        
@@ -263,28 +263,30 @@ namespace TeamWork.Field
         #region Grphics
         public static void HighScore()
         {
-            DrawHLineAt(0, 0, 80, '\u2591',3,false,ConsoleColor.Yellow);
-            DrawVLineAt(79, 0, 31, '\u2591',3,false,ConsoleColor.Yellow);
-            DrawHLineAt(79, 30, 80, '\u2591', 3,true, ConsoleColor.Yellow);
+            DrawHLineAt(0, 0, 80, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawVLineAt(79, 0, 31, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawHLineAt(79, 30, 80, '\u2591', 3, true, ConsoleColor.Yellow);
             DrawVLineAt(0, 30, 31, '\u2591', 3, true, ConsoleColor.Yellow);
 
             DrawStringCharByChar(18, 5, @" _  _ _      _      ___", 5, false, ConsoleColor.Magenta);
             DrawStringCharByChar(18, 6, @"| || (_)__ _| |_   / __| __ ___ _ _ ___", 3, true, ConsoleColor.Magenta);
-            DrawStringCharByChar(18, 7, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)",3,false, ConsoleColor.Magenta);
-            DrawStringCharByChar(18, 8, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|",3,true, ConsoleColor.Magenta);
-            DrawStringCharByChar(25, 9,        @"|___/", 5, false, ConsoleColor.Magenta);
+            DrawStringCharByChar(18, 7, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)", 3, false, ConsoleColor.Magenta);
+            DrawStringCharByChar(18, 8, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|", 3, true, ConsoleColor.Magenta);
+            DrawStringCharByChar(25, 9, @"|___/", 5, false, ConsoleColor.Magenta);
             Thread.Sleep(550);
-            DrawAt(28, 18, @"(B)ack to mine menu", ConsoleColor.Yellow);
+            DrawAt(28, 28, @"(B)ack to mine menu", ConsoleColor.Yellow);
+            Engine.PrintHighscore();
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                ConsoleKeyInfo key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.B)
                 {
+                    Menu.validInput = true;
                     break;
                 }
             }
 
-        }        
+        }         
         public static void WelcomeScreen()
         {
             DrawHLineAt(0, 0, 80, '\u2591', 3, false, ConsoleColor.Yellow);
@@ -386,8 +388,17 @@ namespace TeamWork.Field
             Thread.Sleep(500);
             DrawAt(23, 19, @"         n0way0ut", ConsoleColor.Gray);
             Thread.Sleep(500);
-            DrawAt(5, 26, @"(B)ack to mine menu", ConsoleColor.Yellow);            
+            DrawAt(5, 26, @"(B)ack to main menu", ConsoleColor.Yellow);            
             DrawAt(55, 26, @"Give Us Feedback at:", ConsoleColor.Yellow);
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.B)
+                {
+                    Menu.validInput = true;
+                    break;
+                }
+            }
         }
         public static void GameOver()
         {
@@ -404,6 +415,18 @@ namespace TeamWork.Field
             Thread.Sleep(600);
             DrawAt(29, 17, @"(P)lay Again", ConsoleColor.Green);
             DrawAt(29, 19, @"(Q)uit The Game", ConsoleColor.Red);
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.P)
+                {
+                    break;
+                }
+                else if (key.Key == ConsoleKey.Q)
+                {
+                    Environment.Exit(0);
+                }
+            }
 
         }
         public static void EnterName()

@@ -12,17 +12,17 @@ namespace TeamWork.Field
     public class Engine
     {
         public static Random rnd = new Random();
-        //public static Menu menu = new Menu();
+        public bool drawMenu = false;
         public Thread musicThread;
         public Thread EffectsThread;
 
         public const int WindowWidth = 80; //Window Width constant to be accesed from everywhere
         public const int WindowHeight = 32; //Window height constant to be accesed from everywhere
 
-        //public Engine()
-        //{
-        //    this.Start();
-        //}
+        public Engine()
+        {
+            this.Start();
+        }
         public void Start()
         {
             Menu.StartMenu();
@@ -30,18 +30,15 @@ namespace TeamWork.Field
             musicThread.Start();
             EffectsThread = new Thread(SoundEffects);
             EffectsThread.Start();
+            Printing.EnterName();
+            TakeName();
+            Thread.Sleep(1000);
             while (true)
             {
-                GameIntro();
                 Console.Clear();
                 Printing.Player.Print();
                 Interface.Table();
                 Interface.UIDescription();
-                if (Printing.Player.Lives < 1)
-                {
-                    End();
-                    break;
-                }
 
                 while (Printing.Player.Lives > 0)
                 {
@@ -58,10 +55,10 @@ namespace TeamWork.Field
                     UpdateAndRender();
                     Thread.Sleep(80);
                 }
-                // Tozi kod tuk e nedostijim
-                End();
-                Thread.Sleep(100000);
-                break;
+                Console.Clear();
+                SetHighscore();
+                Printing.GameOver();
+                ResetGame();
             }
         }
 
@@ -72,36 +69,15 @@ namespace TeamWork.Field
             GenerateMeteorit();
         }
 
-        #region GameStates
-        private void End()
+        private void ResetGame()
         {
-            Console.Clear();
-            Printing.GameOver();
-            Thread.Sleep(2500);
-            Console.Clear();
-            SetHighscore();
-            Printing.HighScore();
-            Thread.Sleep(6000);
-            Console.Clear();
-            Printing.Credits();
-            Thread.Sleep(1000000);
+            Printing.Player.Level = 0;
+            Printing.Player.Score = 0;
+            Printing.Player.Lives = 3;
+            Printing.Player.Point = Printing.PlayerPoint;
+            _bullets.Clear();
+            _meteorits.Clear();
         }
-        private void GameIntro()
-        {
-            Printing.WelcomeScreen();
-            Thread.Sleep(3500);
-            Console.Clear();
-            PrintHighscore();
-            Thread.Sleep(2500);
-            Console.Clear();
-            Printing.StartMenu();
-            Thread.Sleep(2500);
-            Console.Clear();
-            Printing.EnterName();
-            this.TakeName();
-        }
-
-        #endregion
 
         /// <summary>
         /// Player move handler
@@ -120,7 +96,7 @@ namespace TeamWork.Field
                 case ConsoleKey.D: Printing.Player.MoveRight();
                     break;
                 // Create a new bullet object
-                case ConsoleKey.Spacebar: 
+                case ConsoleKey.Spacebar:
                     _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1)));
                     playEffect = true;
                     break;
@@ -135,7 +111,7 @@ namespace TeamWork.Field
         /// </summary>
         private void MoveAndPrintBullets()
         {
-            Printing.DrawAt(Printing.Player.Point.X+20,Printing.Player.Point.Y+1,'=', ConsoleColor.DarkCyan); // Fire effect lol
+            Printing.DrawAt(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1, '=', ConsoleColor.DarkCyan); // Fire effect lol
             List<GameObject> newBullets = new List<GameObject>(); //Stores the new coordinates of the bullets
 
             for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
@@ -229,9 +205,9 @@ namespace TeamWork.Field
                 {
                     Printing.ClearAtPosition(_bullets[i].Point);
                     _bullets.RemoveAt(i);
-                    
+
                     Printing.Player.IncreasePoints();
-                    
+
                     Interface.Table();
                     Interface.UIDescription();
                     return true;
@@ -267,9 +243,9 @@ namespace TeamWork.Field
         #region Highscore and Score Methods
         //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
         //Also adds all scores to the Scores.txt file
-        private void SetHighscore()
+        private static void SetHighscore()
         {
-            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}", 
+            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}",
                 Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
             string[] oldText = File.ReadAllText("Resources/Highscore.txt").Split();
@@ -287,16 +263,15 @@ namespace TeamWork.Field
 ";
             File.WriteAllText("Scores.txt", currentScores);
         }
-        public void PrintHighscore()
+        public static void PrintHighscore()
         {
-            Printing.HighScore();
             string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
             Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
             Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
             Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
 
             string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
-            int y = 17;
+            int y = 15;
             int counter = 0;
             for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
             {
@@ -315,21 +290,21 @@ namespace TeamWork.Field
             var sound = new SoundPlayer();
             sound.SoundLocation = "Resources/STARS.wav";
             sound.PlayLooping();
-           
+
         }
-        
+
         private void SoundEffects()
         {
 
             MediaPlayer soundFX = new MediaPlayer();
             MediaPlayer soundFX2 = new MediaPlayer();
-           
+
             while (true)
             {
                 if (playMeteorEffect)
                 {
                     soundFX.Open(new Uri("Resources/meteor.wav", UriKind.Relative));
-                    
+
                     soundFX.Volume = 60;
                     soundFX.Play();
                     playMeteorEffect = false;
