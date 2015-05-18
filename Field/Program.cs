@@ -15,10 +15,7 @@ namespace TeamWork
         static void Main(string[] args)
         {
             Engine.InitConsole();
-            // _musicThread = new Thread(Engine.LoadMusic);
-            // _musicThread.Start();
             Engine eng = new Engine();
-            eng.Start();
         }
     }
 }

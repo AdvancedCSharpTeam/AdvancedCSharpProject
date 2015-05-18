@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.v12.suo
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -19,8 +20,13 @@ x64/
 x86/
 build/
 bld/
-[Bb]in/
 [Oo]bj/
+
+# Inspix trying to achieve miracle
+bin/Debug/*.exe
+bin/Debug/*.pdb
+bin/Debug/*.manifest
+bin/Debug/*.config
 
 # Visual Studo 2015 cache/options directory
 .vs/

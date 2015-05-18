@@ -54,7 +54,7 @@ namespace TeamWork.Objects
                     Printing.DrawAt(this.Point.X,Point.Y+1, "\\/", ConsoleColor.Gray);
                     break;
                 case ObjectType.Small:
-                    Printing.DrawAt(this.Point, "<>", ConsoleColor.Yellow);
+                    Printing.DrawAt(this.Point, "<>");
                     break;
                 case ObjectType.Silver:
                     Printing.DrawAt(this.Point.X,this.Point.Y-1, "\\ /", ConsoleColor.Gray);
@@ -62,9 +62,9 @@ namespace TeamWork.Objects
                     Printing.DrawAt(this.Point.X, this.Point.Y + 1, "/ \\", ConsoleColor.Gray);
                     break;
                 case ObjectType.Gold:
-                    Printing.DrawAt(this.Point.X, this.Point.Y - 1, " \u25B2");
-                    Printing.DrawAt(this.Point, "\u25C4\u25A0\u25BA");
-                    Printing.DrawAt(this.Point.X, this.Point.Y + 1, " \u25BC");
+                    Printing.DrawAt(this.Point.X, this.Point.Y - 1, " \u25B2", ConsoleColor.Yellow);
+                    Printing.DrawAt(this.Point, "\u25C4\u25A0\u25BA", ConsoleColor.Yellow);
+                    Printing.DrawAt(this.Point.X, this.Point.Y + 1, " \u25BC",ConsoleColor.Yellow);
                     break;
                 case ObjectType.Lenghty:
                     Printing.DrawAt(this.Point, "{\u25A0\u25A0\u25BA");

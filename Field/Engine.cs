@@ -53,7 +53,7 @@ namespace TeamWork.Field
                     }
 
                     UpdateAndRender();
-                    Thread.Sleep(100);
+                    Thread.Sleep(80);
                 }
                 // Tozi kod tuk e nedostijim
                 if (Printing.Player.Lives < 1) 
@@ -179,7 +179,7 @@ namespace TeamWork.Field
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 5)));
+                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 6)));
                 counter++;
             }
             else
