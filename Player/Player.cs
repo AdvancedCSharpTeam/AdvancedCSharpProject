@@ -26,7 +26,7 @@ namespace TeamWork
         public void MoveUp()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y - 1 >= 5) // Limit so the temporary ship does not go out of screen and crash the game
+            if (this.Point.Y - 1 >= 3) // Limit so the temporary ship does not go out of screen and crash the game
             {
                 
                 Clear();
@@ -37,7 +37,7 @@ namespace TeamWork
         public void MoveDown()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y + 1 < Engine.WindowHeight - 5) 
+            if (this.Point.Y + 1 < Engine.WindowHeight - 4) 
             {
                 Clear();
                 this.Point.Y++;
@@ -81,8 +81,8 @@ namespace TeamWork
 
             Printing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
             Printing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
-            Printing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_=>", ConsoleColor.Cyan);
-
+            Printing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_ >", ConsoleColor.Cyan);
+            Printing.DrawAt(Point.X + 20, Point.Y + 1,"=", ConsoleColor.DarkCyan);
               //you can change it with this it is smaller    
               //    ____
               //     \  \_____________
@@ -95,10 +95,9 @@ namespace TeamWork
         public void Clear() 
         {
             //Had to use strings to get rid of artefacts
-            Printing.DrawAt(Point.X, Point.Y - 2, @"                ");
-            Printing.DrawAt(Point.X, Point.Y - 1, @"                         ");
-            Printing.DrawAt(Point.X, Point.Y,     @"                           ");
-            Printing.DrawAt(Point.X, Point.Y + 1, @"                           ");
+            Printing.DrawAt(Point.X, Point.Y - 1, @"    ");
+            Printing.DrawAt(Point.X, Point.Y, @"                  ");
+            Printing.DrawAt(Point.X, Point.Y + 1, @"                      ");
         }
 
         public void IncreasePoints()

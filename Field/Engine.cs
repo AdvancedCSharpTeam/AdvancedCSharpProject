@@ -130,7 +130,7 @@ namespace TeamWork.Field
                     break;
                 // Create a new bullet object
                 case ConsoleKey.Spacebar: 
-                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 22, Printing.Player.Point.Y + 1)));
+                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1)));
                     playEffect = true;
                     break;
             }
@@ -144,6 +144,7 @@ namespace TeamWork.Field
         /// </summary>
         private void MoveAndPrintBullets()
         {
+            Printing.DrawAt(Printing.Player.Point.X+20,Printing.Player.Point.Y+1,'=', ConsoleColor.DarkCyan); // Fire effect lol
             List<GameObject> newBullets = new List<GameObject>(); //Stores the new coordinates of the bullets
 
             for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
@@ -156,7 +157,8 @@ namespace TeamWork.Field
                 else
                 {
                     _bullets[i].Point.X += _bullets[i].Speed + 1;
-                    Printing.DrawAt(_bullets[i].Point, ".", ConsoleColor.Cyan); // Print the bullets at their new position;
+                    Printing.DrawAt(_bullets[i].Point, "-", ConsoleColor.DarkCyan); // Print the bullets at their new position;
+                    
                     newBullets.Add((_bullets[i]));
                 }
             }
@@ -177,7 +179,7 @@ namespace TeamWork.Field
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(5, WindowHeight - 5)), rnd.Next(0, 5)));
+                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 5)));
                 counter++;
             }
             else
@@ -255,7 +257,12 @@ namespace TeamWork.Field
         private bool ShipCollision(GameObject obj)
         {
             Point2D point = Printing.Player.Point;
-            if (obj.Collided(point.X + 21,point.Y) || obj.Collided(point.X+21, point.Y+1))
+            if (obj.Collided(point.X + 21, point.Y) || obj.Collided(point.X + 21, point.Y + 1) || // Front collision
+                obj.Collided(point.X + 18, point.Y) || obj.Collided(point.X + 15, point.Y) || // Top collision
+                obj.Collided(point.X + 11, point.Y) || obj.Collided(point.X + 6, point.Y) ||  // Top collision
+                obj.Collided(point.X + 18, point.Y + 1) || obj.Collided(point.X + 15, point.Y + 1) ||// Bottom collision
+                obj.Collided(point.X + 11, point.Y + 1) || obj.Collided(point.X + 6, point.Y + 1) || // Bottom collision
+                obj.Collided(point.X + 3, point.Y - 1) || obj.Collided(point.X + 3, point.Y + 1)) // Tail collision
             {
                 Printing.Player.DecreaseLives();
 
@@ -320,17 +327,19 @@ namespace TeamWork.Field
             sound.PlayLooping();
            
         }
-
+        
         private void SoundEffects()
         {
-            var soundFX = new MediaPlayer();
-            var soundFX2 = new MediaPlayer();
 
+            MediaPlayer soundFX = new MediaPlayer();
+            MediaPlayer soundFX2 = new MediaPlayer();
+           
             while (true)
             {
                 if (playMeteorEffect)
                 {
                     soundFX.Open(new Uri("meteor.wav", UriKind.Relative));
+                    
                     soundFX.Volume = 60;
                     soundFX.Play();
                     playMeteorEffect = false;
