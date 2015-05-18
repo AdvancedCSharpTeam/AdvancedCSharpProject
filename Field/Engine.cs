@@ -89,7 +89,7 @@ namespace TeamWork.Field
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
             Console.Clear();
-            Printing.HighScore();
+            PrintHighscore();
             Thread.Sleep(2500);
             Console.Clear();
             Printing.StartMenu();
@@ -285,24 +285,24 @@ namespace TeamWork.Field
 ";
             File.WriteAllText("Scores.txt", currentScores);
         }
-        //public void PrintHighscore()
-        //{
-        //    Printing.DrawAt(0, 5, Printing.HighScore, ConsoleColor.Green);
-        //    string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
-        //    Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
-        //    Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
-        //    Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
+        public void PrintHighscore()
+        {
+            Printing.HighScore();
+            string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
+            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
 
-        //    string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
-        //    int y = 17;
-        //    int counter = 0;
-        //    for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
-        //    {
-        //        y++;
-        //        counter++;
-        //        Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
-        //    }
-        //}
+            string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
+            int y = 17;
+            int counter = 0;
+            for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
+            {
+                y++;
+                counter++;
+                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
+            }
+        }
         #endregion
 
         #region Music

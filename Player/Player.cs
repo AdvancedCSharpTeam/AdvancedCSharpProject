@@ -73,22 +73,10 @@ namespace TeamWork
         //Method to print the player at its current position
         public void Print()
         {
-            // Temporary ship design
-            //Printing.DrawAt(Point.X, Point.Y - 2, @"        //-A-\\", ConsoleColor.Yellow);
-            //Printing.DrawAt(Point.X, Point.Y - 1, @"  ___---=======---___", ConsoleColor.Yellow);
-            //Printing.DrawAt(Point.X, Point.Y,     @"(=__\   /.. ..\   /__=)", ConsoleColor.Yellow);
-            //Printing.DrawAt(Point.X, Point.Y + 1, @"     ---\__O__/---", ConsoleColor.Yellow);
-
             Printing.DrawAt(Point.X, Point.Y - 1, @"____", ConsoleColor.Cyan);
             Printing.DrawAt(Point.X, Point.Y,     @" \  \_____________", ConsoleColor.Cyan);
             Printing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_ >", ConsoleColor.Cyan);
-            Printing.DrawAt(Point.X + 20, Point.Y + 1,"=", ConsoleColor.DarkCyan);
-              //you can change it with this it is smaller    
-              //    ____
-              //     \  \_____________
-              //     <[=)_)_)_)star)_=>
-              //    _/__/
-
+            Printing.DrawAt(Point.X + 20, Point.Y + 1,"=", ConsoleColor.DarkCyan);           
         }
 
         // Method to clear players last position

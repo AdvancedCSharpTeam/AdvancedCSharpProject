@@ -279,10 +279,10 @@ namespace TeamWork.Field
         }        
         public static void WelcomeScreen()
         {
-            DrawHLineAt(0, 0, 80, '\u2591', 10, false, ConsoleColor.Yellow);
-            DrawVLineAt(79, 0, 31, '\u2591', 10, false, ConsoleColor.Yellow);
-            DrawHLineAt(79, 30, 80, '\u2591', 10, true, ConsoleColor.Yellow);
-            DrawVLineAt(0, 30, 31, '\u2591', 10, true, ConsoleColor.Yellow);
+            DrawHLineAt(0, 0, 80, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawVLineAt(79, 0, 31, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawHLineAt(79, 30, 80, '\u2591', 3, true, ConsoleColor.Yellow);
+            DrawVLineAt(0, 30, 31, '\u2591', 3, true, ConsoleColor.Yellow);
 
             DrawAt(15, 2, " _    _  ____  __    ___  _____  __  __  ____", ConsoleColor.Cyan);
             Thread.Sleep(150);
@@ -323,10 +323,10 @@ namespace TeamWork.Field
         }
         public static void StartMenu()
         {
-            DrawHLineAt(0, 0, 80, '\u2591', 5, false, ConsoleColor.Yellow);
-            DrawVLineAt(79, 0, 31, '\u2591', 5, false, ConsoleColor.Yellow);
-            DrawHLineAt(79, 30, 80, '\u2591', 5, true, ConsoleColor.Yellow);
-            DrawVLineAt(0, 30, 31, '\u2591', 5, true, ConsoleColor.Yellow);
+            DrawHLineAt(0, 0, 80, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawVLineAt(79, 0, 31, '\u2591', 3, false, ConsoleColor.Yellow);
+            DrawHLineAt(79, 30, 80, '\u2591', 3, true, ConsoleColor.Yellow);
+            DrawVLineAt(0, 30, 31, '\u2591', 3, true, ConsoleColor.Yellow);
 
             DrawAt(1, 2, @".                                                               +         ", ConsoleColor.Cyan);
             DrawAt(1, 3, @"      .           +                 ,             *                       ",ConsoleColor.Cyan);
