@@ -1,5 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Text;
+=======
+>>>>>>> c6e78566410f2f28c3570ff3b686846da5c6ec89
 
 namespace TeamWork.Field
 {

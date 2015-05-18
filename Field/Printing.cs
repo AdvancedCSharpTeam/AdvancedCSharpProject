@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using TeamWork.Objects;
 
 namespace TeamWork.Field
 {
@@ -338,7 +338,6 @@ ____^/\___^--_O__/\_____-^^-^--_______/\/\---/\___________---___________
                 DrawAt(x, i, ' ');
             }
         }
-
         #endregion
 
         #region Logos
