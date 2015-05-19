@@ -15,13 +15,13 @@ namespace TeamWork.Field
         public static MediaPlayer mediaPlayer = new MediaPlayer();
 
         public static void StartMenu()
-        {            
+        {       
+            //If do not have INTRO_SOUND skip player part
             mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
             mediaPlayer.Play();
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
 
-            //Printing.StartMenu();
             while (menuActive)
             {
 
@@ -29,6 +29,7 @@ namespace TeamWork.Field
                 {
                     Console.Clear();
                     Printing.StartMenu();
+                    //Missing part for scapceship selection screen
                     validInput = false;
                 }
 
