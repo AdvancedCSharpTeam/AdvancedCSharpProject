@@ -274,7 +274,7 @@ namespace TeamWork.Field
             DrawStringCharByChar(18, 8, @"|_||_|_\__, |_||_| |___/\__\___/_| \___|", 3, true, ConsoleColor.Magenta);
             DrawStringCharByChar(25, 9, @"|___/", 5, false, ConsoleColor.Magenta);
             Thread.Sleep(550);
-            DrawAt(28, 28, @"(B)ack to mine menu", ConsoleColor.Yellow);
+            DrawAt(28, 28, @"(B)ack to Mine Menu", ConsoleColor.Yellow);
             Engine.PrintHighscore();
             while (true)
             {
@@ -388,7 +388,7 @@ namespace TeamWork.Field
             Thread.Sleep(500);
             DrawAt(23, 19, @"         n0way0ut", ConsoleColor.Gray);
             Thread.Sleep(500);
-            DrawAt(5, 26, @"(B)ack to main menu", ConsoleColor.Yellow);            
+            DrawAt(5, 26, @"(B)ack to Main Menu", ConsoleColor.Yellow);            
             DrawAt(55, 26, @"Give Us Feedback at:", ConsoleColor.Yellow);
             while (true)
             {

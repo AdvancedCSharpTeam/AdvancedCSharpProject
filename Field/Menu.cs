@@ -16,7 +16,7 @@ namespace TeamWork.Field
 
         public static void StartMenu()
         {            
-            mediaPlayer.Open(new Uri("Resources/Intro.wav", UriKind.Relative));
+            mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
             mediaPlayer.Play();
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
