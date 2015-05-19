@@ -10,8 +10,8 @@
             this.X = x;
             this.Y = y;
         }
-        
-        public static bool operator ==(Point2D point,Point2D point2) 
+
+        public static bool operator ==(Point2D point, Point2D point2)
         {
             return point.X == point2.X && point.Y == point2.Y;
         }
@@ -19,6 +19,28 @@
         {
             return point.X != point2.X || point.Y != point2.Y;
         }
+
+        public static Point2D operator -(Point2D point, Point2D point2)
+        {
+            int x = point.X - point2.X;
+            int y = point.Y - point2.Y;
+            return new Point2D(x, y);
+        }
+
+        public static Point2D operator +(Point2D point, Point2D point2)
+        {
+            int x = point.X + point2.X;
+            int y = point.Y + point2.Y;
+            return new Point2D(x, y);
+        }
+        public static Point2D operator *(Point2D point, int multiplier)
+        {
+            int x = point.X * multiplier;
+            int y = point.Y * multiplier;
+            return new Point2D(x, y);
+        }
+
+
         public override bool Equals(object obj) // Should be overrided
         {
             return base.Equals(obj);

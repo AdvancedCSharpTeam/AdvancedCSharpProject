@@ -48,6 +48,8 @@
     <Compile Include="Field\Interface.cs" />
     <Compile Include="Field\Menu.cs" />
     <Compile Include="Field\SamplePatterns.cs" />
+    <Compile Include="Objects\Boss.cs" />
+    <Compile Include="Objects\BossObject.cs" />
     <Compile Include="Objects\Entity.cs" />
     <Compile Include="Field\Printing.cs" />
     <Compile Include="Player\IPlayer.cs" />
