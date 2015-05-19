@@ -64,7 +64,12 @@ namespace TeamWork.Field
             Console.ResetColor();
         }
 
-
+        public static void DrawAtBG(int x, int y, object obj, ConsoleColor bclr)
+        {
+            Console.BackgroundColor = bclr;
+            DrawAt(x, y, obj);
+            Console.ResetColor();
+        }
 
         /// <summary>
         /// Draw a vertical line with given lenght starting at X and Y

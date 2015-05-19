@@ -62,19 +62,48 @@ namespace TeamWork.Field
             }
         }
 
+        public static bool BossActive = false;
+        public static Boss boss = new Boss(0);
         private void UpdateAndRender()
         {
-            DrawAndMoveMeteor();
+            if (Printing.Player.Level == 2 && BossActive == false)
+            {
+                BossActive = true;
+                
+                if (boss.bossLife <= 0)
+                {
+                    boss = new Boss(0);
+                }
+            }
+
             MoveAndPrintBullets();
-            GenerateMeteorit();
+            if (BossActive)
+            {
+                DrawAndMoveMeteor();
+                boss.BossAI();
+                foreach (var bullets in _bullets)
+                {
+                    if (boss.BossHit(bullets.Point))
+                    {
+                        bullets.Point.X += 100;
+                    }
+                }
+            }
+            else
+            {
+                DrawAndMoveMeteor();
+                GenerateMeteorit();
+            }
         }
 
         private void ResetGame()
         {
-            Printing.Player.Level = 0;
+            Printing.Player.Level = 1;
             Printing.Player.Score = 0;
             Printing.Player.Lives = 3;
             Printing.Player.Point = Printing.PlayerPoint;
+            BossActive = false;
+            boss = new Boss(0);
             _bullets.Clear();
             _meteorits.Clear();
         }
@@ -116,7 +145,11 @@ namespace TeamWork.Field
 
             for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
             {
-                Printing.ClearAtPosition(_bullets[i].Point); // Clear bullet at its current position
+                if (_bullets[i].Point.X <= Engine.WindowWidth)
+                {
+                   _bullets[i].ClearObject();
+                }  
+                 // Clear bullet at its current position
                 if (_bullets[i].Point.X + _bullets[i].Speed + 2 >= Engine.WindowWidth)
                 {
                     // If the bullet exceeds sceen size, dont add it to new Bullets list
@@ -124,7 +157,7 @@ namespace TeamWork.Field
                 else
                 {
                     _bullets[i].Point.X += _bullets[i].Speed + 1;
-                    Printing.DrawAt(_bullets[i].Point, "-", ConsoleColor.DarkCyan); // Print the bullets at their new position;
+                    _bullets[i].PrintObject(); // Print the bullets at their new position;
                     newBullets.Add((_bullets[i]));
                 }
             }
@@ -145,7 +178,7 @@ namespace TeamWork.Field
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(0, 5)));
+                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(1, 6)));
                 counter++;
             }
             else

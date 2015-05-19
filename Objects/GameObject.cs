@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using TeamWork.Field;
 
 namespace TeamWork.Objects
@@ -7,6 +8,7 @@ namespace TeamWork.Objects
     {
         public enum ObjectType
         {
+            Bullet,
             Normal, // 0
             Small, // 1
             Silver, // 2
@@ -18,7 +20,7 @@ namespace TeamWork.Objects
         public GameObject()
         {
             base.Speed = 1;
-            
+
         }
 
         public GameObject(Point2D point)
@@ -29,7 +31,7 @@ namespace TeamWork.Objects
             objectType = 0;
         }
 
-        public GameObject(Point2D point,int type)
+        public GameObject(Point2D point, int type)
             : base(point)
         {
             base.Speed = 1;
@@ -49,22 +51,25 @@ namespace TeamWork.Objects
         {
             switch (objectType)
             {
+                case ObjectType.Bullet:
+                    Printing.DrawAt(this.Point, '-', ConsoleColor.DarkCyan);
+                    break;
                 case ObjectType.Normal:
-                    Printing.DrawAt(this.Point,"/\\",ConsoleColor.Gray);
-                    Printing.DrawAt(this.Point.X,Point.Y+1, "\\/", ConsoleColor.Gray);
+                    Printing.DrawAt(this.Point, "/\\", ConsoleColor.Gray);
+                    Printing.DrawAt(this.Point.X, Point.Y + 1, "\\/", ConsoleColor.Gray);
                     break;
                 case ObjectType.Small:
                     Printing.DrawAt(this.Point, "<>");
                     break;
                 case ObjectType.Silver:
-                    Printing.DrawAt(this.Point.X,this.Point.Y-1, "\\ /", ConsoleColor.Gray);
+                    Printing.DrawAt(this.Point.X, this.Point.Y - 1, "\\ /", ConsoleColor.Gray);
                     Printing.DrawAt(this.Point, " X ", ConsoleColor.Gray);
                     Printing.DrawAt(this.Point.X, this.Point.Y + 1, "/ \\", ConsoleColor.Gray);
                     break;
                 case ObjectType.Gold:
                     Printing.DrawAt(this.Point.X, this.Point.Y - 1, " \u25B2", ConsoleColor.Yellow);
                     Printing.DrawAt(this.Point, "\u25C4\u25A0\u25BA", ConsoleColor.Yellow);
-                    Printing.DrawAt(this.Point.X, this.Point.Y + 1, " \u25BC",ConsoleColor.Yellow);
+                    Printing.DrawAt(this.Point.X, this.Point.Y + 1, " \u25BC", ConsoleColor.Yellow);
                     break;
                 case ObjectType.Lenghty:
                     Printing.DrawAt(this.Point, "{\u25A0\u25A0\u25BA");
@@ -80,6 +85,9 @@ namespace TeamWork.Objects
         {
             switch (objectType)
             {
+                case ObjectType.Bullet:
+                    Printing.DrawAt(this.Point.X, this.Point.Y, ' ');
+                    break;
                 case ObjectType.Normal:
                     Printing.DrawAt(this.Point, "  ");
                     Printing.DrawAt(this.Point.X, Point.Y + 1, "  ");
@@ -118,7 +126,7 @@ namespace TeamWork.Objects
                      * (.)AB
                      * (.)CD
                      */
-                    if ((x == this.Point.X && (y == this.Point.Y ||  y == this.Point.Y + 1)) || // A / C
+                    if ((x == this.Point.X && (y == this.Point.Y || y == this.Point.Y + 1)) || // A / C
                         (x == this.Point.X + 1 &&
                         (y == this.Point.Y || y == this.Point.Y + 1)) || // B / D
                         (x == this.Point.X - 1 &&
@@ -130,7 +138,7 @@ namespace TeamWork.Objects
                      * (.)AB              
                      */
                     if ((x == this.Point.X && y == this.Point.Y) || // A
-                        (x == this.Point.X+1 && y == this.Point.Y) || // B
+                        (x == this.Point.X + 1 && y == this.Point.Y) || // B
                         (x == this.Point.X - 1 && y == this.Point.Y)) // .
                         return true;
                     return false;
@@ -141,21 +149,21 @@ namespace TeamWork.Objects
                      * BEH
                      */
                     if ((x == this.Point.X && y == this.Point.Y) || //A
-                        (x == this.Point.X && 
+                        (x == this.Point.X &&
                         (y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // B / C
                         (x == this.Point.X + 1 &&
                         (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // D / E / F
-                        (x == this.Point.X + 2 && 
+                        (x == this.Point.X + 2 &&
                         (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1))) // G / H / I
                         return true;
                     return false;
-                case ObjectType.Gold: 
+                case ObjectType.Gold:
                     /*  
                      * CF(.)
                      * ADG
                      * BE(.)
                      */
-                    if ((x == this.Point.X && 
+                    if ((x == this.Point.X &&
                         (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // A / B / C
                         (x == this.Point.X + 1 &&
                         (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // D / E / F
