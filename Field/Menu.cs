@@ -16,7 +16,7 @@ namespace TeamWork.Field
 
         public static void StartMenu()
         {       
-            //If do not have INTRO_SOUND skip player part
+            //If do not have INTRO_SOUND skip media player part
             mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
             mediaPlayer.Play();
             Printing.WelcomeScreen();
@@ -29,7 +29,7 @@ namespace TeamWork.Field
                 {
                     Console.Clear();
                     Printing.StartMenu();
-                    //Missing part for scapceship selection screen
+                    //Missing part for spaceship selection screen
                     validInput = false;
                 }
 
