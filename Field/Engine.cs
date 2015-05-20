@@ -209,12 +209,18 @@ namespace TeamWork.Field
                         {
                             playMeteorEffect = true;
                             _meteorits[i].ClearObject();
+                            _meteorits[i].GotHit = true;
+                            newMeteorits.Add((_meteorits[i]));
+                            
                         }
                         else
                         {
-                            _meteorits[i].Point.X -= _meteorits[i].Speed;
-                            _meteorits[i].PrintObject();
-                            newMeteorits.Add((_meteorits[i]));
+                            _meteorits[i].MoveObject();
+                            if (!_meteorits[i].toBeDeleted)
+                            {
+                                _meteorits[i].PrintObject();
+                                newMeteorits.Add((_meteorits[i]));
+                            }
                         }
                     }
                 }

@@ -22,7 +22,7 @@ namespace TeamWork.Field
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
 
-            while (menuActive)
+            while (!menuActive)
             {
 
                 if (validInput)
