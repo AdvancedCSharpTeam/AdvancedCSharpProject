@@ -459,21 +459,21 @@ namespace TeamWork.Field
         /// </summary>
         public static void EnterName()
         {
-            DrawAt(25, 1, @"         ___---___", ConsoleColor.Gray);
-            DrawAt(25, 2, @"      .--\        --. ", ConsoleColor.Gray);
-            DrawAt(25, 3, @"    ./.;_.\     __/~ \.", ConsoleColor.Gray);
-            DrawAt(25, 4, @"   /;  / `-'  __\    . \", ConsoleColor.Gray);
-            DrawAt(25, 5, @"  / ,--'     / .   .;   \", ConsoleColor.Gray);
-            DrawAt(25, 6, @" | .|       /       __   |", ConsoleColor.Gray);
-            DrawAt(25, 7, @"|__/    __ |  . ;   \ | . |", ConsoleColor.Gray);
-            DrawAt(25, 8, @"|      /  \\_    . ;| \___|", ConsoleColor.Gray);
-            DrawAt(15, 9, @" ___ _  _ _____ ___ ___   _  _   _   __  __ ___ ", ConsoleColor.Green);
+            DrawAt(25, 5, @"         ___---___", ConsoleColor.Gray);
+            DrawAt(25, 6, @"      .--\        --. ", ConsoleColor.Gray);
+            DrawAt(25, 7, @"    ./.;_.\     __/~ \.", ConsoleColor.Gray);
+            DrawAt(25, 8, @"   /;  / `-'  __\    . \", ConsoleColor.Gray);
+            DrawAt(25, 9, @"  / ,--'     / .   .;   \", ConsoleColor.Gray);
+            DrawAt(25, 10, @" | .|       /       __   |", ConsoleColor.Gray);
+            DrawAt(25, 11, @"|__/    __ |  . ;   \ | . |", ConsoleColor.Gray);
+            DrawAt(25, 12, @"|      /  \\_    . ;| \___|", ConsoleColor.Gray);
+            DrawAt(15, 13, @" ___ _  _ _____ ___ ___   _  _   _   __  __ ___ ", ConsoleColor.Green);
             Thread.Sleep(250);
-            DrawAt(15, 10,@"| __| \| |_   _| __| _ \ | \| | /_\ |  \/  | __|", ConsoleColor.Green);
+            DrawAt(15, 14,@"| __| \| |_   _| __| _ \ | \| | /_\ |  \/  | __|", ConsoleColor.Green);
             Thread.Sleep(250);
-            DrawAt(15, 11, @"| _|| .` | | | | _||   / | .` |/ _ \| |\/| | _|", ConsoleColor.Green);
+            DrawAt(15, 15, @"| _|| .` | | | | _||   / | .` |/ _ \| |\/| | _|", ConsoleColor.Green);
             Thread.Sleep(250);
-            DrawAt(15, 12, @"|___|_|\_| |_| |___|_|_\ |_|\_/_/ \_\_|  |_|___|", ConsoleColor.Green);
+            DrawAt(15, 16, @"|___|_|\_| |_| |___|_|_\ |_|\_/_/ \_\_|  |_|___|", ConsoleColor.Green);
             
 
         }

@@ -13,7 +13,8 @@ namespace TeamWork.Objects
             Small,
             Silver,
             Gold,
-            Lenghty
+            Lenghty,
+            Quadcopter
         }
 
         private ObjectType objectType;
@@ -145,7 +146,28 @@ namespace TeamWork.Objects
                         PrintAndClearExplosion(false, c);
                     }
                     break;
+                case ObjectType.Quadcopter:
+                    if (!this.GotHit)
+                    {
+                        Printing.DrawAt(this.Point.X, Point.Y - 2, @"   __       __");
+                        Printing.DrawAt(this.Point.X, Point.Y - 1, @"  _\_\_____/_|");
+                        Printing.DrawAt(this.Point, @"<[__\_\_-----<");
+                        Printing.DrawAt(this.Point.X, Point.Y + 1, @"     oo'");
 
+                    }
+                    else
+                    {
+                        upLeft = this.Point - diagonalInc * Frames;
+                        upRight = this.Point - diagonalDec * Frames;
+                        downRight = this.Point + diagonalInc * Frames;
+                        downLeft = this.Point + diagonalDec * Frames;
+                        PrintAndClearExplosion(false);
+                    }
+                    break;
+    //  __       __
+    //| __\_\_____/_|
+    //<[___\_\_-----<
+    //|   oo'
             }
         }
 
@@ -274,6 +296,28 @@ namespace TeamWork.Objects
                     }   
 	                #endregion
                     break;
+                case ObjectType.Quadcopter:
+                    if (!GotHit)
+                    {
+                        Printing.DrawAt(this.Point.X,Point.Y - 2, @"              ");
+                        Printing.DrawAt(this.Point.X,Point.Y - 1, @"              ");
+                        Printing.DrawAt(this.Point.X,Point.Y, @"              ");
+                        Printing.DrawAt(this.Point.X,Point.Y + 1, @"        ");
+                    }
+                    else
+                    {
+                        upLeft = this.Point - diagonalInc * Frames;
+                        upRight = this.Point - diagonalDec * Frames;
+                        downRight = this.Point + diagonalInc * Frames;
+                        downLeft = this.Point + diagonalDec * Frames;
+                        PrintAndClearExplosion(true);
+                        if (Frames == 5)
+                        {
+                            this.toBeDeleted = true;
+                        }
+                        Frames++;
+                    }
+                    break;
 
             }
         }
@@ -390,6 +434,13 @@ namespace TeamWork.Objects
                      * ABCD
                      */
                     if ((x == this.Point.X && y == this.Point.Y) || // A
+                        (y == this.Point.Y &&
+                        (x == this.Point.X || x == this.Point.X + 1 || // B / C / D
+                        x == this.Point.X + 2 || x == this.Point.X + 3)))
+                        return true;
+                    return false;
+                case ObjectType.Quadcopter:
+                   if ((x == this.Point.X && y == this.Point.Y) || // A
                         (y == this.Point.Y &&
                         (x == this.Point.X || x == this.Point.X + 1 || // B / C / D
                         x == this.Point.X + 2 || x == this.Point.X + 3)))
