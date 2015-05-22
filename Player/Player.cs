@@ -96,13 +96,13 @@ namespace TeamWork
         public void IncreasePoints()
         {
             this.Score++;
-            Printing.Player.Level = Printing.Player.Score/20 + 1;
+            Printing.Player.Level = Printing.Player.Score/ 50 + 1;
         }
 
         public void IncreasePoints(int points)
         {
             this.Score += points;
-            Printing.Player.Level = Printing.Player.Score / 20 + 1;
+            Printing.Player.Level = Printing.Player.Score / 50 + 1;
         }
 
         public void DecreaseLives()

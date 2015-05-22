@@ -170,13 +170,13 @@ namespace TeamWork.Field
                     _bullets[i].ClearObject();
                 }
                 // Clear bullet at its current position
-                if (_bullets[i].Point.X + _bullets[i].Speed + 2 >= Engine.WindowWidth)
+                if (_bullets[i].Point.X + _bullets[i].Speed + 1 >= Engine.WindowWidth)
                 {
                     // If the bullet exceeds sceen size, dont add it to new Bullets list
                 }
                 else
                 {
-                    _bullets[i].Point.X += _bullets[i].Speed + 2;
+                    _bullets[i].Point.X += _bullets[i].Speed + 1;
                     _bullets[i].PrintObject(); // Print the bullets at their new position;
                     newBullets.Add((_bullets[i]));
                 }
