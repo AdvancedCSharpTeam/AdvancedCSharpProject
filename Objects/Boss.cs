@@ -79,6 +79,7 @@ namespace TeamWork.Objects
         {
             if (!entryAnimationPlayed)
             {
+
                 BossEntryAnimation();
                 entryAnimationPlayed = true;
             }

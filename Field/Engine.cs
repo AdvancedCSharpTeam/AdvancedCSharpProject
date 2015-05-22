@@ -355,7 +355,9 @@ namespace TeamWork.Field
                     soundFX2.Play();
                     playEffect = false;
                 }
+                Thread.Sleep(5);
             }
+            
         }
 
         #endregion
