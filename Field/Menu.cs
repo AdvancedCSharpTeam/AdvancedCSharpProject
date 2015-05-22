@@ -61,6 +61,10 @@ namespace TeamWork.Field
                 default:
                     return false;
             }
+        }
+        public static void EntryStoryLine()
+        {
+
         }      
     }
 }
