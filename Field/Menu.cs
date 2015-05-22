@@ -16,18 +16,16 @@ namespace TeamWork.Field
 
         public static void StartMenu()
         {       
-            //If do not have INTRO_SOUND skip media player part
-           // mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
-           // mediaPlayer.Play();
-           // Printing.WelcomeScreen();
-           // Thread.Sleep(3500);
-            while (!menuActive)
+            mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
+            mediaPlayer.Play();
+            Printing.WelcomeScreen();
+            Thread.Sleep(2000);
+            while (menuActive)
             {
                 if (validInput)
                 {
                     Console.Clear();
                     Printing.StartMenu();
-                    //Missing part for spaceship selection screen
                     validInput = false;
                 }
 
@@ -64,7 +62,21 @@ namespace TeamWork.Field
         }
         public static void EntryStoryLine()
         {
-
-        }      
+            Printing.LoadStory();
+            Thread.Sleep(2500);
+            Console.Clear();
+            Printing.LoadContent();
+            Thread.Sleep(3000);
+            Console.Clear();
+           
+            //Planet "Murth" was completely destroyed 
+            //nothing but ashes remains,
+            //you are our last hope.
+            //Your goal is to find and destroy evil aliens,
+            //but be prepared they are very strong enemies.
+            //Good luck on your new and though adventure.
+            //And don't be late for the public defence
+            //in SoftUni. 
+        }
     }
 }

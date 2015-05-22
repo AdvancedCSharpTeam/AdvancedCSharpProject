@@ -30,7 +30,8 @@ namespace TeamWork.Field
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
             EffectsThread = new Thread(SoundEffects);
-            EffectsThread.Start();            
+            EffectsThread.Start();
+            Menu.EntryStoryLine();
             Printing.EnterName();
             TakeName();
             Thread.Sleep(1000);
