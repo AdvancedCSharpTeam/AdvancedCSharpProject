@@ -404,7 +404,7 @@ namespace TeamWork.Field
         private void TakeName()
         {
             Console.WriteLine();
-            Console.Write("\n\t\t\t\tName:");
+            Console.Write("\n\t\t\t\t Name:");
             string name = Console.ReadLine();
             if (String.IsNullOrEmpty(name) || name.Length >= 10)
             {

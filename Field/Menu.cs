@@ -67,16 +67,7 @@ namespace TeamWork.Field
             Console.Clear();
             Printing.LoadContent();
             Thread.Sleep(3000);
-            Console.Clear();
-           
-            //Planet "Murth" was completely destroyed 
-            //nothing but ashes remains,
-            //you are our last hope.
-            //Your goal is to find and destroy evil aliens,
-            //but be prepared they are very strong enemies.
-            //Good luck on your new and though adventure.
-            //And don't be late for the public defence
-            //in SoftUni. 
+            Console.Clear();          
         }
     }
 }
