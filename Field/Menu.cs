@@ -21,10 +21,8 @@ namespace TeamWork.Field
             mediaPlayer.Play();
             Printing.WelcomeScreen();
             Thread.Sleep(3500);
-
             while (menuActive)
             {
-
                 if (validInput)
                 {
                     Console.Clear();

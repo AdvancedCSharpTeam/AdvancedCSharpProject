@@ -378,8 +378,7 @@ namespace TeamWork.Field
             else
             {
                 Printing.Player.setName(name);
-                Console.Clear();
-                musicThread.Abort();
+                Console.Clear();               
             }
         }
 
