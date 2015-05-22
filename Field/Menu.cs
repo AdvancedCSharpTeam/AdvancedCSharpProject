@@ -17,11 +17,11 @@ namespace TeamWork.Field
         public static void StartMenu()
         {       
             //If do not have INTRO_SOUND skip media player part
-            mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
-            mediaPlayer.Play();
-            Printing.WelcomeScreen();
-            Thread.Sleep(3500);
-            while (menuActive)
+           // mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
+           // mediaPlayer.Play();
+           // Printing.WelcomeScreen();
+           // Thread.Sleep(3500);
+            while (!menuActive)
             {
                 if (validInput)
                 {

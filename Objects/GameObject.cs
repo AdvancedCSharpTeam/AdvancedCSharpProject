@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Linq;
 using TeamWork.Field;
 
 namespace TeamWork.Objects
@@ -18,6 +21,7 @@ namespace TeamWork.Objects
         }
 
         private ObjectType objectType;
+        public int life;
         public GameObject()
         {
             base.Speed = 1;
@@ -39,7 +43,41 @@ namespace TeamWork.Objects
             base.Point = point;
             objectType = (ObjectType)type;
         }
-        public bool toBeDeleted = false;
+
+        public GameObject(int type)
+        {
+            base.Speed = 1;
+            objectType = (ObjectType)type;
+            switch (objectType)
+            {
+                case ObjectType.Normal:
+                    life = 2;
+                    base.Point = new Point2D(Engine.WindowWidth - 2, Engine.rnd.Next(6, Engine.WindowHeight - 3));
+                    break;
+                case ObjectType.Small:
+                    life = 1;
+                    base.Point = new Point2D(Engine.WindowWidth - 1, Engine.rnd.Next(4, Engine.WindowHeight - 2));
+                    break;
+                case ObjectType.Silver:
+                    life = 4;
+                    base.Point = new Point2D(Engine.WindowWidth - 3, Engine.rnd.Next(3, Engine.WindowHeight - 4));
+                    break;
+                case ObjectType.Gold:
+                    life = 3;
+                    base.Point = new Point2D(Engine.WindowWidth - 3, Engine.rnd.Next(3, Engine.WindowHeight - 4));
+                    break;
+                case ObjectType.Lenghty:
+                    life = 3;
+                    base.Point = new Point2D(Engine.WindowWidth - 3, Engine.rnd.Next(4, Engine.WindowHeight - 3));
+                    break;
+                case ObjectType.Quadcopter:
+                    life = 7;
+                    base.Point = new Point2D(Engine.WindowWidth - 2, Engine.rnd.Next(6, Engine.WindowHeight - 4));
+                    break;
+            }
+        }
+
+        public bool toBeDeleted;
         private bool Moveable = true;
         public override string ToString()
         {
@@ -56,6 +94,8 @@ namespace TeamWork.Objects
         private Point2D upLeft;
         private Point2D downLeft;
         private Point2D downRight;
+        private int projectileCounter = 1;
+        private int projectileChance = Engine.rnd.Next(20, 50);
         public bool GotHit = false;
         public void PrintObject()
         {
@@ -147,13 +187,105 @@ namespace TeamWork.Objects
                     }
                     break;
                 case ObjectType.Quadcopter:
+                    
                     if (!this.GotHit)
                     {
-                        Printing.DrawAt(this.Point.X, Point.Y - 2, @"   __       __");
-                        Printing.DrawAt(this.Point.X, Point.Y - 1, @"  _\_\_____/_|");
-                        Printing.DrawAt(this.Point, @"<[__\_\_-----<");
-                        Printing.DrawAt(this.Point.X, Point.Y + 1, @"     oo'");
+                        if (projectileCounter % projectileChance == 0)
+                        {
+                            Engine._objectProjectiles.Add(new GameObject(new Point2D(this.Point.X - 1,this.Point.Y),0));
+                            projectileCounter++;
+                        }
+                        else
+                        {
+                            projectileCounter++;
+                        }
 
+                        #region Quadcopter Entry animation
+
+                        if (this.Point.X + 2 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point, @"<[");
+                        }
+                        else if (this.Point.X + 3 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X, Point.Y - 1, @"_");
+                            Printing.DrawAt(this.Point, @"<[_");
+                        }
+                        else if (this.Point.X + 4 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\");
+                            Printing.DrawAt(this.Point, @"<[__");
+                        }
+                        else if (this.Point.X + 5 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_");
+                            Printing.DrawAt(this.Point, @"<[__\");
+                        }
+                        else if (this.Point.X + 6 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__ ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\");
+                            Printing.DrawAt(this.Point, @"<[__\_");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"o");
+                        }
+                        else if (this.Point.X + 7 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__  ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\_");
+                            Printing.DrawAt(this.Point, @"<[__\_\");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo");
+                        }
+                        else if (this.Point.X + 8 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__   ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\__");
+                            Printing.DrawAt(this.Point, @"<[__\_\_");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else if (this.Point.X + 9 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__    ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\___");
+                            Printing.DrawAt(this.Point, @"<[__\_\_-");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else if (this.Point.X + 10 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__     ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\____");
+                            Printing.DrawAt(this.Point, @"<[__\_\_--");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else if (this.Point.X + 11 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__      ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\_____");
+                            Printing.DrawAt(this.Point, @"<[__\_\_---");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else if (this.Point.X + 12 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__       ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\_____/");
+                            Printing.DrawAt(this.Point, @"<[__\_\_----");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else if (this.Point.X + 13 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"__       _");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"_\_\_____/_");
+                            Printing.DrawAt(this.Point, @"<[__\_\_-----");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"oo'");
+                        }
+                        else
+                        {
+                            Printing.DrawAt(this.Point.X, Point.Y - 2, @"   __       __");
+                            Printing.DrawAt(this.Point.X, Point.Y - 1, @"  _\_\_____/_|");
+                            Printing.DrawAt(this.Point, @"<[__\_\_-----<");
+                            Printing.DrawAt(this.Point.X, Point.Y + 1, @"     oo'");
+                        } 
+                        #endregion
                     }
                     else
                     {
@@ -171,6 +303,7 @@ namespace TeamWork.Objects
             }
         }
 
+       
         /// <summary>
         /// Clear GameObject based on its type
         /// </summary>
@@ -199,6 +332,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
+                            Printing.Player.IncreasePoints(2);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
                     }  
@@ -221,6 +358,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             toBeDeleted = true;
+                            Printing.Player.IncreasePoints(1);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
                     }  
@@ -246,6 +387,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
+                            Printing.Player.IncreasePoints(5);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
                     } 
@@ -269,6 +414,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
+                            Printing.Player.IncreasePoints(4);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
                     } 
@@ -291,18 +440,102 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
+                            Printing.Player.IncreasePoints(3);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
                     }   
 	                #endregion
                     break;
                 case ObjectType.Quadcopter:
-                    if (!GotHit)
+                    #region Quadcopter object clear and breaking effect
+		            if (!GotHit)
                     {
-                        Printing.DrawAt(this.Point.X,Point.Y - 2, @"              ");
-                        Printing.DrawAt(this.Point.X,Point.Y - 1, @"              ");
-                        Printing.DrawAt(this.Point.X,Point.Y, @"              ");
-                        Printing.DrawAt(this.Point.X,Point.Y + 1, @"        ");
+                        if (this.Point.X + 2 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point, @"  ");
+                        }
+                        else if (this.Point.X + 3 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X, Point.Y - 1, @" ");
+                            Printing.DrawAt(this.Point, @"   ");
+                        }
+                        else if (this.Point.X + 4 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"  ");
+                            Printing.DrawAt(this.Point, @"    ");
+                        }
+                        else if (this.Point.X + 5 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"  ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"   ");
+                            Printing.DrawAt(this.Point, @"     ");
+                        }
+                        else if (this.Point.X + 6 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"   ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"    ");
+                            Printing.DrawAt(this.Point, @"      ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @" ");
+                        }
+                        else if (this.Point.X + 7 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"    ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"     ");
+                            Printing.DrawAt(this.Point, @"       ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"  ");
+                        }
+                        else if (this.Point.X + 8 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"     ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"      ");
+                            Printing.DrawAt(this.Point, @"        ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else if (this.Point.X + 9 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"      ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"       ");
+                            Printing.DrawAt(this.Point, @"         ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else if (this.Point.X + 10 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"       ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"        ");
+                            Printing.DrawAt(this.Point, @"          ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else if (this.Point.X + 11 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"        ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"         ");
+                            Printing.DrawAt(this.Point, @"           ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else if (this.Point.X + 12 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"         ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"          ");
+                            Printing.DrawAt(this.Point, @"            ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else if (this.Point.X + 13 >= Engine.WindowWidth)
+                        {
+                            Printing.DrawAt(this.Point.X + 3, Point.Y - 2, @"          ");
+                            Printing.DrawAt(this.Point.X + 2, Point.Y - 1, @"           ");
+                            Printing.DrawAt(this.Point, @"             ");
+                            Printing.DrawAt(this.Point.X + 5, Point.Y + 1, @"   ");
+                        }
+                        else
+                        {
+                            Printing.DrawAt(this.Point.X, Point.Y - 2, @"              ");
+                            Printing.DrawAt(this.Point.X, Point.Y - 1, @"              ");
+                            Printing.DrawAt(this.Point, @"              ");
+                            Printing.DrawAt(this.Point.X, Point.Y + 1, @"        ");
+                        } 
                     }
                     else
                     {
@@ -314,9 +547,14 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
+                            Printing.Player.IncreasePoints(10);
+
+                            Interface.Table();
+                            Interface.UIDescription();
                         }
                         Frames++;
-                    }
+                    } 
+	                #endregion
                     break;
 
             }
@@ -440,10 +678,17 @@ namespace TeamWork.Objects
                         return true;
                     return false;
                 case ObjectType.Quadcopter:
-                   if ((x == this.Point.X && y == this.Point.Y) || // A
-                        (y == this.Point.Y &&
-                        (x == this.Point.X || x == this.Point.X + 1 || // B / C / D
-                        x == this.Point.X + 2 || x == this.Point.X + 3)))
+                   if (
+                        (x == this.Point.X && y == this.Point.Y) 
+                        ||
+                        (y == this.Point.Y && (x == this.Point.X || x == this.Point.X + 1 || x == this.Point.X + 2 || x == this.Point.X + 3))
+                        ||
+                        (y == this.Point.Y + 1 && (x == this.Point.X || x == this.Point.X + 1 || x == this.Point.X + 2 || x == this.Point.X + 3))
+                        ||
+                        (y == this.Point.Y - 1 && (x == this.Point.X || x == this.Point.X + 1 || x == this.Point.X + 2 || x == this.Point.X + 3))
+                        ||
+                        (y == this.Point.Y - 2 && (x == this.Point.X+3 || x == this.Point.X + 4 || x == this.Point.X + 5))
+                       )
                         return true;
                     return false;
                 default:

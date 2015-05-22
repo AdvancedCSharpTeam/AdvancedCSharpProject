@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.IO;
 using System.Text;
 using TeamWork.Objects;
+using System.Linq;
 
 namespace TeamWork.Field
 {
@@ -75,8 +76,8 @@ namespace TeamWork.Field
                     boss = new Boss(0);
                 }
             }
-
-            MoveAndPrintBullets();
+            ProjectileMoveAndPrint();
+            ProjectileCollisionCheck();
             if (BossActive)
             {
                 DrawAndMoveMeteor();
@@ -126,46 +127,65 @@ namespace TeamWork.Field
                     break;
                 // Create a new bullet object
                 case ConsoleKey.Spacebar:
-                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1)));
+                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1),0));
                     playEffect = true;
                     break;
             }
         }
 
-        #region Player Bullets
+        #region Projectiles
 
+        public static List<GameObject> _objectProjectiles = new List<GameObject>();
         private List<GameObject> _bullets = new List<GameObject>(); // Stores all bullets fired
-        /// <summary>
-        /// Print and move the bullets
-        /// </summary>
-        private void MoveAndPrintBullets()
+        private void ProjectileMoveAndPrint()
         {
-            Printing.DrawAt(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1, '=', ConsoleColor.DarkCyan); // Fire effect lol
+            List<GameObject> newProjectiles = new List<GameObject>();
             List<GameObject> newBullets = new List<GameObject>(); //Stores the new coordinates of the bullets
+            for (int i = 0; i < _objectProjectiles.Count; i++)
+            {
+                if (_objectProjectiles[i].Point.X >= 0)
+                {
+                    _objectProjectiles[i].ClearObject();
+                }
 
+                if (_objectProjectiles[i].Point.X - _objectProjectiles[i].Speed - 2 <= 0)
+                {
+                    // If the Projectile exceeds sceen size, dont add it to new Projectiles list
+                }
+                else
+                {
+                    _objectProjectiles[i].Point.X -= _objectProjectiles[i].Speed + 2;
+                    _objectProjectiles[i].PrintObject();
+                    newProjectiles.Add((_objectProjectiles[i]));
+                }
+            }
+
+            Printing.DrawAt(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1, '=', ConsoleColor.DarkCyan); // Fire effect lol
+            
             for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
             {
                 if (_bullets[i].Point.X <= Engine.WindowWidth)
                 {
-                   _bullets[i].ClearObject();
-                }  
-                 // Clear bullet at its current position
+                    _bullets[i].ClearObject();
+                }
+                // Clear bullet at its current position
                 if (_bullets[i].Point.X + _bullets[i].Speed + 2 >= Engine.WindowWidth)
                 {
                     // If the bullet exceeds sceen size, dont add it to new Bullets list
                 }
                 else
                 {
-                    _bullets[i].Point.X += _bullets[i].Speed + 1;
+                    _bullets[i].Point.X += _bullets[i].Speed + 2;
                     _bullets[i].PrintObject(); // Print the bullets at their new position;
                     newBullets.Add((_bullets[i]));
                 }
             }
+            _objectProjectiles = newProjectiles;
             _bullets = newBullets; // Overwrite global bullets list, with newBullets list
         }
-
+       
         #endregion
-
+        
         #region Object Generator
 
         /// <summary>
@@ -173,12 +193,12 @@ namespace TeamWork.Field
         /// </summary>
         private List<GameObject> _meteorits = new List<GameObject>();
         private int counter = 0; // Just a counter
-        public int chance = 24; // Chance variable 1 per # loops spawn a meteor
+        public int chance = 40; // Chance variable 1 per # loops spawn a meteor
         private void GenerateMeteorit()
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(new Point2D(WindowWidth - 3, rnd.Next(6, WindowHeight - 4)), rnd.Next(1, 6)));
+                _meteorits.Add(new GameObject(rnd.Next(6, 7)));
                 counter++;
             }
             else
@@ -207,9 +227,14 @@ namespace TeamWork.Field
                         // Collision handling
                         if (BulletCollision(_meteorits[i]) || ShipCollision(_meteorits[i])) // Bullet and ship collision check
                         {
-                            playMeteorEffect = true;
-                            _meteorits[i].ClearObject();
-                            _meteorits[i].GotHit = true;
+                           
+                            if (--_meteorits[i].life == 0)
+                            {
+                                _meteorits[i].ClearObject();
+                                playMeteorEffect = true;
+                                _meteorits[i].GotHit = true;
+                            }
+                            
                             newMeteorits.Add((_meteorits[i]));
                             
                         }
@@ -244,11 +269,7 @@ namespace TeamWork.Field
                 {
                     Printing.ClearAtPosition(_bullets[i].Point);
                     _bullets.RemoveAt(i);
-
-                    Printing.Player.IncreasePoints();
-
-                    Interface.Table();
-                    Interface.UIDescription();
+                    
                     return true;
                 }
             }
@@ -276,6 +297,23 @@ namespace TeamWork.Field
                 return true;
             }
             return false;
+        }
+
+        private void ProjectileCollisionCheck()
+        {
+            var hits =
+                _objectProjectiles.Select((x, i) => new { Value = x, Index = i })
+                    .Where(x => Printing.Player.ShipCollided(x.Value.Point)).ToList();
+
+            foreach (var hit in hits)
+            {
+                hit.Value.ClearObject();
+                _objectProjectiles.RemoveAt(hit.Index);
+                Printing.Player.Lives--;
+                Interface.Table();
+                Interface.UIDescription();
+
+            }
         }
         #endregion
 
@@ -355,7 +393,9 @@ namespace TeamWork.Field
                     soundFX2.Play();
                     playEffect = false;
                 }
+                Thread.Sleep(5);
             }
+            
         }
 
         #endregion
