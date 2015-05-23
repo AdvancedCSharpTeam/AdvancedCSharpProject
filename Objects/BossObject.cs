@@ -254,7 +254,7 @@ namespace TeamWork.Objects
                         Console.ResetColor();
                         for (int i = 0; i < 53; i++)
                         {
-                            if (Printing.Player.ShipCollided(Point.X - 50 + i, Point.Y))
+                            if (Engine.Player.ShipCollided(Point.X - 50 + i, Point.Y))
                             {
                                 break;
                             }
@@ -339,9 +339,9 @@ namespace TeamWork.Objects
                     Printing.DrawAt(this.Point.X, this.Point.Y, ' ');
                     Printing.DrawAt(this.Point.X, this.Point.Y + 1, ' ');
                     Printing.DrawAt(this.Point.X, this.Point.Y - 1, ' ');
-                    if (Printing.Player.ShipCollided(this.Point) ||
-                        Printing.Player.ShipCollided(Point.X, Point.Y + 1)||
-                        Printing.Player.ShipCollided(Point.X, Point.Y - 1))
+                    if (Engine.Player.ShipCollided(this.Point) ||
+                        Engine.Player.ShipCollided(Point.X, Point.Y + 1)||
+                        Engine.Player.ShipCollided(Point.X, Point.Y - 1))
                     {
                         this.Point.X += 1000;
                     }
@@ -351,7 +351,7 @@ namespace TeamWork.Objects
                 case ObjectType.Rocket:
                     #region Rocket Clear
                     Printing.DrawAt(this.Point, "  ");
-                    if (Printing.Player.ShipCollided(this.Point))
+                    if (Engine.Player.ShipCollided(this.Point))
                     {
                         this.Point.X += 1000;
                     }
@@ -388,19 +388,19 @@ namespace TeamWork.Objects
                     {
                         Point2D upRight = this.Point - diagonalDec * Frames;
                         if (mineHit) upRight.X += 1000;
-                        if (Printing.Player.ShipCollided(upRight)) mineHit = true;
+                        if (Engine.Player.ShipCollided(upRight)) mineHit = true;
 
                         Point2D upLeft = this.Point + diagonalDec * Frames;
                         if (mineHit2) upLeft.X += 1000;
-                        if (Printing.Player.ShipCollided(upLeft)) mineHit2 = true;
+                        if (Engine.Player.ShipCollided(upLeft)) mineHit2 = true;
 
                         Point2D downLeft = this.Point - diagonalInc * Frames;
                         if (mineHit3) downLeft.X += 1000;
-                        if (Printing.Player.ShipCollided(downLeft)) mineHit3 = true;
+                        if (Engine.Player.ShipCollided(downLeft)) mineHit3 = true;
 
                         Point2D downRight = this.Point + diagonalInc * Frames;
                         if (mineHit4) downRight.X += 1000;
-                        if (Printing.Player.ShipCollided(downRight)) mineHit4 = true;
+                        if (Engine.Player.ShipCollided(downRight)) mineHit4 = true;
 
                         if ((upLeft.X > 1 && upLeft.X < 79) && (upLeft.Y > 1 && upLeft.Y < 30))
                         {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
 using TeamWork.Field;
 
 namespace TeamWork.Objects
@@ -328,10 +324,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
-                            Printing.Player.IncreasePoints(2);
+                            Engine.Player.IncreasePoints(2);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     }  
@@ -354,10 +350,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             toBeDeleted = true;
-                            Printing.Player.IncreasePoints(1);
+                            Engine.Player.IncreasePoints(1);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     }  
@@ -383,10 +379,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
-                            Printing.Player.IncreasePoints(5);
+                            Engine.Player.IncreasePoints(5);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     } 
@@ -410,10 +406,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
-                            Printing.Player.IncreasePoints(4);
+                            Engine.Player.IncreasePoints(4);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     } 
@@ -436,10 +432,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
-                            Printing.Player.IncreasePoints(3);
+                            Engine.Player.IncreasePoints(3);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     }   
@@ -543,10 +539,10 @@ namespace TeamWork.Objects
                         if (Frames == 5)
                         {
                             this.toBeDeleted = true;
-                            Printing.Player.IncreasePoints(10);
+                            Engine.Player.IncreasePoints(10);
 
-                            Interface.Table();
-                            Interface.UIDescription();
+                            Menu.Table();
+                            Menu.UIDescription();
                         }
                         Frames++;
                     } 

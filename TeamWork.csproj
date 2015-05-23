@@ -45,9 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Field\Engine.cs" />
-    <Compile Include="Field\Interface.cs" />
     <Compile Include="Field\Menu.cs" />
-    <Compile Include="Field\SamplePatterns.cs" />
     <Compile Include="Objects\Boss.cs" />
     <Compile Include="Objects\BossObject.cs" />
     <Compile Include="Objects\Entity.cs" />

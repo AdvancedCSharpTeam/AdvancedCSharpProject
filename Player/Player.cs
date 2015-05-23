@@ -10,6 +10,7 @@ namespace TeamWork
         private int score = 0;
         private int level = 1;
 
+        public static Point2D PlayerPoint = new Point2D(10, 15);
 
         public Player()
         {
@@ -96,13 +97,13 @@ namespace TeamWork
         public void IncreasePoints()
         {
             this.Score++;
-            Printing.Player.Level = Printing.Player.Score/ 50 + 1;
+            Engine.Player.Level = Engine.Player.Score/ 50 + 1;
         }
 
         public void IncreasePoints(int points)
         {
             this.Score += points;
-            Printing.Player.Level = Printing.Player.Score / 50 + 1;
+            Engine.Player.Level = Engine.Player.Score / 50 + 1;
         }
 
         public void DecreaseLives()
@@ -151,10 +152,10 @@ namespace TeamWork
                 (x == Point.X + 3 && y == Point.Y - 1) ||
                 (x == Point.X + 1 && y == Point.Y + 1)) // Tail collision
             {
-                Printing.Player.DecreaseLives();
+                Engine.Player.DecreaseLives();
 
-                Interface.Table();
-                Interface.UIDescription();
+                Menu.Table();
+                Menu.UIDescription();
 
                 return true;
             }
@@ -169,23 +170,3 @@ namespace TeamWork
         }
     }
 }
-
-
-         //____
-         // \  \_________
-         //  \  ___ o o o\__
-         //  <=)_)_)_)______>",
-
-/*   ___       __  
-     |~~\_____/~~\__  
-      \______====== )--
-             |___/
-                
- 
- */
-
-//#   Helicopter                                       ___________
-//#   Praseodymium 59                                     _,Z__
-//#   praseodymium59@geocities.com                   X====)59\_\
-//#                                                       \___ _)
-//#                                                      --`--`--'

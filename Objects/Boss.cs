@@ -91,8 +91,8 @@ namespace TeamWork.Objects
                     bossGameObject.ClearObject();
                 }
                 BossDeathAnimation();
-                Printing.Player.IncreasePoints(90);
-                Interface.UIDescription();
+                Engine.Player.IncreasePoints(90);
+                Menu.UIDescription();
                 return;
             }
             int type = Engine.rnd.Next(0, 4);

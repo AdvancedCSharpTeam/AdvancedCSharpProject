@@ -1,115 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TeamWork.GameObject">
+  <Class Name="TeamWork.Field.Point2D">
     <Position X="6" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="TeamWork.Entity" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="5.312" Y="0.5" />
-        <Point X="5.312" Y="0.312" />
-        <Point X="5.875" Y="0.312" />
-        <Point X="5.875" Y="1.213" />
-        <Point X="6" Y="1.213" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\GameObject.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="TeamWork.Point2D">
-    <Position X="6" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAA4AEAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
       <FileName>Field\Point2D.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeamWork.Entity">
+  <Class Name="TeamWork.Objects.Entity">
     <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAgAAAAAAAAAABAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\Entity.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.346" />
   </Class>
   <Class Name="TeamWork.Field.Printing">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gARAkQAAAAEgAAABAIIAEAAAIAAAACAAIQAgAYNAAIg=</HashCode>
+      <HashCode>oAQAgAABAAAgAAABAIIgEAACAAAAAAADIAAAAABAAAw=</HashCode>
       <FileName>Field\Printing.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamWork.Player">
     <Position X="2.5" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="TeamWork.Entity" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="4.438" Y="0.5" />
-        <Point X="4.438" Y="0.377" />
-        <Point X="4.123" Y="0.377" />
-        <Point X="4.123" Y="2.845" />
-        <Point X="4" Y="2.845" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAACAgAAAAIAQQAAAMAAABLQAAAAABEAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAACAgAAAAIAQQAAAMAAABLQIAAAABEAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TeamWork.Engine">
-    <Position X="9.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgIEgBCAgCASQAAAAAAAAAgARAACAAEQAAABQlAAAAA=</HashCode>
-      <FileName>Field\Engine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TeamWork.Field.Interface">
-    <Position X="4.25" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Field\Interface.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Interface Name="TeamWork.IPlayer">
     <Position X="0.75" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="TeamWork.IEntity" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="4.938" Y="3.25" />
-        <Point X="4.938" Y="3.127" />
-        <Point X="4.186" Y="3.127" />
-        <Point X="4.186" Y="5.449" />
-        <Point X="2.373" Y="5.449" />
-        <Point X="2.373" Y="2.304" />
-        <Point X="2.25" Y="2.304" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAACAgAAAAAAQQAAAAAAABLQAAAAAAEAAA=</HashCode>
       <FileName>Player\IPlayer.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="TeamWork.IGameObject">
-    <Position X="6" Y="2" Width="1.5" />
-    <InheritanceLine Type="TeamWork.IEntity" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.562" Y="3.25" />
-        <Point X="5.562" Y="3.019" />
-        <Point X="5.878" Y="3.019" />
-        <Point X="5.878" Y="3.617" />
-        <Point X="6.688" Y="3.617" />
-        <Point X="6.688" Y="3.425" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\IGameObject.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="TeamWork.IEntity">
-    <Position X="4.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Objects\IEntity.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

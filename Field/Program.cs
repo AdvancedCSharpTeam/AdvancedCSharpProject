@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TeamWork.Field;
 
 
@@ -14,7 +10,14 @@ namespace TeamWork
         //private static Thread _musicThread;
         static void Main(string[] args)
         {
-            Engine.InitConsole();
+            
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.CursorVisible = false;
+            Console.WindowWidth = Engine.WindowWidth;
+            Console.BufferWidth = Engine.WindowWidth;
+            Console.WindowHeight = Engine.WindowHeight;
+            Console.BufferHeight = Engine.WindowHeight;
+        
             Engine eng = new Engine();
         }
     }

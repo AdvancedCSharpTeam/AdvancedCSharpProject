@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Windows.Media;
 
@@ -70,8 +67,91 @@ namespace TeamWork.Field
             Thread.Sleep(2500);
             Console.Clear();
             Printing.LoadContent();
-            Thread.Sleep(3000);
             Console.Clear();          
         }
+        public static void Table()
+        {
+            //  Top birder
+            for (int i = 0; i < 80; i++)
+            {
+                int nameBord = 14 + Engine.Player.Name.Length;
+                bool topBgPos = ((i <= 3) || (i >= nameBord && i < 38) || i > 41);
+                if (topBgPos)
+                {
+                    Printing.DrawAt(new Point2D(i, 0), '\u2591', ConsoleColor.DarkRed);
+                }
+            }
+            // Bottom border
+            for (int i = 0; i < 80; i++)
+            {
+                int liveBord = 13;
+                int scoreBord = 30;
+                if ((i <= 3) || (i > liveBord && i < scoreBord - 1) || i > scoreBord + 10)
+                {
+                    Printing.DrawAt(new Point2D(i, 30), '\u2591', ConsoleColor.DarkRed);           
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draw UI 
+        /// </summary>
+        public static void UIDescription()
+        {
+            string level = string.Format("{0}", Engine.Player.Level).PadLeft(2, '0');
+            string live = string.Format("Lives: ");     
+
+            string score = string.Format("Score: {0} ", Engine.Player.Score).PadLeft(3, '0');
+            string playerName = string.Format("Player: {0}", Engine.Player.Name);
+
+            Printing.DrawAt(new Point2D(5, 0), playerName, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(39, 0), level, ConsoleColor.DarkYellow);
+            Printing.DrawAt(new Point2D(5, 30), live, ConsoleColor.DarkYellow);
+            Printing.DrawHLineAt(11, 30, Engine.Player.Lives, '\u2665',ConsoleColor.Red); 
+            Printing.ClearAtPosition(11 + Engine.Player.Lives ,30);
+            Printing.DrawAt(new Point2D(30, 30), score, ConsoleColor.DarkYellow);
+        }
+
+        #region Highscore and Score Methods
+        //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
+        //Also adds all scores to the Scores.txt file
+        public static void SetHighscore()
+        {
+            string highscore = String.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}",
+                Engine.Player.Name, Engine.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+
+            string[] oldText = File.ReadAllText("Resources/Highscore.txt").Split();
+
+            string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
+            int oldHighScoreToInt = Int32.Parse(oldHighScore);
+
+            if (oldHighScoreToInt < Engine.Player.Score)
+                File.WriteAllText("Resources/Highscore.txt", highscore);
+
+            string currentScores = File.ReadAllText("Resources/Scores.txt");
+            highscore = String.Format("Player {0}, Score {1}, Time Achieved: {2} / {3} / {4}",
+                Engine.Player.Name, Engine.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+            currentScores += "#" + highscore + @"
+";
+            File.WriteAllText("Scores.txt", currentScores);
+        }
+        public static void PrintHighscore()
+        {
+            string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
+            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
+            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
+
+            string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
+            int y = 15;
+            int counter = 0;
+            for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
+            {
+                y++;
+                counter++;
+                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
+            }
+        }
+        #endregion
     }
 }

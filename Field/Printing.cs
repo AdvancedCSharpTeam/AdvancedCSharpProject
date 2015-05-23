@@ -6,12 +6,6 @@ namespace TeamWork.Field
 {
     public static class Printing
     {
-        public static Player Player = new Player();
-
-        public static Point2D PlayerPoint = new Point2D(10, 15);
-        public static Point2D GameFieldRightSide = new Point2D(60, 0);
-        public static Point2D MenuField = new Point2D(75, 4);
-       
         #region Printing Methods
 
         /// <summary>
@@ -231,7 +225,6 @@ namespace TeamWork.Field
             DrawRectangleAt(point.X,point.Y, size, obj, clr);
         }
 
-        #endregion
 
         /// <summary>
         /// Drawing given string character by character with a sleep between each one
@@ -248,9 +241,9 @@ namespace TeamWork.Field
             if (reverse)
             {
                 x = x + str.Length - 1;
-                for (int i = str.Length-1; i >= 0; i--)
+                for (int i = str.Length - 1; i >= 0; i--)
                 {
-                    DrawAt(x,y,str[i],clr);
+                    DrawAt(x, y, str[i], clr);
                     x--;
                     Thread.Sleep(sleep);
                 }
@@ -265,6 +258,9 @@ namespace TeamWork.Field
                 }
             }
         }
+
+        #endregion
+
         #region Grphics
         /// <summary>
         /// Draw High Score screen
@@ -310,7 +306,7 @@ namespace TeamWork.Field
             DrawStringCharByChar(25, 9, @"|___/", 5, false, ConsoleColor.Magenta);
             Thread.Sleep(550);
             DrawAt(28, 28, @"(B)ack to Mine Menu", ConsoleColor.Yellow);
-            Engine.PrintHighscore();
+            Menu.PrintHighscore();
             while (true)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -648,7 +644,7 @@ namespace TeamWork.Field
             DrawAt(1, 24, @"      ~--___     ___ --~                                                  ", ConsoleColor.Cyan);
             DrawAt(1, 25, @"           ~--__--~                                                        ", ConsoleColor.Cyan);
             DrawAt(20, 27, @"Downloading Content", ConsoleColor.Cyan);
-            DrawHLineAt(40, 27, 28, '\u2591', 70, false, ConsoleColor.White);
+            DrawHLineAt(40, 27, 28, '\u2591', 100, false, ConsoleColor.White);
             DrawAt(35, 22, @"Tip: W,S,D,A - to control the ship,", ConsoleColor.Green);
             DrawAt(45, 23, @"Space - to fire", ConsoleColor.Green);
         }

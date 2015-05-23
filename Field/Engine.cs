@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Media;
 using System.Windows.Media;
-using System.IO;
-using System.Text;
 using TeamWork.Objects;
 using System.Linq;
 
@@ -13,6 +11,7 @@ namespace TeamWork.Field
     public class Engine
     {
         public static Random rnd = new Random();
+        public static Player Player = new Player();
         public bool drawMenu = false;
         public Thread musicThread;
         public Thread EffectsThread;
@@ -41,11 +40,11 @@ namespace TeamWork.Field
             while (true)
             {
                 Console.Clear();
-                Printing.Player.Print();
-                Interface.Table();
-                Interface.UIDescription();
+                Player.Print();
+                Menu.Table();
+                Menu.UIDescription();
 
-                while (Printing.Player.Lives > 0)
+                while (Player.Lives > 0)
                 {
 
                     if (Console.KeyAvailable)
@@ -61,7 +60,7 @@ namespace TeamWork.Field
                     Thread.Sleep(80);
                 }
                 Console.Clear();
-                SetHighscore();
+                Menu.SetHighscore();
                 Printing.GameOver();
                 ResetGame();
             }
@@ -71,7 +70,7 @@ namespace TeamWork.Field
         public static Boss boss = new Boss(0);
         private void UpdateAndRender()
         {
-            if (Printing.Player.Level == 2 && BossActive == false)
+            if (Player.Level == 2 && BossActive == false)
             {
                 BossActive = true;
                 
@@ -103,10 +102,10 @@ namespace TeamWork.Field
 
         private void ResetGame()
         {
-            Printing.Player.Level = 1;
-            Printing.Player.Score = 0;
-            Printing.Player.Lives = 3;
-            Printing.Player.Point = Printing.PlayerPoint;
+            Player.Level = 1;
+            Player.Score = 0;
+            Player.Lives = 3;
+            Player.Point = Player.PlayerPoint;
             BossActive = false;
             boss = new Boss(0);
             _bullets.Clear();
@@ -121,17 +120,17 @@ namespace TeamWork.Field
         {
             switch (keyPressed.Key)
             {
-                case ConsoleKey.W: Printing.Player.MoveUp();
+                case ConsoleKey.W: Player.MoveUp();
                     break;
-                case ConsoleKey.S: Printing.Player.MoveDown();
+                case ConsoleKey.S: Player.MoveDown();
                     break;
-                case ConsoleKey.A: Printing.Player.MoveLeft();
+                case ConsoleKey.A: Player.MoveLeft();
                     break;
-                case ConsoleKey.D: Printing.Player.MoveRight();
+                case ConsoleKey.D: Player.MoveRight();
                     break;
                 // Create a new bullet object
                 case ConsoleKey.Spacebar:
-                    _bullets.Add(new GameObject(new Point2D(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1),0));
+                    _bullets.Add(new GameObject(new Point2D(Player.Point.X + 20, Player.Point.Y + 1),0));
                     playEffect = true;
                     break;
             }
@@ -164,7 +163,7 @@ namespace TeamWork.Field
                 }
             }
 
-            Printing.DrawAt(Printing.Player.Point.X + 20, Printing.Player.Point.Y + 1, '=', ConsoleColor.DarkCyan); // Fire effect lol
+            Printing.DrawAt(Player.Point.X + 20, Player.Point.Y + 1, '=', ConsoleColor.DarkCyan); // Fire effect lol
             
             for (int i = 0; i < _bullets.Count; i++) // Cycle through all bullets and change their position
             {
@@ -286,7 +285,7 @@ namespace TeamWork.Field
         /// <returns>If ship was struck by meteorite</returns>
         private bool ShipCollision(GameObject obj)
         {
-            Point2D point = Printing.Player.Point;
+            Point2D point = Player.Point;
             if (obj.Collided(point.X + 21, point.Y) || obj.Collided(point.X + 21, point.Y + 1) || // Front collision
                 obj.Collided(point.X + 18, point.Y) || obj.Collided(point.X + 15, point.Y) || // Top collision
                 obj.Collided(point.X + 11, point.Y) || obj.Collided(point.X + 6, point.Y) ||  // Top collision
@@ -294,10 +293,10 @@ namespace TeamWork.Field
                 obj.Collided(point.X + 11, point.Y + 1) || obj.Collided(point.X + 6, point.Y + 1) || // Bottom collision
                 obj.Collided(point.X + 3, point.Y - 1) || obj.Collided(point.X + 3, point.Y + 1)) // Tail collision
             {
-                Printing.Player.DecreaseLives();
+                Player.DecreaseLives();
 
-                Interface.Table();
-                Interface.UIDescription();
+                Menu.Table();
+                Menu.UIDescription();
                 return true;
             }
             return false;
@@ -307,58 +306,16 @@ namespace TeamWork.Field
         {
             var hits =
                 _objectProjectiles.Select((x, i) => new { Value = x, Index = i })
-                    .Where(x => Printing.Player.ShipCollided(x.Value.Point)).ToList();
+                    .Where(x => Player.ShipCollided(x.Value.Point)).ToList();
 
             foreach (var hit in hits)
             {
                 hit.Value.ClearObject();
                 _objectProjectiles.RemoveAt(hit.Index);
-                Printing.Player.Lives--;
-                Interface.Table();
-                Interface.UIDescription();
+                Player.Lives--;
+                Menu.Table();
+                Menu.UIDescription();
 
-            }
-        }
-        #endregion
-
-        #region Highscore and Score Methods
-        //Checks if the oldHighScore and the CurrentHighScore are different, and sets the higher value as the new HighScore
-        //Also adds all scores to the Scores.txt file
-        private static void SetHighscore()
-        {
-            string highscore = string.Format("Player {0}, Highscore {1}, Time Achieved: {2} / {3} / {4}",
-                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
-
-            string[] oldText = File.ReadAllText("Resources/Highscore.txt").Split();
-
-            string oldHighScore = oldText[3].Remove(oldText[3].Length - 1);
-            int oldHighScoreToInt = int.Parse(oldHighScore);
-
-            if (oldHighScoreToInt < Printing.Player.Score)
-                File.WriteAllText("Resources/Highscore.txt", highscore);
-
-            string currentScores = File.ReadAllText("Resources/Scores.txt");
-            highscore = string.Format("Player {0}, Score {1}, Time Achieved: {2} / {3} / {4}",
-                Printing.Player.Name, Printing.Player.Score, DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
-            currentScores += "#" + highscore + @"
-";
-            File.WriteAllText("Scores.txt", currentScores);
-        }
-        public static void PrintHighscore()
-        {
-            string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
-            Printing.DrawAt(new Point2D(15, 14), "Current Highscore: ", ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 15), currentHighscore, ConsoleColor.Green);
-            Printing.DrawAt(new Point2D(15, 17), "Last Achieved Scores: ", ConsoleColor.Green);
-
-            string[] currentScores = File.ReadAllLines("Resources/Scores.txt");
-            int y = 15;
-            int counter = 0;
-            for (int i = currentScores.Length - 1; i >= currentScores.Length - 10; i--)
-            {
-                y++;
-                counter++;
-                Printing.DrawAt(new Point2D(15, y), counter + " " + currentScores[i], ConsoleColor.Green);
             }
         }
         #endregion
@@ -411,30 +368,18 @@ namespace TeamWork.Field
             string name = Console.ReadLine();
             if (String.IsNullOrEmpty(name) || name.Length >= 10)
             {
-                Console.WriteLine("\t\t\t    Please enter your name! Name must also be less than/or 10 symbols");
+
+                Console.WriteLine("\t\t\t    Please enter your name!");
                 Thread.Sleep(2000);
                 Console.Clear();
-                //Printing.UserName();
+                Printing.EnterName();
                 TakeName();
             }
             else
             {
-                Printing.Player.setName(name);
+                Player.setName(name);
                 Console.Clear();               
             }
-        }
-
-        /// <summary>
-        /// Initialize Console size;
-        /// </summary>
-        public static void InitConsole()
-        {
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.CursorVisible = false;
-            Console.WindowWidth = WindowWidth;
-            Console.BufferWidth = WindowWidth;
-            Console.WindowHeight = WindowHeight;
-            Console.BufferHeight = WindowHeight;
         }
     }
 }
