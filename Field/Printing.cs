@@ -298,7 +298,11 @@ namespace TeamWork.Field
             DrawAt(1, 22, @"                                                        ,                   ", ConsoleColor.Cyan);
             DrawAt(1, 23, @"         +                                 *                               ", ConsoleColor.Cyan);
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
-
+            DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
+            DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
+            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
+                      
             DrawStringCharByChar(18, 5, @" _  _ _      _      ___", 5, false, ConsoleColor.Magenta);
             DrawStringCharByChar(18, 6, @"| || (_)__ _| |_   / __| __ ___ _ _ ___", 3, true, ConsoleColor.Magenta);
             DrawStringCharByChar(18, 7, @"| __ | / _` | ' \  \__ \/ _/ _ \ '_/ -_)", 3, false, ConsoleColor.Magenta);
@@ -350,6 +354,10 @@ namespace TeamWork.Field
             DrawAt(1, 22, @"                                                        ,                   ", ConsoleColor.Cyan);
             DrawAt(1, 23, @"         +                                 *                               ", ConsoleColor.Cyan);
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
+            DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
+            DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
+            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
 
             DrawAt(15, 2, " _    _  ____  __    ___  _____  __  __  ____", ConsoleColor.Cyan);
             Thread.Sleep(150);
@@ -455,6 +463,10 @@ namespace TeamWork.Field
             DrawAt(1, 22, @"                                                        ,                   ", ConsoleColor.Cyan);
             DrawAt(1, 23, @"         +                                 *                               ", ConsoleColor.Cyan);
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
+            DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
+            DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
+            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
 
             Thread.Sleep(650);
             DrawAt(23, 6, @"   _____           ___ __   ", ConsoleColor.Yellow);
@@ -523,6 +535,10 @@ namespace TeamWork.Field
             DrawAt(1, 22, @"                                                        ,                   ", ConsoleColor.Cyan);
             DrawAt(1, 23, @"         +                                 *                               ", ConsoleColor.Cyan);
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
+            DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
+            DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
+            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
 
             DrawStringCharByChar(10, 7, @"   _________    __  _________   ____ _    ____________ ", 2, false, ConsoleColor.Yellow);
             DrawStringCharByChar(10, 8, @"  / ____/   |  /  |/  / ____/  / __ \ |  / / ____/ __ \", 2, true, ConsoleColor.Yellow);
@@ -551,7 +567,6 @@ namespace TeamWork.Field
         /// </summary>
         public static void EnterName()
         {
-
             DrawAt(1, 2, @".                                                               +         ", ConsoleColor.Cyan);
             DrawAt(1, 3, @"      .           +                 ,             *                       ", ConsoleColor.Cyan);
             DrawAt(1, 4, @"   .                             .     .                         .        ", ConsoleColor.Cyan);
@@ -575,6 +590,10 @@ namespace TeamWork.Field
             DrawAt(1, 22, @"                                                        ,                   ", ConsoleColor.Cyan);
             DrawAt(1, 23, @"         +                                 *                               ", ConsoleColor.Cyan);
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
+            DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
+            DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
+            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
 
             DrawAt(25, 5, @"         ___---___", ConsoleColor.Gray);  
             DrawAt(25, 6, @"      .--\        --. ", ConsoleColor.Gray);
@@ -629,10 +648,13 @@ namespace TeamWork.Field
             DrawAt(1, 24, @"      ~--___     ___ --~                                                  ", ConsoleColor.Cyan);
             DrawAt(1, 25, @"           ~--__--~                                                        ", ConsoleColor.Cyan);
             DrawAt(20, 27, @"Downloading Content", ConsoleColor.Cyan);
-            DrawHLineAt(40, 27, 28, '\u2591', 60, false, ConsoleColor.DarkRed);
+            DrawHLineAt(40, 27, 28, '\u2591', 70, false, ConsoleColor.White);
             DrawAt(35, 22, @"Tip: W,S,D,A - to control the ship,", ConsoleColor.Green);
             DrawAt(45, 23, @"Space - to fire", ConsoleColor.Green);
         }
+        /// <summary>
+        /// Draw Load Content screen
+        /// </summary>
         public static void LoadStory()
         {
             DrawHLineAt(0, 0, 80, '\u2591', ConsoleColor.Yellow);

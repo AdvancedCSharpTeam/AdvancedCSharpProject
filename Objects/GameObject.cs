@@ -296,10 +296,6 @@ namespace TeamWork.Objects
                         PrintAndClearExplosion(false);
                     }
                     break;
-    //  __       __
-    //| __\_\_____/_|
-    //<[___\_\_-----<
-    //|   oo'
             }
         }
 

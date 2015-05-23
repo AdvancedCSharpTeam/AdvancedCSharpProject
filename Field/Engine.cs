@@ -199,7 +199,7 @@ namespace TeamWork.Field
         {
             if (counter % chance == 0)
             {
-                _meteorits.Add(new GameObject(rnd.Next(6, 7)));
+                _meteorits.Add(new GameObject(rnd.Next(1, 7)));
                 counter++;
             }
             else
