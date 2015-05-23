@@ -7,13 +7,13 @@ namespace TeamWork.Objects
         private Point2D point = new Point2D(10, 15);
         private int speed;
 
-        public Entity()
+        protected Entity()
         {
             this.Point = point;
             this.Speed = this.speed;
         }
 
-        public Entity(Point2D point)
+        protected Entity(Point2D point)
         {
             this.Point = point;
             this.Speed = this.speed;

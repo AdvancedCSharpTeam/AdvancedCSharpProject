@@ -44,7 +44,7 @@ namespace TeamWork.Field
                 Menu.Table();
                 Menu.UIDescription();
 
-                while (Player.Lives > 0)
+                while (Player.Lifes > 0)
                 {
 
                     if (Console.KeyAvailable)
@@ -104,7 +104,7 @@ namespace TeamWork.Field
         {
             Player.Level = 1;
             Player.Score = 0;
-            Player.Lives = 3;
+            Player.Lifes = 3;
             Player.Point = Player.PlayerPoint;
             BossActive = false;
             boss = new Boss(0);
@@ -293,7 +293,7 @@ namespace TeamWork.Field
                 obj.Collided(point.X + 11, point.Y + 1) || obj.Collided(point.X + 6, point.Y + 1) || // Bottom collision
                 obj.Collided(point.X + 3, point.Y - 1) || obj.Collided(point.X + 3, point.Y + 1)) // Tail collision
             {
-                Player.DecreaseLives();
+                Player.DecreaseLifes();
 
                 Menu.Table();
                 Menu.UIDescription();
@@ -312,7 +312,7 @@ namespace TeamWork.Field
             {
                 hit.Value.ClearObject();
                 _objectProjectiles.RemoveAt(hit.Index);
-                Player.Lives--;
+                Player.Lifes--;
                 Menu.Table();
                 Menu.UIDescription();
 

@@ -74,8 +74,8 @@ namespace TeamWork.Field
             //  Top birder
             for (int i = 0; i < 80; i++)
             {
-                int nameBord = 14 + Engine.Player.Name.Length;
-                bool topBgPos = ((i <= 3) || (i >= nameBord && i < 38) || i > 41);
+                int nameBoard = 14 + Engine.Player.Name.Length;
+                bool topBgPos = ((i <= 3) || (i >= nameBoard && i < 38) || i > 41);
                 if (topBgPos)
                 {
                     Printing.DrawAt(new Point2D(i, 0), '\u2591', ConsoleColor.DarkRed);
@@ -84,9 +84,9 @@ namespace TeamWork.Field
             // Bottom border
             for (int i = 0; i < 80; i++)
             {
-                int liveBord = 13;
-                int scoreBord = 30;
-                if ((i <= 3) || (i > liveBord && i < scoreBord - 1) || i > scoreBord + 10)
+                int liveBoard = 13;
+                int scoreBoard = 30;
+                if ((i <= 3) || (i > liveBoard && i < scoreBoard - 1) || i > scoreBoard + 10)
                 {
                     Printing.DrawAt(new Point2D(i, 30), '\u2591', ConsoleColor.DarkRed);           
                 }
@@ -99,16 +99,15 @@ namespace TeamWork.Field
         public static void UIDescription()
         {
             string level = string.Format("{0}", Engine.Player.Level).PadLeft(2, '0');
-            string live = string.Format("Lives: ");     
 
             string score = string.Format("Score: {0} ", Engine.Player.Score).PadLeft(3, '0');
             string playerName = string.Format("Player: {0}", Engine.Player.Name);
 
             Printing.DrawAt(new Point2D(5, 0), playerName, ConsoleColor.DarkYellow);
             Printing.DrawAt(new Point2D(39, 0), level, ConsoleColor.DarkYellow);
-            Printing.DrawAt(new Point2D(5, 30), live, ConsoleColor.DarkYellow);
-            Printing.DrawHLineAt(11, 30, Engine.Player.Lives, '\u2665',ConsoleColor.Red); 
-            Printing.ClearAtPosition(11 + Engine.Player.Lives ,30);
+            Printing.DrawAt(new Point2D(5, 30), "Lifes: ", ConsoleColor.DarkYellow);
+            Printing.DrawHLineAt(11, 30, Engine.Player.Lifes, '\u2665',ConsoleColor.Red); 
+            Printing.ClearAtPosition(11 + Engine.Player.Lifes ,30);
             Printing.DrawAt(new Point2D(30, 30), score, ConsoleColor.DarkYellow);
         }
 

@@ -5,33 +5,79 @@ namespace TeamWork.Objects
 {
     public class GameObject : Entity
     {
+        /// <summary>
+        /// GameObject Type - each with different looks, life, collision detection, points, effects.
+        /// </summary>
         public enum ObjectType
         {
             Bullet,
+            /* Used for bullets only             
+                    -
+             */
             Normal,
+            /* Standard Meteorid with 2 life, gives 2 points, no additional functions
+                    /\
+                    \/
+             */
             Small,
+            /* Small Meteorid with 1 life, gives 1 points, no additional functions
+                    <>
+             */
             Silver,
+            /* Silver Meteorid with 4 life, gives 5 points, no additional functions
+                    \ /
+                     x
+                    / \
+             */
             Gold,
+            /* Gold Meteorid with 3 life, gives 3 points, no additional functions
+                     ^
+                    <x>
+                     v
+             */
             Lenghty,
+            /* Lenghty Meteorid with 3 life, gives 3 points, no additional functions
+                    {==>
+             */
             Quadcopter
+            /* Only agressive enemy type, shoots back, has 7 life, gives 10 points
+                   __       __
+                  _\_\_____/_|
+                <[__\_\_-----<"
+                     oo' 
+             */
         }
 
         private ObjectType objectType;
         public int life;
+
+        /// <summary>
+        /// Base constructor
+        /// </summary>
         public GameObject()
         {
             base.Speed = 1;
-
         }
 
+
+        /// <summary>
+        /// Constructor with assigned Point2D (type bullet)
+        /// </summary>
+        /// <param name="point">Point to create the object with</param>
         public GameObject(Point2D point)
             : base(point)
         {
             base.Speed = 1;
             base.Point = point;
-            objectType = 0;
+            objectType = ObjectType.Bullet;
         }
 
+
+        /// <summary>
+        /// Constructor with assigned Point2D with given type
+        /// </summary>
+        /// <param name="point">Point to create the object with</param>
+        /// <param name="type">Object type</param>
         public GameObject(Point2D point, int type)
             : base(point)
         {
@@ -40,6 +86,10 @@ namespace TeamWork.Objects
             objectType = (ObjectType)type;
         }
 
+        /// <summary>
+        /// Constructor with object type, everithing else is using the defaults for the given type
+        /// </summary>
+        /// <param name="type">Object type</param>
         public GameObject(int type)
         {
             base.Speed = 1;
@@ -73,52 +123,55 @@ namespace TeamWork.Objects
             }
         }
 
-        public bool toBeDeleted;
-        private bool Moveable = true;
+        public bool toBeDeleted; // Trigger to tell this object must be deleted
+        private bool Moveable = true; // Toggable move state
         public override string ToString()
         {
             return string.Format("Object type:{0}, X:{1}, Y:{2},Moveable:{3}",objectType,Point.X,Point.Y,Moveable);
         }
 
+        
+        private int Frames = 1; // Frame counter for explosions and some calculations
+        private Point2D diagonalInc = new Point2D(1,1); // Diagonal calculation helper Point2D
+        private Point2D diagonalDec = new Point2D(-1, 1); // Diagonal calculation helper Point2D
+        private Point2D upRight; // up Right Diagonal point storage for explosion effect
+        private Point2D upLeft; // up Left Diagonal point storage for explosion effect
+        private Point2D downLeft; // down Left Diagonal point storage for explosion effect
+        private Point2D downRight; // down Right Diagonal point storage for explosion effect
+        
+        private int projectileCounter = 1; // Counter to check with if the Quadcopter should fire 
+        private int projectileChance = Engine.rnd.Next(20, 50); // Random chance that quadcopters will fire a bullet
+        
+        public bool GotHit = false; //Toggle that helps with the explosion animation
         /// <summary>
         /// Print GameObject based on its type
         /// </summary>
-        private int Frames = 1;
-        private Point2D diagonalInc = new Point2D(1,1);
-        private Point2D diagonalDec = new Point2D(-1, 1);
-        private Point2D upRight;
-        private Point2D upLeft;
-        private Point2D downLeft;
-        private Point2D downRight;
-        private int projectileCounter = 1;
-        private int projectileChance = Engine.rnd.Next(20, 50);
-        public bool GotHit = false;
         public void PrintObject()
         {
             switch (objectType)
             {
                 case ObjectType.Bullet:
-                    Printing.DrawAt(this.Point, '-', ConsoleColor.DarkCyan);
+                    Printing.DrawAt(this.Point, '-', ConsoleColor.DarkCyan); // Standart print for bullets
                     break;
                 case ObjectType.Normal:
-                    if (!this.GotHit)
+                    if (!this.GotHit) // If this object isn't killed by something draw it normally
                     {
                         Printing.DrawAt(this.Point, "/\\", ConsoleColor.Red);
                         Printing.DrawAt(this.Point.X, Point.Y + 1, "\\/", ConsoleColor.Red);
                     }
-                    else
+                    else // If it is create the explosion effect
                     {
-                        upLeft = this.Point - diagonalInc * Frames;
-                        upRight = this.Point - diagonalDec * Frames;
-                        downRight = this.Point + diagonalInc * Frames;
+                        upLeft = this.Point - diagonalInc * Frames; // Calculate the explosion effect particles position
+                        upRight = this.Point - diagonalDec * Frames; // using the diagonal helpers
+                        downRight = this.Point + diagonalInc * Frames; // multiplying by the frames on screen
                         downLeft = this.Point + diagonalDec * Frames;
-                        char[] c = { '/', '\\', '\\', '/' };
-                        PrintAndClearExplosion(false, c, ConsoleColor.Red);
+                        char[] c = { '/', '\\', '\\', '/' }; // Set the charracters of the explosion
+                        PrintAndClearExplosion(false, c, ConsoleColor.Red); // Print it
                     }
-                    
+
                     break;
                 case ObjectType.Small:
-                   if (!this.GotHit)
+                    if (!this.GotHit)
                     {
                         Printing.DrawAt(this.Point, "<>");
                     }
@@ -186,18 +239,21 @@ namespace TeamWork.Objects
                     
                     if (!this.GotHit)
                     {
-                        if (projectileCounter % projectileChance == 0)
+                        if (projectileCounter % projectileChance == 0) // Check if Quadcopter has to shoot
                         {
+                            // If true, create a projectile in the main list of projectiles
                             Engine._objectProjectiles.Add(new GameObject(new Point2D(this.Point.X - 1,this.Point.Y),0));
-                            projectileCounter++;
+                            projectileCounter++; // Increase the counter
                         }
                         else
                         {
+                            // If false, just increase the counter
                             projectileCounter++;
                         }
 
                         #region Quadcopter Entry animation
 
+                        // This makes the quadcopter entry smooth, not instant spawn in the center of the screen
                         if (this.Point.X + 2 >= Engine.WindowWidth)
                         {
                             Printing.DrawAt(this.Point, @"<[");
@@ -308,28 +364,28 @@ namespace TeamWork.Objects
                     break;
                 case ObjectType.Normal:
                    #region Normal object clearing and breaking effect
-		            if (!this.GotHit)
+		            if (!this.GotHit) // If not killed/hit use standard clear
                     {
                         Printing.DrawAt(this.Point, "  ");
                         Printing.DrawAt(this.Point.X, Point.Y + 1, "  ");
                     }
-                    else
+                    else // If hit, clear after the explosion effect
                     {
                         upRight = this.Point - diagonalDec * Frames;
-                        upLeft = this.Point + diagonalDec * Frames;
+                        upLeft = this.Point + diagonalDec * Frames; 
                         downLeft = this.Point - diagonalInc * Frames;
                         downRight = this.Point + diagonalInc * Frames;
-                        Moveable = false;
-                        PrintAndClearExplosion(true);                        
-                        if (Frames == 5)
+                        Moveable = false; // Set the meteorid/asteroid to be static
+                        PrintAndClearExplosion(true); // Clear after the effect
+                        if (Frames == 5) // Check if 4 frames were passed then...
                         {
-                            this.toBeDeleted = true;
-                            Engine.Player.IncreasePoints(2);
+                            this.toBeDeleted = true; // Sets the object to be deleted
+                            Engine.Player.IncreasePoints(2); // Increase the players score
 
-                            Menu.Table();
-                            Menu.UIDescription();
+                            Menu.Table(); // Redraw the UI Table
+                            Menu.UIDescription(); // Redraw the UI Description
                         }
-                        Frames++;
+                        Frames++; // Increase frame count
                     }  
 	                #endregion
                     break;
@@ -552,6 +608,9 @@ namespace TeamWork.Objects
             }
         }
 
+        /// <summary>
+        /// Move the object to the left 1 tile
+        /// </summary>
         public void MoveObject()
         {
             if (Moveable)
@@ -560,17 +619,25 @@ namespace TeamWork.Objects
             }
         }
 
+
+        /// <summary>
+        /// Clear and Print explosion effect
+        /// </summary>
+        /// <param name="clear">Set to true if you want to clear, false if you want to print</param>
+        /// <param name="c">Set the characters you want to print with</param>
+        /// <param name="clr">Set the color you want to print with</param>
         private void PrintAndClearExplosion(bool clear, char[] c = null,ConsoleColor clr = ConsoleColor.White)
         {
             
-            if (c == null && !clear)
+            if (c == null && !clear) // If theres no passed char[] and printing is ordered create standard one
             {
                 c = new[] { '*', '*', '*', '*' };
             }
-            else if (clear)
+            else if (clear) // If clearing, create char[] with white spaces
             {
                 c = new[] { ' ', ' ', ' ', ' ' };
             }
+            // Then print/Clear the diagonals
             if ((upLeft.X > 1 && upLeft.X < 79) && (upLeft.Y > 1 && upLeft.Y < 30))
             {
                 Printing.DrawAt(upLeft, c[0], clr);

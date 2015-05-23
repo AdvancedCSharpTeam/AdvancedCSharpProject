@@ -10,25 +10,32 @@ namespace TeamWork
         private int score = 0;
         private int level = 1;
 
-        public static Point2D PlayerPoint = new Point2D(10, 15);
+        public static Point2D PlayerPoint = new Point2D(10, 15); // Player default starting point 
 
+        /// <summary>
+        /// Constructor with default values
+        /// </summary>
         public Player()
         {
-            this.Lives = this.lives;
+            this.Lifes = this.lives;
             this.Score = this.score;
             this.Level = this.level;
 
         }
 
         public int Score { get; set; }
-        public int Lives { get; set; }
+        public int Lifes { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
 
+
+        /// <summary>
+        /// Player move up and redraw
+        /// </summary>
         public void MoveUp()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y - 1 >= 3) // Limit so the temporary ship does not go out of screen and crash the game
+            if (this.Point.Y - 1 >= 3)
             {
 
                 Clear();
@@ -37,6 +44,9 @@ namespace TeamWork
             }
         }
 
+        /// <summary>
+        /// Player move down and redraw
+        /// </summary>
         public void MoveDown()
         {
             // Limit player movement on Y axis
@@ -48,11 +58,13 @@ namespace TeamWork
             }
         }
 
+        /// <summary>
+        /// Player move right and redraw
+        /// </summary>
         public void MoveRight()
         {
             // Limit player movement on X axis
             if (this.Point.X + 1 < Engine.WindowWidth - 23)
-            // Limit so the temporary ship does not go out of screen and crash the game
             {
                 Clear();
                 this.Point.X++;
@@ -60,6 +72,9 @@ namespace TeamWork
             }
         }
 
+        /// <summary>
+        /// Player move left and redraw
+        /// </summary>
         public void MoveLeft()
         {
             // Limit player movement on X axis
@@ -84,7 +99,7 @@ namespace TeamWork
             Printing.DrawAt(Point.X, Point.Y + 1, @" <[=)_)_)_)_______)_ >", ConsoleColor.Cyan);
             Printing.DrawAt(Point.X + 20, Point.Y + 1, "=", ConsoleColor.DarkCyan);
         }
-        //To Do one more Player???
+
         // Method to clear players last position
         public void Clear()
         {
@@ -94,65 +109,82 @@ namespace TeamWork
             Printing.DrawAt(Point.X, Point.Y + 1, @"                      ");
         }
 
+        /// <summary>
+        /// Increase points by one and calculate level
+        /// </summary>
         public void IncreasePoints()
         {
             this.Score++;
             Engine.Player.Level = Engine.Player.Score/ 50 + 1;
         }
 
+        /// <summary>
+        /// Increase points by given amount and calculate level
+        /// </summary>
+        /// <param name="points">Points to give</param>
         public void IncreasePoints(int points)
         {
             this.Score += points;
             Engine.Player.Level = Engine.Player.Score / 50 + 1;
         }
-
-        public void DecreaseLives()
+        /// <summary>
+        /// Decrease lifes
+        /// </summary>
+        public void DecreaseLifes()
         {
-            this.Lives--;
+            this.Lifes--;
         }
 
+        /// <summary>
+        /// Ship collision check with X and Y
+        /// </summary>
+        /// <param name="x">Column number</param>
+        /// <param name="y">Row number</param>
+        /// <returns>If there's a collision</returns>
         public bool ShipCollided(int x, int y)
         {
+            // Checks a bunch of point of the player model
             if ((x == Point.X + 21 && y == Point.Y) ||
-                (x == Point.X + 21 && y == Point.Y + 1) || // Front collision
+                (x == Point.X + 21 && y == Point.Y + 1) ||
                 (x == Point.X + 19 && y == Point.Y) ||
-                (x == Point.X + 18 && y == Point.Y) || // Top collision
+                (x == Point.X + 18 && y == Point.Y) ||
                 (x == Point.X + 17 && y == Point.Y) ||
-                (x == Point.X + 16 && y == Point.Y) || // Top collision
+                (x == Point.X + 16 && y == Point.Y) ||
                 (x == Point.X + 15 && y == Point.Y) ||
-                (x == Point.X + 14 && y == Point.Y) || // Top collision
+                (x == Point.X + 14 && y == Point.Y) ||
                 (x == Point.X + 13 && y == Point.Y) ||
-                (x == Point.X + 12 && y == Point.Y) || // Top collision
+                (x == Point.X + 12 && y == Point.Y) || 
                 (x == Point.X + 11 && y == Point.Y) ||
-                (x == Point.X + 10 && y == Point.Y) || // Top collision
+                (x == Point.X + 10 && y == Point.Y) || 
                 (x == Point.X + 9 && y == Point.Y) ||
-                (x == Point.X + 8 && y == Point.Y) || // Top collision
+                (x == Point.X + 8 && y == Point.Y) || 
                 (x == Point.X + 7 && y == Point.Y) ||
-                (x == Point.X + 6 && y == Point.Y) || // Top collision
+                (x == Point.X + 6 && y == Point.Y) ||
                 (x == Point.X + 5 && y == Point.Y) ||
-                (x == Point.X + 4 && y == Point.Y) || // 
+                (x == Point.X + 4 && y == Point.Y) ||
                 (x == Point.X + 19 && y == Point.Y + 1) ||
-                (x == Point.X + 18 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 18 && y == Point.Y + 1) || 
                 (x == Point.X + 17 && y == Point.Y + 1) ||
-                (x == Point.X + 16 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 16 && y == Point.Y + 1) || 
                 (x == Point.X + 15 && y == Point.Y + 1) ||
                 (x == Point.X + 14 && y == Point.Y + 1) ||
-                (x == Point.X + 13 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 13 && y == Point.Y + 1) || 
                 (x == Point.X + 12 && y == Point.Y + 1) ||
-                (x == Point.X + 11 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 11 && y == Point.Y + 1) || 
                 (x == Point.X + 10 && y == Point.Y + 1) ||
-                (x == Point.X + 9 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 9 && y == Point.Y + 1) || 
                 (x == Point.X + 8 && y == Point.Y + 1) ||
-                (x == Point.X + 7 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 7 && y == Point.Y + 1) || 
                 (x == Point.X + 6 && y == Point.Y + 1) ||
                 (x == Point.X + 5 && y == Point.Y + 1) ||
-                (x == Point.X + 4 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 4 && y == Point.Y + 1) || 
                 (x == Point.X + 3 && y == Point.Y + 1) ||
-                (x == Point.X + 2 && y == Point.Y + 1) || // Bottom collision
+                (x == Point.X + 2 && y == Point.Y + 1) || 
                 (x == Point.X + 3 && y == Point.Y - 1) ||
-                (x == Point.X + 1 && y == Point.Y + 1)) // Tail collision
+                (x == Point.X + 1 && y == Point.Y + 1))  
             {
-                Engine.Player.DecreaseLives();
+                // If theres a overlapping point x and y decrease lifes and redraw UI
+                Engine.Player.DecreaseLifes();
 
                 Menu.Table();
                 Menu.UIDescription();
@@ -164,6 +196,12 @@ namespace TeamWork
                 return false;
             }
         }
+
+        /// <summary>
+        /// Ship collision check with Point2D
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public bool ShipCollided(Point2D p)
         {
             return ShipCollided(p.X, p.Y);
