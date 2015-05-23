@@ -14,8 +14,10 @@ namespace TeamWork.Field
         public static bool validInput = true;
         public static MediaPlayer mediaPlayer = new MediaPlayer();
 
+        //Main menu load screen
         public static void StartMenu()
         {       
+            //Menu Music Thread
             mediaPlayer.Open(new Uri("Resources/INTRO_SOUND.wav", UriKind.Relative));
             mediaPlayer.Play();
             Printing.WelcomeScreen();
@@ -38,7 +40,8 @@ namespace TeamWork.Field
                     validInput = false;
                 }
             }
-        }      
+        }  
+        //Menu interface buttons
         public static bool UserChoice(ConsoleKeyInfo key)
         {
             switch (key.Key)
@@ -60,6 +63,7 @@ namespace TeamWork.Field
                     return false;
             }
         }
+        //Entry story line
         public static void EntryStoryLine()
         {
             Printing.LoadStory();

@@ -26,9 +26,12 @@ namespace TeamWork.Field
         }
         public void Start()
         {
+            //Starting manu and intro screens
             Menu.StartMenu();
+            //Starting main's music thread
             musicThread = new Thread(Engine.LoadMusic);
             musicThread.Start();
+            //Starting effects music thread
             EffectsThread = new Thread(SoundEffects);
             EffectsThread.Start();
             Menu.EntryStoryLine();
