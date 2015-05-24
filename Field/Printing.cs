@@ -429,6 +429,7 @@ namespace TeamWork.Field
         }
         /// <summary>
         /// Draw Credits screen
+        /// SoftUni and GitHub links
         /// </summary>
         public static void Credits()
         {
@@ -482,9 +483,11 @@ namespace TeamWork.Field
             Thread.Sleep(500);
             DrawAt(23, 19, @"         n0way0ut", ConsoleColor.Gray);
             Thread.Sleep(500);
+            DrawAt(23, 21, @"         (S)oftUni site", ConsoleColor.Yellow);
+            Thread.Sleep(500);
             DrawAt(5, 26, @"(B)ack to Main Menu", ConsoleColor.Yellow);            
-            DrawAt(55, 26, @"Give Us Feedback at:", ConsoleColor.Yellow);
-            DrawAt(55, 27, @"(L)ink to GitHub", ConsoleColor.Yellow);
+            DrawAt(52, 26, @"Give Us Feedback at:", ConsoleColor.Yellow);
+            DrawAt(52, 27, @"(L)ink to GitHub", ConsoleColor.Yellow);            
             while (true)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -496,6 +499,10 @@ namespace TeamWork.Field
                 else if (key.Key == ConsoleKey.L)
                 {
                     System.Diagnostics.Process.Start("https://github.com/AdvancedCSharpTeam/AdvancedCSharpProject");
+                }
+                else if (key.Key == ConsoleKey.S)
+                {
+                    System.Diagnostics.Process.Start("https://softuni.bg/");
                 }
             }
         }
@@ -533,8 +540,8 @@ namespace TeamWork.Field
             DrawAt(1, 24, @"                                                                           ", ConsoleColor.Cyan);
             DrawAt(1, 25, @".                    *                                                    ", ConsoleColor.Cyan);
             DrawAt(1, 26, @".                            *                                     +      ", ConsoleColor.Cyan);
-            DrawAt(1, 27, @"                                                *                         ", ConsoleColor.Cyan);
-            DrawAt(1, 28, @"                                                        ,                   ", ConsoleColor.Cyan);
+            DrawAt(1, 27, @"                                                    Thank you for playing  ", ConsoleColor.Blue);
+            DrawAt(1, 28, @"                                                        Team:ECHIDNA       ", ConsoleColor.Blue);
 
             DrawStringCharByChar(10, 7, @"   _________    __  _________   ____ _    ____________ ", 2, false, ConsoleColor.Yellow);
             DrawStringCharByChar(10, 8, @"  / ____/   |  /  |/  / ____/  / __ \ |  / / ____/ __ \", 2, true, ConsoleColor.Yellow);
@@ -649,7 +656,7 @@ namespace TeamWork.Field
             DrawAt(45, 23, @"Space - to fire", ConsoleColor.Green);
         }
         /// <summary>
-        /// Draw Load Content screen
+        /// Draw Load Story screen
         /// </summary>
         public static void LoadStory()
         {

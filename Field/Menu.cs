@@ -39,6 +39,7 @@ namespace TeamWork.Field
             }
         }  
         //Menu interface buttons
+        //(Pause, Score, Credits,Quit)
         public static bool UserChoice(ConsoleKeyInfo key)
         {
             switch (key.Key)
@@ -71,7 +72,7 @@ namespace TeamWork.Field
         }
         public static void Table()
         {
-            //  Top birder
+            // UI Top border
             for (int i = 0; i < 80; i++)
             {
                 int nameBoard = 14 + Engine.Player.Name.Length;
@@ -81,7 +82,7 @@ namespace TeamWork.Field
                     Printing.DrawAt(new Point2D(i, 0), '\u2591', ConsoleColor.DarkRed);
                 }
             }
-            // Bottom border
+            // UI Bottom border
             for (int i = 0; i < 80; i++)
             {
                 int liveBoard = 13;
@@ -134,6 +135,7 @@ namespace TeamWork.Field
 ";
             File.WriteAllText("Scores.txt", currentScores);
         }
+        //Printing High Score in Main Menu Score screen
         public static void PrintHighscore()
         {
             string currentHighscore = File.ReadAllText("Resources/Highscore.txt");
