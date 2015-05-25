@@ -10,8 +10,10 @@ namespace TeamWork.Field
         public static bool menuActive = true;
         public static bool validInput = true;
         public static MediaPlayer mediaPlayer = new MediaPlayer();
-
-        //Main menu load screen
+       
+        /// <summary>
+        /// Main menu load screen
+        /// </summary>
         public static void StartMenu()
         {       
             //Menu Music Thread
@@ -27,7 +29,7 @@ namespace TeamWork.Field
                     Printing.StartMenu();
                     validInput = false;
                 }
-
+                
                 if (UserChoice(Console.ReadKey(true)))
                 {
                     validInput = true;
@@ -61,7 +63,9 @@ namespace TeamWork.Field
                     return false;
             }
         }
-        //Entry story line
+        /// <summary>
+        /// Entry story line
+        /// </summary>
         public static void EntryStoryLine()
         {
             Printing.LoadStory();
@@ -70,6 +74,9 @@ namespace TeamWork.Field
             Printing.LoadContent();
             Console.Clear();          
         }
+        /// <summary>
+        /// Print UI top and bottom borders
+        /// </summary>
         public static void Table()
         {
             // UI Top border
@@ -134,8 +141,10 @@ namespace TeamWork.Field
             currentScores += "#" + highscore + @"
 ";
             File.WriteAllText("Scores.txt", currentScores);
-        }
-        //Printing High Score in Main Menu Score screen
+        }      
+        /// <summary>
+        /// Printing High Score in Main Menu Score screen
+        /// </summary>
         public static void PrintHighscore()
         {
             string currentHighscore = File.ReadAllText("Resources/Highscore.txt");

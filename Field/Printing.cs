@@ -264,6 +264,7 @@ namespace TeamWork.Field
         #region Grphics
         /// <summary>
         /// Draw High Score screen
+        /// linked to main menu
         /// </summary>
         public static void HighScore()
         {
@@ -320,6 +321,7 @@ namespace TeamWork.Field
         }
         /// <summary>
         /// Draw Welcome screen
+        /// linked to main menu
         /// </summary>
         public static void WelcomeScreen()
         {
@@ -394,6 +396,7 @@ namespace TeamWork.Field
         }
         /// <summary>
         /// Draw Main Menu screen
+        /// linked to main menu
         /// </summary>
         public static void StartMenu()
         {
@@ -430,6 +433,7 @@ namespace TeamWork.Field
         /// <summary>
         /// Draw Credits screen
         /// SoftUni and GitHub links
+        /// linked to main menu
         /// </summary>
         public static void Credits()
         {

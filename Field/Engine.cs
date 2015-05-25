@@ -46,7 +46,7 @@ namespace TeamWork.Field
 
                 while (Player.Lifes > 0)
                 {
-
+                    //ConsoleKey Listener
                     if (Console.KeyAvailable)
                     {
                         this.TakeInput(Console.ReadKey(true));
@@ -60,6 +60,7 @@ namespace TeamWork.Field
                     Thread.Sleep(80);
                 }
                 Console.Clear();
+                //add new high score
                 Menu.SetHighscore();
                 Printing.GameOver();
                 ResetGame();
@@ -99,7 +100,8 @@ namespace TeamWork.Field
                 GenerateMeteorit();
             }
         }
-
+        //In case play again is pressed
+        //Reseting the game
         private void ResetGame()
         {
             Player.Level = 1;
@@ -323,6 +325,7 @@ namespace TeamWork.Field
         #region Music
         private static bool playMeteorEffect;
         private static bool playEffect;
+        //background music player
         private static void LoadMusic()
         {
             var sound = new SoundPlayer();
@@ -330,7 +333,7 @@ namespace TeamWork.Field
             sound.PlayLooping();
 
         }
-
+        //effect music player
         private void SoundEffects()
         {
 
@@ -360,21 +363,25 @@ namespace TeamWork.Field
         }
 
         #endregion
-
+        /// <summary>
+        /// Set the name
+        /// </summary>
         private void TakeName()
         {
             Console.WriteLine();
             Console.Write("\n\t\t\t\t Name:");
             string name = Console.ReadLine();
-            if (String.IsNullOrEmpty(name) || name.Length >= 10)
+            if (String.IsNullOrEmpty(name)|| name.Length >= 10)
             {
-
+                //Print notice and
+                //reset the console if the name is empty space
                 Console.WriteLine("\t\t\t    Please enter your name!");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Printing.EnterName();
                 TakeName();
             }
+            //set the correct name
             else
             {
                 Player.setName(name);

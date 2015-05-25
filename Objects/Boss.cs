@@ -24,7 +24,9 @@ namespace TeamWork.Objects
                     break;
             }
         }
-
+        /// <summary>
+        /// Draw boss player
+        /// </summary>
         private void BossPrint()
         {
             Printing.DrawAt(this.Point.X+13, this.Point.Y - 12, @",");
@@ -47,7 +49,9 @@ namespace TeamWork.Objects
             Printing.DrawAt(this.Point.X+7, this.Point.Y+5,   @",'  ,-----'   |");
             Printing.DrawAt(this.Point.X+7, this.Point.Y+6,   @"`--{__________)");
         }
-
+        /// <summary>
+        /// Clear boss player 
+        /// </summary>
         private void BossClear()
         {
             Printing.DrawAt(this.Point.X + 13, this.Point.Y - 12, @" ");
