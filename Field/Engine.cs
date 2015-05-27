@@ -82,7 +82,7 @@ namespace TeamWork.Field
         /// </summary>
         private void UpdateAndRender()
         {
-            if (Player.Level == 1 && BossActive == false) // When to spawn a boss
+            if (Player.Level == 2 && BossActive == false) // When to spawn a boss
             {
                 BossActive = true;
                 
