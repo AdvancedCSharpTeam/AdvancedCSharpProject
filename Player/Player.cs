@@ -6,7 +6,7 @@ namespace TeamWork
 {
     public class Player : Entity, IPlayer
     {
-        private int lives = 3;
+        private int lives = 5;
         private int score = 0;
         private int level = 1;
 
@@ -144,44 +144,9 @@ namespace TeamWork
         public bool ShipCollided(int x, int y)
         {
             // Checks a bunch of point of the player model
-            if ((x == Point.X + 21 && y == Point.Y) ||
-                (x == Point.X + 21 && y == Point.Y + 1) ||
-                (x == Point.X + 19 && y == Point.Y) ||
-                (x == Point.X + 18 && y == Point.Y) ||
-                (x == Point.X + 17 && y == Point.Y) ||
-                (x == Point.X + 16 && y == Point.Y) ||
-                (x == Point.X + 15 && y == Point.Y) ||
-                (x == Point.X + 14 && y == Point.Y) ||
-                (x == Point.X + 13 && y == Point.Y) ||
-                (x == Point.X + 12 && y == Point.Y) || 
-                (x == Point.X + 11 && y == Point.Y) ||
-                (x == Point.X + 10 && y == Point.Y) || 
-                (x == Point.X + 9 && y == Point.Y) ||
-                (x == Point.X + 8 && y == Point.Y) || 
-                (x == Point.X + 7 && y == Point.Y) ||
-                (x == Point.X + 6 && y == Point.Y) ||
-                (x == Point.X + 5 && y == Point.Y) ||
-                (x == Point.X + 4 && y == Point.Y) ||
-                (x == Point.X + 19 && y == Point.Y + 1) ||
-                (x == Point.X + 18 && y == Point.Y + 1) || 
-                (x == Point.X + 17 && y == Point.Y + 1) ||
-                (x == Point.X + 16 && y == Point.Y + 1) || 
-                (x == Point.X + 15 && y == Point.Y + 1) ||
-                (x == Point.X + 14 && y == Point.Y + 1) ||
-                (x == Point.X + 13 && y == Point.Y + 1) || 
-                (x == Point.X + 12 && y == Point.Y + 1) ||
-                (x == Point.X + 11 && y == Point.Y + 1) || 
-                (x == Point.X + 10 && y == Point.Y + 1) ||
-                (x == Point.X + 9 && y == Point.Y + 1) || 
-                (x == Point.X + 8 && y == Point.Y + 1) ||
-                (x == Point.X + 7 && y == Point.Y + 1) || 
-                (x == Point.X + 6 && y == Point.Y + 1) ||
-                (x == Point.X + 5 && y == Point.Y + 1) ||
-                (x == Point.X + 4 && y == Point.Y + 1) || 
-                (x == Point.X + 3 && y == Point.Y + 1) ||
-                (x == Point.X + 2 && y == Point.Y + 1) || 
-                (x == Point.X + 3 && y == Point.Y - 1) ||
-                (x == Point.X + 1 && y == Point.Y + 1))  
+            if ((x <= Point.X + 21 && x >= Point.X + 3 && y == Point.Y) ||
+                (x <= Point.X + 3 && x >= Point.X && y == Point.Y-1) ||
+                (x <= Point.X + 21 && x >= Point.X + 3 && y == Point.Y + 1))  
             {
                 // If theres a overlapping point x and y decrease lifes and redraw UI
                 Engine.Player.DecreaseLifes();

@@ -2,15 +2,12 @@
 using System.Text;
 using TeamWork.Field;
 
-
 namespace TeamWork
 {
     class Program
     {
-        //private static Thread _musicThread;
         static void Main(string[] args)
         {
-            
             Console.OutputEncoding = Encoding.Unicode;
             Console.CursorVisible = false;
             Console.WindowWidth = Engine.WindowWidth;

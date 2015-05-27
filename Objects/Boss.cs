@@ -159,24 +159,24 @@ namespace TeamWork.Objects
         public bool BossHit(Point2D point )
         {
             if (((point.X == this.Point.X + 13 || point.X == this.Point.X + 14) && point.Y == this.Point.Y - 12) ||
-                ((point.X == this.Point.X + 12 || point.X == this.Point.X + 13) && point.Y == this.Point.Y - 11) ||
-                ((point.X == this.Point.X + 12 || point.X == this.Point.X + 13) && point.Y == this.Point.Y - 10) ||
-                ((point.X == this.Point.X + 12 || point.X == this.Point.X + 13) && point.Y == this.Point.Y - 9) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 8) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 7) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 6) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 5) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 4) ||
-                ((point.X == this.Point.X + 11 || point.X == this.Point.X + 12) && point.Y == this.Point.Y - 3) ||
-                ((point.X == this.Point.X + 13 || point.X == this.Point.X + 14) && point.Y == this.Point.Y - 2) ||
-                ((point.X == this.Point.X + 0 || point.X == this.Point.X + 1) && point.Y == this.Point.Y - 1) ||
-                ((point.X == this.Point.X + 0 || point.X == this.Point.X + 1) && point.Y == this.Point.Y - 0) ||
-                ((point.X == this.Point.X + 0 || point.X == this.Point.X + 1) && point.Y == this.Point.Y + 1) ||
-                ((point.X == this.Point.X + 13 || point.X == this.Point.X + 14) && point.Y == this.Point.Y + 2) ||
-                ((point.X == this.Point.X + 14 || point.X == this.Point.X + 15) && point.Y == this.Point.Y + 3) ||
-                ((point.X == this.Point.X + 9 || point.X == this.Point.X + 10) && point.Y == this.Point.Y + 4) ||
-                ((point.X == this.Point.X + 7 || point.X == this.Point.X + 8) && point.Y == this.Point.Y + 5) ||
-                ((point.X == this.Point.X + 7 || point.X == this.Point.X + 8) && point.Y == this.Point.Y + 6))
+                ((point.X >= this.Point.X + 12 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 11) ||
+                ((point.X >= this.Point.X + 12 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 10) ||
+                ((point.X >= this.Point.X + 12 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 9) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 8) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 7) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 6) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 5) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 4) ||
+                ((point.X >= this.Point.X + 11 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 3) ||
+                ((point.X >= this.Point.X + 13 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 2) ||
+                ((point.X >= this.Point.X + 0  && point.X <= this.Point.X + 30) && point.Y == this.Point.Y - 1) ||
+                ((point.X >= this.Point.X + 0  && point.X <= this.Point.X + 30) && point.Y == this.Point.Y - 0) ||
+                ((point.X >= this.Point.X + 0  && point.X <= this.Point.X + 30) && point.Y == this.Point.Y + 1) ||
+                ((point.X >= this.Point.X + 13 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 2) ||
+                ((point.X >= this.Point.X + 14 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 3) ||
+                ((point.X >= this.Point.X + 9  && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 4) ||
+                ((point.X >= this.Point.X + 7  && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 5) ||
+                ((point.X >= this.Point.X + 7  && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 6))
             {
                 this.bossLife--;
                 return true;
