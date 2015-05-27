@@ -261,7 +261,7 @@ namespace TeamWork.Field
 
         #endregion
 
-        #region Grphics
+        #region Grаphics
         /// <summary>
         /// Draw High Score screen
         /// linked to main menu
