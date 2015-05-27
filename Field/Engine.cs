@@ -53,7 +53,7 @@ namespace TeamWork.Field
 
                 while (Player.Lifes > 0) // Gameplay loop that ends when the player has no lifes
                 {
-
+                    //ConsoleKey Listener
                     if (Console.KeyAvailable) // Checks if the console buffer has a key press
                     {
                         this.TakeInput(Console.ReadKey(true)); // Passes that key to the TakeInput method
@@ -66,10 +66,11 @@ namespace TeamWork.Field
                     UpdateAndRender(); // Update all objects and draw everything again
                     Thread.Sleep(80); // Constant game speed
                 }
-                Console.Clear(); 
-                Menu.SetHighscore(); // Sets if the current player score is a highscore
-                Printing.GameOver(); // Draw gameover Menu
-                ResetGame(); // If the player selects new game, reset all the stats
+                Console.Clear();
+                //add new high score
+                Menu.SetHighscore();
+                Printing.GameOver();
+                ResetGame();
             }
         }
 
@@ -111,7 +112,6 @@ namespace TeamWork.Field
                 GenerateMeteorit(); // Spawn meteorits
             }
         }
-
         /// <summary>
         /// Sets all the starting values back to default and clears all object collections
         /// </summary>
@@ -391,7 +391,6 @@ namespace TeamWork.Field
         }
 
         #endregion
-
         /// <summary>
         /// Take players name
         /// </summary>
@@ -400,15 +399,17 @@ namespace TeamWork.Field
             Console.WriteLine();
             Console.Write("\n\t\t\t\t Name:");
             string name = Console.ReadLine();
-            if (String.IsNullOrEmpty(name) || name.Length >= 10)
+            if (String.IsNullOrEmpty(name)|| name.Length >= 10)
             {
-
-                Console.WriteLine("\t\t\t    Please enter valid name!");
+                //Print notice and
+                //reset the console if the name is empty space
+                Console.WriteLine("\t\t\t    Please enter your name!");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Printing.EnterName();
                 TakeName();
             }
+            //set the correct name
             else
             {
                 Player.setName(name);
