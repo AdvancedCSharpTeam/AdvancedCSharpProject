@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using TeamWork.Objects;
 
 namespace TeamWork.Field
 {
@@ -711,6 +710,7 @@ namespace TeamWork.Field
             DrawAt(16, 15, @"                in SoftUni.", ConsoleColor.DarkYellow);
         } 
         #endregion
+
         #region Clearing Methods
 
         /// <summary>
