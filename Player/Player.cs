@@ -35,13 +35,10 @@ namespace TeamWork
         public void MoveUp()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y - 1 >= 3)
-            {
-
-                Clear();
-                this.Point.Y--;
-                Print();
-            }
+            if (this.Point.Y - 1 < 3) return;
+            Clear();
+            this.Point.Y--;
+            Print();
         }
 
         /// <summary>
@@ -50,12 +47,10 @@ namespace TeamWork
         public void MoveDown()
         {
             // Limit player movement on Y axis
-            if (this.Point.Y + 1 < Engine.WindowHeight - 4)
-            {
-                Clear();
-                this.Point.Y++;
-                Print();
-            }
+            if (this.Point.Y + 1 >= Engine.WindowHeight - 4) return;
+            Clear();
+            this.Point.Y++;
+            Print();
         }
 
         /// <summary>
@@ -64,12 +59,10 @@ namespace TeamWork
         public void MoveRight()
         {
             // Limit player movement on X axis
-            if (this.Point.X + 1 < Engine.WindowWidth - 23)
-            {
-                Clear();
-                this.Point.X++;
-                Print();
-            }
+            if (this.Point.X + 1 >= Engine.WindowWidth - 23) return;
+            Clear();
+            this.Point.X++;
+            Print();
         }
 
         /// <summary>
@@ -78,12 +71,10 @@ namespace TeamWork
         public void MoveLeft()
         {
             // Limit player movement on X axis
-            if (this.Point.X - 1 >= 1)
-            {
-                Clear();
-                this.Point.X--;
-                Print();
-            }
+            if (this.Point.X - 1 < 1) return;
+            Clear();
+            this.Point.X--;
+            Print();
         }
 
         public void setName(string newName)
@@ -156,10 +147,7 @@ namespace TeamWork
 
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>

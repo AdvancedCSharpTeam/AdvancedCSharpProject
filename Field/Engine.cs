@@ -82,7 +82,7 @@ namespace TeamWork.Field
         /// </summary>
         private void UpdateAndRender()
         {
-            if (Player.Level == 2 && BossActive == false) // When to spawn a boss
+            if (Player.Level == 1 && BossActive == false) // When to spawn a boss
             {
                 BossActive = true;
                 
@@ -347,6 +347,7 @@ namespace TeamWork.Field
         #region Music
         private static bool playMeteorEffect; // Trigger for meteor effect
         private static bool playEffect; // Trigger for player laser effect
+        public static bool playBossHit; // Trigger for boss hit effect
         /// <summary>
         /// Load background music
         /// </summary>
@@ -366,6 +367,7 @@ namespace TeamWork.Field
 
             MediaPlayer soundFX = new MediaPlayer();
             MediaPlayer soundFX2 = new MediaPlayer();
+            MediaPlayer soundFX3 = new MediaPlayer();
 
             while (true)
             {
@@ -381,9 +383,17 @@ namespace TeamWork.Field
                 {
                     soundFX2.Open(new Uri("Resources/laser.wav", UriKind.Relative));
 
-                    soundFX2.Volume = 400;
+                    soundFX2.Volume = 100;
                     soundFX2.Play();
                     playEffect = false;
+                }
+                if (playBossHit) // If the trigger is on play the laser effect
+                {
+                    soundFX3.Open(new Uri("Resources/Meow.wav", UriKind.Relative));
+
+                    soundFX3.Volume = 100;
+                    soundFX3.Play();
+                    playBossHit = false;
                 }
                 Thread.Sleep(80);
             }

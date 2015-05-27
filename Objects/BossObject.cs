@@ -7,39 +7,30 @@ namespace TeamWork.Objects
 {
     public class BossObject : Entity
     {
-        public enum ObjectType
+        public enum ObjectType // Object type
         {
             Rocket,
             Bullet,
             Laser,
             Mine,
-            SoundWave
+            SoundWave // Unused 
         }
 
         private ObjectType objectType;
-        private int lifeOnScreen;
+        private int lifeOnScreen; // "Frames" on screen
 
-        #region Constructors
-        public BossObject()
-        {
-            base.Speed = 1;
-            
-        }
-
-        public BossObject(Point2D point)
-            : base(point)
-        {
-            base.Speed = 1;
-            base.Point = point;
-            objectType = 0;
-        }
-
+        /// <summary>
+        /// BossObject constructor created with starting coordinate(Point2D) and type number 0-3
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="type"></param>
         public BossObject(Point2D point, int type)
             : base(point)
         {
             base.Speed = 1;
             base.Point = point;
-            objectType = (ObjectType)type;
+            objectType = (ObjectType) type;
+            // Based on the created type , set different lifeOnScreen values
             switch (objectType)
             {
                 case ObjectType.Rocket:
@@ -52,39 +43,59 @@ namespace TeamWork.Objects
                     lifeOnScreen = 20;
                     break;
                 case ObjectType.Mine:
-                    lifeOnScreen = 25;
+                    lifeOnScreen = 30;
                     break;
                 case ObjectType.SoundWave:
                     lifeOnScreen = 15;
                     break;
             }
         }
-        #endregion
 
         #region Get Methods
+
+        /// <summary>
+        /// Get BossObjects LifeOnScreen value
+        /// </summary>
+        /// <returns>int</returns>
         public int GetLifeOnScreen()
         {
             return lifeOnScreen;
         }
 
+        /// <summary>
+        /// Get BossObject type
+        /// </summary>
+        /// <returns>ObjectType</returns>
         public ObjectType GetObjectType()
         {
             return objectType;
         }
+
+        /// <summary>
+        /// Gets all relevant info about this object
+        /// </summary>
+        /// <returns>string</returns>
         public override string ToString()
         {
-            return string.Format("|");
-        } 
+            return string.Format("X:{0} Y:{1}\nLife on screen Left:{2}\nType:{3}", this.Point.X, this.Point.Y,
+                this.lifeOnScreen, this.objectType);
+        }
+
         #endregion
-        
+
+        /// <summary>
+        /// Moves the object based on its type
+        /// </summary>
         public void MoveObject()
         {
-            int direction = Engine.rnd.Next(1, 4);
+            int direction = Engine.rnd.Next(1, 4); // Random number, that defines the movement of some object types
             switch (objectType)
             {
 
                 case ObjectType.Rocket:
+
                     #region Rocket Movement
+                    // Rocket movement based on the random number
                     if (direction == 1)
                     {
                         this.Point.X--;
@@ -102,37 +113,46 @@ namespace TeamWork.Objects
                         this.Point.Y++;
                         lifeOnScreen--;
                     }
-                    break; 
-                #endregion
-               
+                    break;
+
+                    #endregion
+
                 case ObjectType.Bullet:
+
                     #region Bullet Movement
+                    // Standard bullet movement
                     this.Point.X -= 2;
                     lifeOnScreen -= 2;
-                    break; 
-                #endregion
+                    break;
+
+                    #endregion
 
                 case ObjectType.Laser:
+
                     #region Laser Movement
-                    if (lifeOnScreen > 8)
+                    
+                    if (lifeOnScreen > 8) // Laser chargeup "effect"
                     {
-                        if (lifeOnScreen % 2 == 0)
+                        if (lifeOnScreen%2 == 0)
                         {
                             this.Point.Y--;
                         }
                         else
                         {
                             this.Point.Y++;
-                        } 
+                        }
                     }
                     this.lifeOnScreen--;
                     break;
 
-                #endregion
+                    #endregion
 
                 case ObjectType.Mine:
+
                     #region Mine Movement
-                    if (lifeOnScreen > 20)
+
+                    // Mine object movement, different "speeds" and movements based on the objects left lifeOnScreen value
+                    if (lifeOnScreen > 25)
                     {
                         if (direction == 1)
                         {
@@ -152,7 +172,7 @@ namespace TeamWork.Objects
                             lifeOnScreen--;
                         }
                     }
-                    else if (lifeOnScreen > 10)
+                    else if (lifeOnScreen > 15)
                     {
                         if (direction == 1)
                         {
@@ -172,7 +192,7 @@ namespace TeamWork.Objects
                             lifeOnScreen--;
                         }
                     }
-                    else if (lifeOnScreen >= 6)
+                    else if (lifeOnScreen >= 10)
                     {
 
                         if (lifeOnScreen%2 == 0)
@@ -199,97 +219,118 @@ namespace TeamWork.Objects
                     lifeOnScreen--;
                     break;
 
-                #endregion
+                    #endregion
 
-                case ObjectType.SoundWave:
+                case ObjectType.SoundWave: // Unimplemented type
+
                     #region Soundwave Movement
+
                     this.Point.X--;
                     lifeOnScreen--;
-                    break; 
+                    break;
+
                     #endregion
             }
         }
+        
+        private int Frames = 1; // "Frames passed used for the explosion effect calculation"
+
+        private bool mineHit, mineHit2, mineHit3, mineHit4; // Triggers for mine explosion particles
+        private readonly Point2D diagonalInc = new Point2D(1, 1); // Diagonal helper
+        private readonly Point2D diagonalDec = new Point2D(-1, 1); // Diagonal helper
 
         /// <summary>
-        /// Print GameObject based on its type
+        /// Print object based on its type, lifeonscreen
         /// </summary>
-        private int Frames = 1;
-
-        private bool mineHit, mineHit2, mineHit3, mineHit4;
-        private Point2D diagonalInc = new Point2D(1,1);
-        private Point2D diagonalDec = new Point2D(-1,1);
         public void PrintObject()
         {
             switch (objectType)
             {
                 case ObjectType.Rocket:
+
                     #region Rocket Print
+
                     Printing.DrawAt(this.Point, "<>");
-                    break; 
+                    break;
+
                     #endregion
 
                 case ObjectType.Bullet:
+
                     #region Bullet Print
+
                     Printing.DrawAt(this.Point, '-', ConsoleColor.DarkCyan);
-                    Printing.DrawAt(this.Point.X,this.Point.Y + 1, '-', ConsoleColor.DarkCyan);
-                    Printing.DrawAt(this.Point.X,this.Point.Y - 1,'-', ConsoleColor.DarkCyan);
-                    break; 
+                    Printing.DrawAt(this.Point.X, this.Point.Y + 1, '-', ConsoleColor.DarkCyan);
+                    Printing.DrawAt(this.Point.X, this.Point.Y - 1, '-', ConsoleColor.DarkCyan);
+                    break;
+
                     #endregion
 
                 case ObjectType.Laser:
+
                     #region Laser Print
-                    if (this.lifeOnScreen > 8)
+
+                    if (this.lifeOnScreen > 8) // Print chargeup effect
                     {
-                        Engine.boss.movealbe = false;
-                        Printing.DrawAtBG(this.Point.X + 5, this.Point.Y - 1, @"<----.     __ / __   \", ConsoleColor.DarkGray);
+                        Engine.boss.movealbe = false; // Make the boss imovable while printing the chargeup effect
+                        Printing.DrawAtBG(this.Point.X + 5, this.Point.Y - 1, @"<----.     __ / __   \",
+                            ConsoleColor.DarkGray);
                         Printing.DrawAtBG(this.Point.X + 5, this.Point.Y, @"<----|====O)))==) \) /", ConsoleColor.Gray);
-                        Printing.DrawAtBG(this.Point.X + 5, this.Point.Y + 1, "<----'    `--' `.__,'", ConsoleColor.DarkGray);
+                        Printing.DrawAtBG(this.Point.X + 5, this.Point.Y + 1, "<----'    `--' `.__,'",
+                            ConsoleColor.DarkGray);
                         Console.ResetColor();
                     }
-                    else
+                    else // Print whole laser
                     {
-                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y - 1, "-------------------------------------------------------<----.", ConsoleColor.DarkGray);
-                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<----|", ConsoleColor.Gray);
-                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y + 1, "-------------------------------------------------------<----'", ConsoleColor.DarkGray);
+                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y - 1,
+                            "-------------------------------------------------------<----.", ConsoleColor.DarkGray);
+                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y,
+                            "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<----|", ConsoleColor.Gray);
+                        Printing.DrawAtBG(this.Point.X - 50, this.Point.Y + 1,
+                            "-------------------------------------------------------<----'", ConsoleColor.DarkGray);
                         Console.ResetColor();
-                        for (int i = 0; i < 53; i++)
+                        for (int i = 0; i < 53; i++) 
                         {
-                            if (Engine.Player.ShipCollided(Point.X - 50 + i, Point.Y))
+                            if (Engine.Player.ShipCollided(Point.X - 50 + i, Point.Y)) // Check if theres a colision with the player in the middle of the laser
                             {
                                 break;
                             }
                         }
-                        if (lifeOnScreen < 1)
+                        if (lifeOnScreen < 1) // When the laser animation stops, make the boss moveable again
                         {
                             Engine.boss.movealbe = true;
                         }
                     }
-                    break; 
+                    break;
+
                     #endregion
 
                 case ObjectType.Mine:
+
                     #region Mine Print
 
-                    if (this.lifeOnScreen > 10)
+                    if (this.lifeOnScreen > 6) // Standard print
                     {
                         Printing.DrawAt(this.Point.X, this.Point.Y - 1, " \u25B2", ConsoleColor.Yellow);
                         Printing.DrawAt(this.Point, "\u25C4\u25A0\u25BA", ConsoleColor.Yellow);
                         Printing.DrawAt(this.Point.X, this.Point.Y + 1, " \u25BC", ConsoleColor.Yellow);
                     }
-                    else
+                    else // Print explosion effect
                     {
-                        Point2D upRight = this.Point - diagonalDec * Frames;
+                        Point2D upRight = this.Point - diagonalDec*Frames;
+                        // If the particle hits the player, move it 1000 times to the right so its not printed
                         if (mineHit) upRight.X += 1000;
 
-                        Point2D upLeft = this.Point + diagonalDec * Frames;
+                        Point2D upLeft = this.Point + diagonalDec*Frames;
                         if (mineHit2) upLeft.X += 1000;
 
-                        Point2D downLeft = this.Point - diagonalInc * Frames;
+                        Point2D downLeft = this.Point - diagonalInc*Frames;
                         if (mineHit3) downLeft.X += 1000;
 
-                        Point2D downRight = this.Point + diagonalInc * Frames;
+                        Point2D downRight = this.Point + diagonalInc*Frames;
                         if (mineHit4) downRight.X += 1000;
 
+                        // If the particle is in the screen boundries , print it
                         if ((upLeft.X > 1 && upLeft.X < 79) && (upLeft.Y > 1 && upLeft.Y < 30))
                         {
                             Printing.DrawAt(upLeft, '*');
@@ -307,12 +348,14 @@ namespace TeamWork.Objects
                             Printing.DrawAt(downRight, '*');
                         }
                     }
-                    break; 
+                    break;
+
                     #endregion
 
-                case ObjectType.SoundWave:
+                case ObjectType.SoundWave: // Unimplemented
+
                     #region SoundWave Print
-                    
+
                     for (int i = 0 - Frames; i < Frames; i++)
                     {
                         if ((this.Point.Y - i > 4 && this.Point.Y + i < Engine.WindowHeight - 4))
@@ -322,44 +365,55 @@ namespace TeamWork.Objects
                         }
                     }
                     Frames++;
-                    break; 
+                    break;
+
                     #endregion
             }
         }
 
         /// <summary>
-        /// Clear GameObject based on its type
+        /// Clear GameObject based on its type and check for player colision
         /// </summary>
-        public void ClearObject()
+        public void ClearObjectCheckColision()
         {
             switch (objectType)
             {
                 case ObjectType.Bullet:
+
                     #region Bullet Clear
+                    // Clear the object 
                     Printing.DrawAt(this.Point.X, this.Point.Y, ' ');
                     Printing.DrawAt(this.Point.X, this.Point.Y + 1, ' ');
                     Printing.DrawAt(this.Point.X, this.Point.Y - 1, ' ');
+                    // Check for collision
                     if (Engine.Player.ShipCollided(this.Point) ||
-                        Engine.Player.ShipCollided(Point.X, Point.Y + 1)||
+                        Engine.Player.ShipCollided(Point.X, Point.Y + 1) ||
                         Engine.Player.ShipCollided(Point.X, Point.Y - 1))
                     {
-                        this.Point.X += 1000;
+                        // If theres a collision, set this object lifeonscreen to zero
+                        this.lifeOnScreen = 0;
                     }
-                    break; 
+                    break;
+
                     #endregion
 
                 case ObjectType.Rocket:
+
                     #region Rocket Clear
+
                     Printing.DrawAt(this.Point, "  ");
                     if (Engine.Player.ShipCollided(this.Point))
                     {
-                        this.Point.X += 1000;
+                        this.lifeOnScreen = 0;
                     }
-                    break; 
+                    break;
+
                     #endregion
 
                 case ObjectType.Laser:
+
                     #region Laser Clear
+
                     if (this.lifeOnScreen > 5)
                     {
                         Printing.DrawAt(this.Point.X, this.Point.Y - 2, "                      ");
@@ -369,16 +423,22 @@ namespace TeamWork.Objects
                     }
                     else
                     {
-                        Printing.DrawAt(this.Point.X - 50, this.Point.Y - 1, "                                                         ");
-                        Printing.DrawAt(this.Point.X - 50, this.Point.Y, "                                                         ");
-                        Printing.DrawAt(this.Point.X - 50, this.Point.Y + 1, "                                                         ");
+                        Printing.DrawAt(this.Point.X - 50, this.Point.Y - 1,
+                            "                                                         ");
+                        Printing.DrawAt(this.Point.X - 50, this.Point.Y,
+                            "                                                         ");
+                        Printing.DrawAt(this.Point.X - 50, this.Point.Y + 1,
+                            "                                                         ");
                     }
-                    break; 
+                    break;
+
                     #endregion
 
                 case ObjectType.Mine:
+
                     #region Mine Clear
-                    if (this.lifeOnScreen > 10)
+
+                    if (this.lifeOnScreen > 6)
                     {
                         Printing.DrawAt(this.Point.X, this.Point.Y - 1, "  ");
                         Printing.DrawAt(this.Point, "   ");
@@ -386,19 +446,19 @@ namespace TeamWork.Objects
                     }
                     else
                     {
-                        Point2D upRight = this.Point - diagonalDec * Frames;
+                        Point2D upRight = this.Point - diagonalDec*Frames;
                         if (mineHit) upRight.X += 1000;
                         if (Engine.Player.ShipCollided(upRight)) mineHit = true;
 
-                        Point2D upLeft = this.Point + diagonalDec * Frames;
+                        Point2D upLeft = this.Point + diagonalDec*Frames;
                         if (mineHit2) upLeft.X += 1000;
                         if (Engine.Player.ShipCollided(upLeft)) mineHit2 = true;
 
-                        Point2D downLeft = this.Point - diagonalInc * Frames;
+                        Point2D downLeft = this.Point - diagonalInc*Frames;
                         if (mineHit3) downLeft.X += 1000;
                         if (Engine.Player.ShipCollided(downLeft)) mineHit3 = true;
 
-                        Point2D downRight = this.Point + diagonalInc * Frames;
+                        Point2D downRight = this.Point + diagonalInc*Frames;
                         if (mineHit4) downRight.X += 1000;
                         if (Engine.Player.ShipCollided(downRight)) mineHit4 = true;
 
@@ -421,10 +481,13 @@ namespace TeamWork.Objects
                         Frames++;
                     }
                     break;
+
                     #endregion
 
-                case ObjectType.SoundWave:
+                case ObjectType.SoundWave: // Unimplemented
+
                     #region SoundWave Clear
+
                     for (int i = 0; i < Frames; i++)
                     {
                         if ((this.Point.Y - i > 4 && this.Point.Y + i < Engine.WindowHeight - 4))
@@ -432,96 +495,12 @@ namespace TeamWork.Objects
                             Printing.DrawAt(this.Point.X, this.Point.Y - i, "  ", ConsoleColor.Gray);
                             Printing.DrawAt(this.Point.X, this.Point.Y + i, "  ", ConsoleColor.Gray);
                         }
-                        
+
                     }
-                    break; 
+                    break;
+
                     #endregion
             }
         }
-        /// <summary>
-        /// Collision check
-        /// </summary>
-        /// <param name="x">X to check with</param>
-        /// <param name="y">Y to check with</param>
-        /// <returns>If there is a collision</returns>
-        public bool Collided(int x, int y)
-        {
-            switch (objectType)
-            {
-                case ObjectType.Bullet:
-                    /*
-                     * (.)AB
-                     * (.)CD
-                     */
-                    if ((x == this.Point.X && (y == this.Point.Y ||  y == this.Point.Y + 1)) || // A / C
-                        (x == this.Point.X + 1 &&
-                        (y == this.Point.Y || y == this.Point.Y + 1)) || // B / D
-                        (x == this.Point.X - 1 &&
-                        (y == this.Point.Y || y == this.Point.Y + 1)))// ..
-                        return true;
-                    return false;
-                case ObjectType.Rocket:
-                    /*
-                     * (.)AB              
-                     */
-                    if ((x == this.Point.X && y == this.Point.Y) || // A
-                        (x == this.Point.X+1 && y == this.Point.Y) || // B
-                        (x == this.Point.X - 1 && y == this.Point.Y)) // .
-                        return true;
-                    return false;
-                case ObjectType.SoundWave:
-                    /*  
-                     * CFI
-                     * ADG
-                     * BEH
-                     */
-                    if ((x == this.Point.X && y == this.Point.Y) || //A
-                        (x == this.Point.X && 
-                        (y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // B / C
-                        (x == this.Point.X + 1 &&
-                        (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // D / E / F
-                        (x == this.Point.X + 2 && 
-                        (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1))) // G / H / I
-                        return true;
-                    return false;
-                case ObjectType.Mine: 
-                    /*  
-                     * CF(.)
-                     * ADG
-                     * BE(.)
-                     */
-                    if ((x == this.Point.X && 
-                        (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // A / B / C
-                        (x == this.Point.X + 1 &&
-                        (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1)) || // D / E / F
-                        (x == this.Point.X + 2 &&
-                        (y == this.Point.Y || y == this.Point.Y + 1 || y == this.Point.Y - 1))) // G / . / .
-                        return true;
-                    return false;
-                case ObjectType.Laser:
-                    /*
-                     * ABCD
-                     */
-                    if ((x == this.Point.X && y == this.Point.Y) || // A
-                        (y == this.Point.Y &&
-                        (x == this.Point.X || x == this.Point.X + 1 || // B / C / D
-                        x == this.Point.X + 2 || x == this.Point.X + 3)))
-                        return true;
-                    return false;
-                default:
-                    return false;
-            }
-        }
-        /// <summary>
-        /// Collision check with Point2D
-        /// </summary>
-        /// <param name="point">Point2D To check with</param>
-        /// <returns>If there is a collision</returns>
-        public bool Collided(Point2D point)
-        {
-            return Collided(point.X, point.Y);
-        }
-
-
     }
 }

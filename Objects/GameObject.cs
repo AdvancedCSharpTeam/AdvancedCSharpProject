@@ -30,7 +30,7 @@ namespace TeamWork.Objects
                     / \
              */
             Gold,
-            /* Gold Meteorid with 3 life, gives 3 points, no additional functions
+            /* Gold Meteorid with 3 life, gives 4 points, no additional functions
                      ^
                     <x>
                      v

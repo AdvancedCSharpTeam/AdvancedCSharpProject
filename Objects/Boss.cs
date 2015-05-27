@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Media;
 using TeamWork.Field;
 
 namespace TeamWork.Objects
@@ -10,9 +12,14 @@ namespace TeamWork.Objects
             WierdGuy,
         }
 
-        public bool movealbe = true;
-        public int bossLife;
-        private BossType bossType;
+        public bool movealbe = true; // Tag for making the boss imovable
+        public int bossLife; // Boss lifepoints
+        private BossType bossType; // Type(only one atm)
+        
+        /// <summary>
+        /// Create a boss object from a given type
+        /// </summary>
+        /// <param name="type">Type</param>
         public Boss(int type)
         {
             bossType = (BossType) type;
@@ -75,52 +82,69 @@ namespace TeamWork.Objects
             Printing.DrawAt(this.Point.X + 7 , this.Point.Y + 6, @"               ");
         }
 
-        private List<BossObject> bossGameObjects = new List<BossObject>();
-        private int counter = 1;
-        private int chance = 30;
-        private bool entryAnimationPlayed = false;
+        private List<BossObject> bossGameObjects = new List<BossObject>(); // Boss spawned objects
+        private int counter = 1; // Counter
+        private int chance = 30; // Chance to spawn a object 1 in # times
+        private bool entryAnimationPlayed = false; // Tag to tell if the starting animation is played
+        
+        /// <summary>
+        /// Boss AI, all movement and boss object spawning is calculated here
+        /// </summary>
         public void BossAI()
         {
-            if (!entryAnimationPlayed)
+            if (!entryAnimationPlayed) // If the animation is not played yet
             {
 
-                BossEntryAnimation();
-                entryAnimationPlayed = true;
+                BossEntryAnimation(); // Play it
+                entryAnimationPlayed = true; // And trigger the entryAnimation tag
             }
-            if (this.bossLife <= 0)
+            if (this.bossLife <= 0) // If the boss has no life left
             {
-                Engine.BossActive = false;
+                Engine.BossActive = false; // Trigger the boss active boolean in Engine class
+                //Clear all Boss spawned objects from the screen
                 foreach (var bossGameObject in bossGameObjects)
                 {
-                    bossGameObject.ClearObject();
+                    bossGameObject.ClearObjectCheckColision();
                 }
-                BossDeathAnimation();
-                Engine.Player.IncreasePoints(90);
-                Menu.UIDescription();
+                MediaPlayer death = new MediaPlayer();
+                death.Open(new Uri("Resources/cat.wav", UriKind.Relative));
+                death.Play();
+                BossDeathAnimation(); // Play the boss death "animation"
+                Engine.Player.IncreasePoints(90); // Increase player points by 90
+                Menu.UIDescription(); // Redraw the UI Description
                 return;
             }
-            int type = Engine.rnd.Next(0, 4);
+            
+            // If its time to spawn a new object
             if (counter % chance == 0)
             {
+                // Get a random type and pass it to the switch
+                int type = Engine.rnd.Next(0, 4);
                 switch (type)
                 {
+                    // Create 10 rockets
                     case 0: 
                         for (int i = 0; i < 10; i++)
                         {
                             bossGameObjects.Add(new BossObject(new Point2D(this.Point.X - 5, this.Point.Y + Engine.rnd.Next(-5,5)), type));
                         }
                         break;
+                    // Create bullets from the trident
                     case 1: bossGameObjects.Add(new BossObject(new Point2D(this.Point.X - 5, this.Point.Y), type));
                         break;
+                    // Create Laser
                     case 2: bossGameObjects.Add(new BossObject(new Point2D(this.Point.X - 5, this.Point.Y), type));
                         break;
+                    // Create a Mine
                     case 3: bossGameObjects.Add(new BossObject(new Point2D(this.Point.X - 5, this.Point.Y), type));
                         break;
+                    // Create a soundwave (unimplemented)
                     case 4: bossGameObjects.Add(new BossObject(new Point2D(this.Point.X - 5, this.Point.Y), type));
                         break;
                 }
             }
             counter++;
+            // Random number to decide should the boss move
             int move = Engine.rnd.Next(0, 100);
             if (move > 20 && move < 30 && movealbe && this.Point.Y + 1 <= Engine.WindowHeight - 9)
             {
@@ -132,35 +156,48 @@ namespace TeamWork.Objects
                 BossClear();
                 this.Point.Y--;
             }
+            // Print the boss
             BossPrint();
             BossObjectsMoveAndDraw();
             
         }
 
+        /// <summary>
+        /// Move and draw the boss objects
+        /// </summary>
         private void BossObjectsMoveAndDraw()
         {
-            List<BossObject> newObjects = new List<BossObject>();
-            foreach (var bossGameObject in bossGameObjects)
+            List<BossObject> newObjects = new List<BossObject>(); // List of the moved objects
+            foreach (var bossGameObject in bossGameObjects) // Itterate through all current objects
             {
-                bossGameObject.ClearObject();
+                bossGameObject.ClearObjectCheckColision(); // Clear from the screen and check for collision with the player
                 
-                    if (bossGameObject.GetLifeOnScreen() <= 0 ||
-                        (bossGameObject.Point.X < 5 || bossGameObject.Point.X > Engine.WindowWidth -5 || bossGameObject.Point.Y < 3 || bossGameObject.Point.Y >= Engine.WindowHeight - 3))
-                    {
-
-                    }
-                    else
-                    {
-                        bossGameObject.MoveObject();
-                        bossGameObject.PrintObject();
-                        newObjects.Add(bossGameObject);
-                    } 
+                // if the object life is 0 or less, or its out of the screen
+                if (bossGameObject.GetLifeOnScreen() <= 0 ||
+                    (bossGameObject.Point.X < 5 || bossGameObject.Point.X > Engine.WindowWidth -5 || bossGameObject.Point.Y < 3 || bossGameObject.Point.Y >= Engine.WindowHeight - 3))
+                {
+                    // Don't add it to the list with the moved objects
+                }
+                else
+                {
+                    // Move the object
+                    bossGameObject.MoveObject();
+                    // Print it at its new position
+                    bossGameObject.PrintObject();
+                    // Add it to the list with moved objects
+                    newObjects.Add(bossGameObject);
+                } 
                 
             }
-            bossGameObjects = newObjects;
+            bossGameObjects = newObjects; // Overwrite old objects with the moved ones
         }
 
-        public bool BossHit(Point2D point )
+        /// <summary>
+        /// Boss collision check
+        /// </summary>
+        /// <param name="point">Point2D to check with</param>
+        /// <returns>If the boss is hit</returns>
+        public bool BossHit(Point2D point ) 
         {
             if (((point.X == this.Point.X + 13 || point.X == this.Point.X + 14) && point.Y == this.Point.Y - 12) ||
                 ((point.X >= this.Point.X + 12 && point.X <= this.Point.X + 20) && point.Y == this.Point.Y - 11) ||
@@ -182,7 +219,8 @@ namespace TeamWork.Objects
                 ((point.X >= this.Point.X + 7  && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 5) ||
                 ((point.X >= this.Point.X + 7  && point.X <= this.Point.X + 20) && point.Y == this.Point.Y + 6))
             {
-                this.bossLife--;
+                this.bossLife--; // Decrease boss life
+                Engine.playBossHit = true;
                 return true;
             }
             else
@@ -191,6 +229,9 @@ namespace TeamWork.Objects
             }
         }
 
+        /// <summary>
+        /// Boss death "Animation"
+        /// </summary>
         private void BossDeathAnimation()
         {
             Printing.DrawStringCharByChar(this.Point.X + 13, this.Point.Y - 12, @" ",5,false);
@@ -214,6 +255,9 @@ namespace TeamWork.Objects
             Printing.DrawStringCharByChar(this.Point.X + 7, this.Point.Y + 6, @"               ", 5, false);
         }
 
+        /// <summary>
+        /// Boss Entry "Entry animation"
+        /// </summary>
         private void BossEntryAnimation()
         {
             Printing.DrawStringCharByChar(this.Point.X + 13, this.Point.Y - 12, @",", 5, false);
